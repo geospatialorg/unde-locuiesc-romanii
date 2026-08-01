@@ -36,19 +36,34 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          SSH_HOST="$(echo '${{ secrets.SSH_HOST }}' | xargs)"
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Sincronizează codul + dist pe VM (fără data/ și node_modules)
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
+          SSH_HOST="$(echo "$SSH_HOST" | xargs)"
+          SSH_USER="$(echo "$SSH_USER" | xargs)"
+          DEPLOY_PATH="$(echo "$DEPLOY_PATH" | xargs)"
           rsync -az --delete \
             --exclude '.git' \
             --exclude 'data' \
             --exclude 'node_modules' \
             --exclude 'app/node_modules' \
             -e "ssh -i ~/.ssh/id_deploy" \
-            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/"
+            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
 
       - name: Reconstruiește și repornește serviciile
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
-          ssh -i ~/.ssh/id_deploy "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
-            "cd '${{ secrets.DEPLOY_PATH }}' && docker compose -f docker-compose.prod.yml up -d --build"
+          SSH_HOST="$(echo "$SSH_HOST" | xargs)"
+          SSH_USER="$(echo "$SSH_USER" | xargs)"
+          DEPLOY_PATH="$(echo "$DEPLOY_PATH" | xargs)"
+          ssh -i ~/.ssh/id_deploy "$SSH_USER@$SSH_HOST" \
+            "cd '$DEPLOY_PATH' && docker compose -f docker-compose.prod.yml up -d --build"
