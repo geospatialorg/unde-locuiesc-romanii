@@ -37,7 +37,9 @@ jobs:
           printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
           SSH_HOST="$(echo '${{ secrets.SSH_HOST }}' | xargs)"
-          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # ssh-keyscan e optional — dacă nu merge, SSH va prompt-a
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+          echo "StrictHostKeyChecking=accept-new" >> ~/.ssh/config
 
       - name: Sincronizează codul + dist pe VM (fără data/ și node_modules)
         env:
