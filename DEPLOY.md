@@ -6,11 +6,14 @@ Arhitectura de producție: **totul pe un VM**, servit **same-origin** sub sub-ca
 le adaugă **Cloudflare** (sau reverse-proxy-ul gazdei) în față.
 
 ```
-Internet → Cloudflare (TLS + cache) → :8080 Caddy ┬─ /unde-locuiesc-romanii/         → frontend (app/dist)
-                                                  ├─ /unde-locuiesc-romanii/data/*   → fișiere (data/out)
-                                                  └─ /unde-locuiesc-romanii/api/*    → routing-api (pgRouting)
+Internet → Cloudflare (TLS+cache) → nginx :80/:443 → 127.0.0.1:${APP_PORT} → Caddy (container :8080) ┬─ /unde-locuiesc-romanii/       → frontend (app/dist)
+                                                                                                    ├─ /unde-locuiesc-romanii/data/* → fișiere (data/out)
+                                                                                                    └─ /unde-locuiesc-romanii/api/*  → routing-api (pgRouting)
         servicii de fundal: warnings · forecast · climate-cron · routing-db
 ```
+
+`APP_PORT` (implicit `28173`, în `.env`) e portul de host spre care duce nginx-ul — ales exotic
+fiindcă `8080` e deja ocupat pe VM. Caddy rămâne pe `:8080` **intern** în container.
 
 Frontend-ul cere `${VITE_DATA_URL}/registry.json`, parquet-uri etc. și `${VITE_ROUTING_URL}/route`.
 În producție ambele sunt pe **același domeniu** (fără CORS):
@@ -44,14 +47,24 @@ Frontend-ul cere `${VITE_DATA_URL}/registry.json`, parquet-uri etc. și `${VITE_
 7. Test local pe VM: `curl -I http://127.0.0.1:8080/unde-locuiesc-romanii/data/registry.json` → `200`,
    iar cu `-H 'Range: bytes=0-99'` → `206`.
 
-## 2. Domeniu / proxy în față
+## 2. Domeniu / proxy (nginx pe gazdă → Caddy pe port exotic)
 
-Caddy ascultă pe `127.0.0.1:8080`. Îndreaptă `services.geo-spatial.org/unde-locuiesc-romanii/*`
-către el:
-- dacă domeniul are deja un reverse-proxy (nginx/Traefik/Caddy pe gazdă), adaugă o rută
-  `/unde-locuiesc-romanii/ → http://127.0.0.1:8080`;
-- dacă VM-ul e dedicat, poți lăsa Caddy-ul nostru să preia `:443` (modifică `:8080` în numele
-  de domeniu în `Caddyfile.prod` pentru TLS automat).
+Caddy publică pe `127.0.0.1:${APP_PORT}` (implicit `28173`). În nginx-ul tău (`:80`/`:443`),
+trimite `/unde-locuiesc-romanii/*` acolo, **păstrând calea completă** — Caddy se așteaptă la
+prefix și îl decupează singur:
+
+```nginx
+location /unde-locuiesc-romanii/ {
+    proxy_pass http://127.0.0.1:28173;        # FĂRĂ „/" final → nu rescrie calea
+    proxy_http_version 1.1;
+    proxy_set_header Host              $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+}
+```
+
+⚠️ Dacă pui `proxy_pass http://127.0.0.1:28173/;` (cu „/" final), nginx decupează prefixul și
+Caddy nu mai potrivește ruta — lasă-l **fără** slash. Cererile cu `Range` (parquet/zarr) trec nativ.
 
 ## 3. GitHub — redeploy la fiecare commit
 

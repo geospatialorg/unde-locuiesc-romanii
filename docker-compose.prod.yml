@@ -12,7 +12,9 @@ services:
     image: caddy:2-alpine
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8080:8080"   # doar local; Cloudflare/proxy-ul gazdei îl preiau
+      # host:container — portul de HOST (exotic, configurabil) e cel spre care duce nginx-ul tău;
+      # 8080 rămâne intern în container (izolat, nu se ciocnește cu nimic)
+      - "127.0.0.1:${APP_PORT:-28173}:8080"
     volumes:
       - ./infra/deploy/Caddyfile.prod:/etc/caddy/Caddyfile:ro
       - ./app/dist:/srv/web:ro
