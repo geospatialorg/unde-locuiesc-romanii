@@ -1,0 +1,17 @@
+numpy
+pandas
+geopandas
+pyogrio
+shapely
+pyproj
+rasterio
+scipy
+xarray
+netCDF4
+pyarrow>=25,<26
+duckdb
+zarr
+ecmwf-opendata>=0.3.31,<0.4
+cdsapi>=0.7.7,<0.8
+cfgrib>=0.9.15,<0.10
+eccodes>=2.42,<3

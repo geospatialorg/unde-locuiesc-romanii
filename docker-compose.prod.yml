@@ -1,0 +1,114 @@
+# Producție (VM): totul same-origin sub /unde-locuiesc-romanii, expus local pe :8080.
+# Cloudflare / reverse-proxy-ul gazdei stau în față (TLS + cache).
+#
+#   Prima punere în funcțiune (o singură dată):
+#     docker compose -f docker-compose.prod.yml up -d routing-db
+#     docker compose -f docker-compose.prod.yml --profile routing-import run --rm routing-import
+#   Deploy / redeploy:
+#     docker compose -f docker-compose.prod.yml up -d --build
+services:
+  # Serverul unic: frontend + date + proxy către rutare, toate sub sub-cale
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"   # doar local; Cloudflare/proxy-ul gazdei îl preiau
+    volumes:
+      - ./infra/deploy/Caddyfile.prod:/etc/caddy/Caddyfile:ro
+      - ./app/dist:/srv/web:ro
+      - ./data/out:/srv/data:ro
+    depends_on:
+      - routing-api
+
+  # Avertizări meteo (nowcasting + atenționări) → data/out/live/
+  warnings:
+    build: ./pipeline
+    volumes:
+      - ./data:/data
+    environment:
+      ULR_DATA_IN: /data
+      ULR_DATA_OUT: /data/out
+      ULR_STAGING: /data/staging
+      WARN_NOWCAST_URL: https://www.meteoromania.ro/avertizari-nowcasting-xml-gis.php
+      WARN_GENERAL_URL: https://www.meteoromania.ro/avertizari-xml.php
+      WARN_INTERVAL: "600"
+    command: python -m ulr_pipeline.warnings_live serve
+    restart: unless-stopped
+
+  # Prognoze ECMWF + CAMS → data/out/live/forecast/
+  forecast:
+    build: ./pipeline
+    volumes:
+      - ./data:/data
+    environment:
+      ULR_DATA_IN: /data
+      ULR_DATA_OUT: /data/out
+      ULR_STAGING: /data/staging
+      FORECAST_INTERVAL: "${FORECAST_INTERVAL:-21600}"
+      ADS_API_URL: "${ADS_API_URL:-https://ads.atmosphere.copernicus.eu/api}"
+      ADS_API_KEY: "${ADS_API_KEY:-}"
+    command: python -m ulr_pipeline.forecast_live serve
+    restart: unless-stopped
+
+  # Refresh zilnic al grilelor climatice (10:00 ora României)
+  climate-cron:
+    build: ./pipeline
+    entrypoint: ["/app/cron_entry.sh"]
+    volumes:
+      - ./data:/data
+    environment:
+      ULR_DATA_IN: /data
+      ULR_DATA_OUT: /data/out
+      ULR_STAGING: /data/staging
+      TZ: Europe/Bucharest
+      CRON_HOUR: "10"
+      CRON_MIN: "0"
+      RUN_ON_START: "0"
+    restart: unless-stopped
+
+  # --- Rutare: PostGIS + pgRouting cu graful OSM ---
+  routing-db:
+    image: pgrouting/pgrouting:latest
+    environment:
+      POSTGRES_USER: ulr
+      POSTGRES_PASSWORD: "${ROUTING_DB_PASSWORD:-ulrpass}"
+      POSTGRES_DB: routing
+    volumes:
+      - routing_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ulr -d routing"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  # Importul grafului — rulat o singură dată (--profile routing-import)
+  routing-import:
+    build: ./infra/routing/import
+    profiles: ["routing-import"]
+    depends_on:
+      routing-db:
+        condition: service_healthy
+    environment:
+      PGHOST: routing-db
+      PGUSER: ulr
+      PGPASSWORD: "${ROUTING_DB_PASSWORD:-ulrpass}"
+      PGDATABASE: routing
+    volumes:
+      - ./data:/data
+      - ./data/out:/out:ro
+
+  routing-api:
+    build: ./infra/routing/api
+    depends_on:
+      routing-db:
+        condition: service_healthy
+    environment:
+      PGHOST: routing-db
+      PGUSER: ulr
+      PGPASSWORD: "${ROUTING_DB_PASSWORD:-ulrpass}"
+      PGDATABASE: routing
+    restart: unless-stopped
+
+volumes:
+  routing_pgdata:

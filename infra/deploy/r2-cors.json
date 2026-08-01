@@ -1,0 +1,12 @@
+[
+  {
+    "AllowedOrigins": [
+      "https://services.geo-spatial.org",
+      "http://localhost:5173"
+    ],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": ["range", "content-type", "if-match", "if-none-match"],
+    "ExposeHeaders": ["Content-Range", "Content-Length", "Accept-Ranges", "ETag", "Content-Type"],
+    "MaxAgeSeconds": 3600
+  }
+]

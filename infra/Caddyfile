@@ -1,0 +1,15 @@
+:80 {
+	root * /srv
+	file_server browse
+
+	header {
+		Access-Control-Allow-Origin *
+		Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
+		Access-Control-Allow-Headers "Range, If-Match, If-None-Match, Content-Type"
+		Access-Control-Expose-Headers "Content-Range, Accept-Ranges, Content-Length, ETag"
+		Cache-Control "no-cache"
+	}
+
+	@options method OPTIONS
+	respond @options 204
+}

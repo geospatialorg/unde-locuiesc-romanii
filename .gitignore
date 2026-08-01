@@ -1,0 +1,18 @@
+# date brute și produse — nu intră în git
+data/
+
+# node / vite
+node_modules/
+dist/
+.vite/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# diverse
+.DS_Store
+*.log
+.env
+.cdsapirc
