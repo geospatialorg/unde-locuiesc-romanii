@@ -30,11 +30,19 @@ Frontend-ul cere `${VITE_DATA_URL}/registry.json`, parquet-uri etc. și `${VITE_
    aceeași cale ca secretul `DEPLOY_PATH`.
 3. **`.env`** (copiat din `.env.example`): setează `ROUTING_DB_PASSWORD` și, dacă folosești CAMS,
    `ADS_API_KEY`.
-4. **Adu datele pe VM.** `data/` NU e în git (21 GB). Două opțiuni:
-   - rulează pipeline-ul pe VM (are nevoie de fișierele-sursă din `data/` + spațiu):
-     `docker compose run --rm pipeline python -m ulr_pipeline.run all`
-   - sau copiază de pe mașina locală doar produsele: `rsync -az data/out/ vm:~/unde-locuiesc-romanii/data/out/`
-     (plus fișierele-sursă necesare pollerelor/refresh-ului climatic).
+4. **Adu produsele pe VM (~120 MB, NU 21 GB).** `data/` nu e în git. Aplicația servește doar
+   produsele mici; `climate.zarr` (9 GB) **nu** e cerut la runtime, iar `live/` îl generează
+   pollerele pe VM. De pe mașina unde ai rulat pipeline-ul:
+   ```bash
+   rsync -az --exclude climate.zarr --exclude 'live/' \
+     data/out/ <user>@<vm>:<DEPLOY_PATH>/data/out/
+   rsync -az data/staging/ <user>@<vm>:<DEPLOY_PATH>/data/staging/
+   ```
+   `data/staging/` (57 MB) e necesar pentru refresh-ul climatic zilnic + `export`. `climate.zarr`
+   și sursele brute (FABDEM, NC-uri istorice, gpkg-uri) rămân **local** — trebuie doar la un
+   rebuild complet, pe care-l faci local și re-sincronizezi produsele.
+   *(Excepție: dacă expui public vizualizatorul de climă pe bază de Zarrita, atunci `climate.zarr`
+   trebuie servit — acolo R2 devine util; vezi anexa.)*
 5. **Graful de rutare** (o singură dată):
    ```bash
    docker compose -f docker-compose.prod.yml up -d routing-db
@@ -97,9 +105,11 @@ Când adăugăm Cloudflare pe `geo-spatial.org`:
 
 ## 5. Actualizarea datelor
 
-- `warnings`, `forecast`, `climate-cron` rulează continuu și scriu în `data/out/live` / re-asamblează
-  produsele — nu depind de commit-uri.
-- Reprocesare manuală după o sursă nouă: `docker compose run --rm pipeline python -m ulr_pipeline.run <pas> export validate`.
+- `warnings`, `forecast`, `climate-cron` rulează continuu pe VM și scriu în `data/out/live` /
+  re-asamblează produsele — **nu depind de commit-uri**.
+- La o **sursă nouă** (ex. lacuri, cursuri de apă): rulezi pipeline-ul **local**
+  (`docker compose run --rm pipeline python -m ulr_pipeline.run <pas> export validate`), apoi
+  re-sincronizezi produsele cu cele două `rsync` din pasul 1.4. Datele curg prin sync, nu prin git.
 
 ## Anexă — R2 (opțional, dacă vrei să scoți datele de pe VM)
 
