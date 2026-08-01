@@ -28,6 +28,8 @@ export interface ForecastProduct {
   question: string;
   definition: string;
   color: string;
+  /** produsul e relevant pentru prognoza curentă (ex. „ger" e ascuns vara) */
+  active?: boolean;
 }
 
 export interface ForecastMeta {
@@ -50,6 +52,11 @@ export const DEFAULT_FORECAST_SELECTION: ForecastSelection = {
   date: null,
   measure: "pop_total",
 };
+
+/** produsele relevante pentru prognoza curentă, în ordine (ascunde cele cu active:false) */
+export function activeForecastProducts(meta: ForecastMeta): ForecastProductId[] {
+  return FORECAST_PRODUCT_ORDER.filter((id) => meta.products[id]?.active !== false);
+}
 
 function validSource(value: unknown): value is ForecastSource {
   if (!value || typeof value !== "object") return false;

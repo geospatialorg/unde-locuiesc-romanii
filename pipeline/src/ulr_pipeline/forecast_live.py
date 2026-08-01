@@ -84,44 +84,127 @@ SOURCE_META = {
     },
 }
 
-PRODUCTS = {
-    "heat": {
-        "source": "weather",
-        "field": "tmax",
-        "reducer": "max",
-        "operator": ">=",
-        "threshold": 35,
-        "unit": "°C",
-        "label": "Caniculă prognozată",
-        "question": "Câți români vor fi potențial expuși la temperaturi de cel puțin 35°C?",
-        "definition": "Maximul zilnic al intervalelor ECMWF de temperatură la 2 m.",
-        "color": "#d7301f",
-    },
-    "cold": {
-        "source": "weather",
-        "field": "tmin",
-        "reducer": "min",
-        "operator": "<=",
-        "threshold": -10,
-        "unit": "°C",
-        "label": "Ger prognozat",
-        "question": "Câți români vor fi potențial expuși la temperaturi de cel mult -10°C?",
-        "definition": "Minimul zilnic al intervalelor ECMWF de temperatură la 2 m.",
-        "color": "#2b8cbe",
-    },
-    "air_poor": {
-        "source": "air",
-        "field": "aqi_rank",
-        "reducer": "max",
-        "operator": ">=",
-        "threshold": 3,
-        "unit": "rang AQI european (0-5)",
-        "label": "Aer slab prognozat",
-        "question": "Câți români vor fi potențial expuși la o calitate slabă a aerului sau mai rea?",
-        "definition": "Cea mai rea categorie zilnică dintre PM2.5, PM10, NO₂, O₃ și SO₂.",
-        "color": "#8c2d84",
-    },
+# Produsele meteo se construiesc DINAMIC la fiecare rulare, în funcție de prognoză:
+# nu are sens „ger sub -10°C" în plină caniculă. Pragul urcă/coboară pe trepte standard,
+# la cea mai severă atinsă de prognoză pe orizont; produsul irelevant devine `active: False`
+# (frontend-ul îl ascunde). Aerul rămâne fix (activ când sursa CAMS e disponibilă).
+HEAT_LADDER = [30, 32, 35, 38, 40]   # °C — se alege cea mai mare treaptă ≤ maximul național
+COLD_LADDER = [0, -5, -10, -15, -20]  # °C — se alege cea mai joasă treaptă ≥ minimul național
+
+AIR_PRODUCT = {
+    "source": "air",
+    "field": "aqi_rank",
+    "reducer": "max",
+    "operator": ">=",
+    "threshold": 3,
+    "unit": "rang AQI european (0-5)",
+    "label": "Aer slab prognozat",
+    "question": "Câți români vor fi potențial expuși la o calitate slabă a aerului sau mai rea?",
+    "definition": "Cea mai rea categorie zilnică dintre PM2.5, PM10, NO₂, O₃ și SO₂.",
+    "color": "#8c2d84",
 }
+
+
+def _fmt_c(value: float) -> str:
+    return f"{value:g}°C"
+
+
+def _heat_product(threshold: float, active: bool) -> dict[str, Any]:
+    return {
+        "source": "weather", "field": "tmax", "reducer": "max", "operator": ">=",
+        "threshold": threshold, "unit": "°C", "label": "Caniculă prognozată",
+        "question": f"Câți români vor fi potențial expuși la temperaturi de cel puțin {_fmt_c(threshold)}?",
+        "definition": "Maximul zilnic al intervalelor ECMWF de temperatură la 2 m.",
+        "color": "#d7301f", "active": active,
+    }
+
+
+def _cold_product(threshold: float, active: bool) -> dict[str, Any]:
+    return {
+        "source": "weather", "field": "tmin", "reducer": "min", "operator": "<=",
+        "threshold": threshold, "unit": "°C", "label": "Ger prognozat",
+        "question": f"Câți români vor fi potențial expuși la temperaturi de cel mult {_fmt_c(threshold)}?",
+        "definition": "Minimul zilnic al intervalelor ECMWF de temperatură la 2 m.",
+        "color": "#2b8cbe", "active": active,
+    }
+
+
+# o întrebare e „rezonabilă" dacă expune cel puțin această pondere din populație
+POP_FLOOR_FRACTION = 0.005  # 0,5%
+
+
+def _cell_forecast(sources: dict[str, Any]) -> "pd.DataFrame | None":
+    """Prognoza pe celulele locuite: tmax/tmin interpolate pe cele 4 noduri vecine (exact ca
+    în aplicație) + populația din core.parquet. Astfel pragul se alege după oamenii chiar
+    expuși, nu după un vârf izolat al grilei brute. None dacă datele lipsesc."""
+    weather = sources.get("weather", {})
+    data_file = weather.get("data_file")
+    map_file = weather.get("map_file")
+    if not weather.get("ok") or not data_file or not map_file:
+        return None
+    try:
+        wd = pd.read_parquet(DATA_OUT / data_file, columns=["grid_id", "tmin", "tmax"])
+        mp = pd.read_parquet(DATA_OUT / map_file)
+        core = pd.read_parquet(DATA_OUT / "core.parquet", columns=["cell_id", "pop_total"])
+    except Exception:
+        return None
+    if wd.empty or mp.empty or core.empty:
+        return None
+    grp = wd.groupby("grid_id").agg(tmax=("tmax", "max"), tmin=("tmin", "min"))
+
+    def _interp(series: pd.Series) -> np.ndarray:
+        vals = np.stack([mp[f"grid_id_{s}"].map(series).to_numpy(dtype=float) for s in "abcd"], axis=1)
+        wts = np.stack([mp[f"weight_{s}"].to_numpy(dtype=float) for s in "abcd"], axis=1)
+        ok = np.isfinite(vals)
+        num = np.where(ok, wts * vals, 0.0).sum(axis=1)
+        den = np.where(ok, wts, 0.0).sum(axis=1)
+        return np.where(den > 0, num / den, np.nan)
+
+    cells = pd.DataFrame({
+        "cell_id": mp["cell_id"].to_numpy(),
+        "tmax": _interp(grp["tmax"]),
+        "tmin": _interp(grp["tmin"]),
+    }).merge(core, on="cell_id", how="inner")
+    return cells
+
+
+def _pick_threshold(
+    cells: "pd.DataFrame", ladder: list[int], field: str, op: str, floor: float
+) -> tuple[int | None, bool]:
+    """Pragul cel mai sever care expune ≥ floor oameni; dacă niciunul nu-l atinge, treapta cu
+    cea mai mare populație expusă (>0). (prag, activ); (None, False) dacă nimeni nu e expus."""
+    def exposed(thr: int) -> int:
+        mask = cells[field] >= thr if op == ">=" else cells[field] <= thr
+        return int(cells.loc[mask, "pop_total"].sum())
+
+    counts = [(band, exposed(band)) for band in ladder]
+    reachable = [band for band, pop in counts if pop > 0]
+    if not reachable:
+        return None, False
+    meeting = [band for band, pop in counts if pop >= floor]
+    if meeting:
+        return (max(meeting) if op == ">=" else min(meeting)), True
+    return max(counts, key=lambda bp: bp[1])[0], True
+
+
+def _build_products(sources: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Produsele meteo, adaptate la prognoza curentă (praguri rezonabile + relevanță)."""
+    cells = _cell_forecast(sources)
+    if cells is None or cells.empty:
+        heat_thr, heat_active, cold_thr, cold_active = 35, False, -10, False
+    else:
+        floor = float(cells["pop_total"].sum()) * POP_FLOOR_FRACTION
+        heat_thr, heat_active = _pick_threshold(cells, HEAT_LADDER, "tmax", ">=", floor)
+        cold_thr, cold_active = _pick_threshold(cells, COLD_LADDER, "tmin", "<=", floor)
+        heat_thr = 35 if heat_thr is None else heat_thr
+        cold_thr = -10 if cold_thr is None else cold_thr
+    air = dict(AIR_PRODUCT)
+    air["active"] = bool(sources.get("air", {}).get("ok"))
+    return {
+        "heat": _heat_product(heat_thr, heat_active),
+        "cold": _cold_product(cold_thr, cold_active),
+        "air_poor": air,
+    }
 
 
 class SourceError(RuntimeError):
@@ -1162,7 +1245,7 @@ def _refresh_locked() -> bool:
                 "schema_version": 1,
                 "generated_utc": _iso_utc(datetime.now(timezone.utc)),
                 "sources": sources,
-                "products": PRODUCTS,
+                "products": _build_products(sources),
             })
 
     _log("manifest.json publicat atomic")

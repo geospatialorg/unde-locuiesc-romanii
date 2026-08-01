@@ -17,6 +17,7 @@ import { hasAnyWarnings, loadWarnings, type WarningsMeta } from "./lib/warnings"
 import type { WarnSelection } from "./components/WarningsPanel";
 import { buildShareUrl, readShareFromUrl, type ShareState } from "./lib/urlstate";
 import {
+  activeForecastProducts,
   DEFAULT_FORECAST_SELECTION,
   forecastAggregateSql,
   forecastCellValuesSql,
@@ -200,6 +201,16 @@ export function App({ dataUrl }: { dataUrl: string }) {
       setForecastSelection((selection) => ({ ...selection, date: null }));
     }
   }, [forecasts, forecastSelection.productId, forecastSelection.date]);
+
+  // dacă produsul selectat nu mai e relevant pentru prognoza curentă (ex. „ger" vara),
+  // trece automat la primul produs activ
+  useEffect(() => {
+    if (!forecasts) return;
+    const active = activeForecastProducts(forecasts);
+    if (active.length && !active.includes(forecastSelection.productId)) {
+      setForecastSelection((selection) => ({ ...selection, productId: active[0], date: null }));
+    }
+  }, [forecasts, forecastSelection.productId]);
 
   const onQueryChange = useCallback((q: QueryState, presetId: string | null) => {
     userInteracted.current = true;

@@ -7,7 +7,7 @@ import { MORE_PRESETS, PRESETS, type PresetThreshold } from "../query/presets";
 import { WarningsPanel, type WarnSelection } from "./WarningsPanel";
 import { hasAnyWarnings, type WarningsMeta } from "../lib/warnings";
 import {
-  FORECAST_PRODUCT_ORDER,
+  activeForecastProducts,
   sourceAvailable,
   type AppMode,
   type ForecastMeta,
@@ -135,7 +135,7 @@ export function Sidebar(p: Props) {
               Câți români sunt afectați de avertizări meteo?
             </button>
           )}
-          {p.forecasts && FORECAST_PRODUCT_ORDER.map((productId) => {
+          {p.forecasts && activeForecastProducts(p.forecasts).map((productId) => {
             const product = p.forecasts!.products[productId];
             const available = sourceAvailable(p.forecasts!.sources[product.source]);
             return (
