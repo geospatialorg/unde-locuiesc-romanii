@@ -18,8 +18,8 @@
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
-          // cale relativă la documentul curent: în dev → /sw.js, în prod (base
-          // /unde-locuiesc-romanii/) → /unde-locuiesc-romanii/sw.js, fără hardcodare
+          // cale relativă la documentul curent (root pe subdomeniu → /sw.js),
+          // base-agnostic: merge și dacă app-ul e servit dintr-o sub-cale
           navigator.serviceWorker.register("sw.js").catch((e) => {
             console.warn("Service Worker registration failed:", e);
           });

@@ -1,7 +1,7 @@
 const CACHE_NAME = "unde-locuiesc-v1";
 const ASSETS = [
-  "/unde-locuiesc-romanii/",
-  "/unde-locuiesc-romanii/index.html",
+  "/",
+  "/index.html",
 ];
 
 self.addEventListener("install", (event) => {
