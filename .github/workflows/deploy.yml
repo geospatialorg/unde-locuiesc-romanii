@@ -21,10 +21,10 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
 
-      - name: Build frontend (sub-cale + URL-uri same-origin)
+      - name: Build frontend (root pe subdomeniu + URL-uri same-origin)
         working-directory: app
         env:
-          VITE_BASE: /unde-locuiesc-romanii/
+          VITE_BASE: /
           VITE_DATA_URL: ${{ vars.VITE_DATA_URL }}
           VITE_ROUTING_URL: ${{ vars.VITE_ROUTING_URL }}
         run: |

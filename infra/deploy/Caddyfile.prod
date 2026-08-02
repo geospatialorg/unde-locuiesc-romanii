@@ -1,13 +1,14 @@
-# Caddy de producție — totul same-origin sub /unde-locuiesc-romanii, pe portul intern 8080.
-# TLS + cache le adaugă Cloudflare (sau reverse-proxy-ul gazdei) în față; aici nu facem TLS.
+# Caddy de producție — aplicația la RĂDĂCINA subdomeniului (unde.geo-spatial.org),
+# pe portul intern 8080. TLS + cache le adaugă Cloudflare / reverse-proxy-ul gazdei
+# în față; aici nu facem TLS.
 :8080 {
 	# --- rutare reală (pgRouting) ---
-	handle_path /unde-locuiesc-romanii/api/* {
+	handle_path /api/* {
 		reverse_proxy routing-api:8000
 	}
 
 	# --- date publicate (registry, parquet, geojson, climate.zarr) ---
-	handle_path /unde-locuiesc-romanii/data/* {
+	handle_path /data/* {
 		root * /srv/data
 		# fișierele „live" (avertizări/prognoze) se schimbă des → niciodată cache
 		# (matcher-ul exclusiv evită ca headerul general de mai jos să le suprascrie)
@@ -20,8 +21,8 @@
 		file_server               # range requests native → 206 pentru DuckDB/Zarrita
 	}
 
-	# --- frontend (SPA Vite, build cu base=/unde-locuiesc-romanii/) ---
-	handle_path /unde-locuiesc-romanii/* {
+	# --- frontend (SPA Vite, build cu base=/) — catch-all ---
+	handle {
 		root * /srv/web
 		# asset-uri Vite cu hash în nume (index-<hash>.js) → imutabile, cache 1 an
 		@assets path /assets/*
@@ -32,9 +33,6 @@
 		try_files {path} /index.html
 		file_server
 	}
-
-	# rădăcina domeniului → aplicația
-	redir / /unde-locuiesc-romanii/ permanent
 
 	log {
 		output stdout
