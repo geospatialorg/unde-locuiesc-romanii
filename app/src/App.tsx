@@ -65,6 +65,17 @@ export function App({ dataUrl }: { dataUrl: string }) {
   const queryEpoch = useRef(0);
   const userInteracted = useRef(!!SHARED); // un link partajat = alegere explicită de mod
   const mapApi = useRef<MapApi | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   useEffect(() => {
     Promise.all([loadRegistry(dataUrl), loadGridSpec(dataUrl)])
@@ -274,6 +285,10 @@ export function App({ dataUrl }: { dataUrl: string }) {
 
   return (
     <div className="app">
+      <button className="sidebar-toggle" onClick={() => setDrawerOpen((v) => !v)} title="Meniu">
+        ☰
+      </button>
+      {drawerOpen && <div className="drawer-backdrop active" onClick={() => setDrawerOpen(false)} />}
       <Sidebar
         registry={registry}
         mode={mode}
@@ -295,6 +310,10 @@ export function App({ dataUrl }: { dataUrl: string }) {
         onToggleDashboard={() => setDashboardOpen((v) => !v)}
         onShare={onShare}
         dataUrl={dataUrl}
+        drawerOpen={drawerOpen}
+        onCloseDrawer={() => setDrawerOpen(false)}
+        darkMode={darkMode}
+        onToggleDarkMode={() => setDarkMode((v) => !v)}
       />
       <div className="map-wrap">
         <MapView

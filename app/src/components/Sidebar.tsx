@@ -39,6 +39,10 @@ interface Props {
   onToggleDashboard(): void;
   onShare(): string;
   dataUrl: string;
+  drawerOpen?: boolean;
+  onCloseDrawer?(): void;
+  darkMode?: boolean;
+  onToggleDarkMode?(): void;
 }
 
 export function Sidebar(p: Props) {
@@ -105,7 +109,7 @@ export function Sidebar(p: Props) {
   }
 
   return (
-    <aside className="sidebar">
+    <aside className={"sidebar" + (p.drawerOpen ? " drawer-open" : "")}>
       <header>
         <h1>Unde locuiesc românii?</h1>
         <p className="subtitle">{registry.dataNote}</p>
@@ -120,6 +124,13 @@ export function Sidebar(p: Props) {
             {shared ? "✓ Link copiat" : "🔗 Partajează harta"}
           </button>
         </div>
+        <button
+          className="theme-toggle"
+          onClick={p.onToggleDarkMode}
+          title={p.darkMode ? "Lumină" : "Negru"}
+        >
+          {p.darkMode ? "☀️" : "🌙"}
+        </button>
       </header>
 
       <section>
@@ -129,7 +140,10 @@ export function Sidebar(p: Props) {
           {warnActive && (
             <button
               className={"preset warn-preset" + (p.mode === "warnings" ? " active" : "")}
-              onClick={p.onSelectWarnings}
+              onClick={() => {
+                p.onSelectWarnings();
+                p.onCloseDrawer?.();
+              }}
             >
               <span className="warn-badge">⚠ acum</span>
               Câți români sunt afectați de avertizări meteo?
@@ -146,7 +160,10 @@ export function Sidebar(p: Props) {
                   (p.mode === "forecast" && productId === p.forecastSelection.productId ? " active" : "") +
                   (!available ? " unavailable" : "")
                 }
-                onClick={() => p.onSelectForecast(productId)}
+                onClick={() => {
+                  p.onSelectForecast(productId);
+                  p.onCloseDrawer?.();
+                }}
               >
                 <span className="forecast-badge">prognoză</span>
                 {product.question}
@@ -158,7 +175,10 @@ export function Sidebar(p: Props) {
             <button
               key={pr.id}
               className={p.mode === "query" && pr.id === p.activePreset ? "preset active" : "preset"}
-              onClick={() => p.onQueryChange(pr.query, pr.id)}
+              onClick={() => {
+                p.onQueryChange(pr.query, pr.id);
+                p.onCloseDrawer?.();
+              }}
             >
               {pr.title}
             </button>

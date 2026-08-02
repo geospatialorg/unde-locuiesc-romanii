@@ -1,0 +1,47 @@
+{
+  "name": "Unde locuiesc românii?",
+  "short_name": "Unde locuiesc?",
+  "description": "Analiză geospațială interactivă a populației din România",
+  "start_url": "/unde-locuiesc-romanii/",
+  "scope": "/unde-locuiesc-romanii/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fbfcfe",
+  "theme_color": "#d6452b",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23d6452b' width='192' height='192'/><text x='50%' y='50%' font-size='120' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>🇷🇴</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23d6452b' width='512' height='512'/><text x='50%' y='50%' font-size='300' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>🇷🇴</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23fbfcfe' width='540' height='720'/><rect fill='%23d6452b' width='540' height='60'/><text x='270' y='30' font-size='24' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>Unde locuiesc românii?</text></svg>",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["productivity", "maps"],
+  "shortcuts": [
+    {
+      "name": "Hartă",
+      "short_name": "Hartă",
+      "description": "Vizualizează harta și întrebi despre populație",
+      "url": "/unde-locuiesc-romanii/",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle fill='%23315b7d' cx='48' cy='48' r='45'/><path fill='white' d='M48 20L55 35H60L50 50L55 65H40L35 50L25 35H30Z'/></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
