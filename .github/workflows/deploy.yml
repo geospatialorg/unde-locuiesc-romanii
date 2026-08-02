@@ -70,4 +70,5 @@ jobs:
           SSH_USER="$(echo "$SSH_USER" | xargs)"
           DEPLOY_PATH="$(echo "$DEPLOY_PATH" | xargs)"
           ssh -i ~/.ssh/id_deploy "$SSH_USER@$SSH_HOST" \
-            "cd '$DEPLOY_PATH' && docker compose -f docker-compose.prod.yml up -d --build"
+            "cd '$DEPLOY_PATH' && docker compose -f docker-compose.prod.yml up -d --build \
+             && docker compose -f docker-compose.prod.yml restart caddy"
