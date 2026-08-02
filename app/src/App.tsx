@@ -219,7 +219,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
     if (!forecasts) return;
     const active = activeForecastProducts(forecasts);
     if (active.length && !active.includes(forecastSelection.productId)) {
-      setForecastSelection((selection) => ({ ...selection, productId: active[0], date: null }));
+      setForecastSelection((selection) => ({ ...selection, productId: active[0], date: null, thresholdOverride: null }));
     }
   }, [forecasts, forecastSelection.productId]);
 
@@ -242,7 +242,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
   const onSelectForecast = useCallback((productId: ForecastSelection["productId"]) => {
     userInteracted.current = true;
     setMode("forecast");
-    setForecastSelection((selection) => ({ ...selection, productId, date: null }));
+    setForecastSelection((selection) => ({ ...selection, productId, date: null, thresholdOverride: null }));
     setResult(null);
     setBitset(null);
     setCellValues(null);

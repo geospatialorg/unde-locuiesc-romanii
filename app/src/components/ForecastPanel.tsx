@@ -1,5 +1,6 @@
 import { fmtInt, fmtSharePct } from "../lib/format";
 import {
+  effectiveThreshold,
   forecastDays,
   sourceAvailable,
   type ForecastMeta,
@@ -46,9 +47,43 @@ export function ForecastPanel({ registry, meta, selection, result, busy, queryEr
       })
     : null;
 
+  const editableThreshold = product.source === "weather";
+  const threshold = effectiveThreshold(product, selection);
+  const overridden = selection.thresholdOverride != null;
+
   return (
     <section className="forecast-panel">
       <h2>{product.label}</h2>
+      {editableThreshold && (
+        <label className="threshold-box">
+          <span>Prag {product.operator === ">=" ? "≥" : "≤"}</span>
+          <span className="threshold-input">
+            <input
+              type="number"
+              step={1}
+              value={threshold}
+              onChange={(event) =>
+                onChange({
+                  ...selection,
+                  thresholdOverride: event.target.value === "" ? null : Number(event.target.value),
+                })
+              }
+            />
+            <span className="threshold-unit">{product.unit}</span>
+            {overridden && (
+              <button
+                type="button"
+                className="threshold-auto"
+                title="Revino la pragul automat, ales după prognoză"
+                onClick={() => onChange({ ...selection, thresholdOverride: null })}
+              >
+                ↺ auto ({product.threshold}
+                {product.unit})
+              </button>
+            )}
+          </span>
+        </label>
+      )}
       <label className="row">
         <span>Perioada</span>
         <select

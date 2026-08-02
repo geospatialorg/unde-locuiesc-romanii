@@ -263,6 +263,18 @@ body,
   color: #8a94a4;
   font-weight: 500;
 }
+.threshold-auto {
+  border: none;
+  background: none;
+  color: var(--blue-accent);
+  font-size: 11.5px;
+  cursor: pointer;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+.threshold-auto:hover {
+  text-decoration: underline;
+}
 
 .kpi {
   min-height: 92px;

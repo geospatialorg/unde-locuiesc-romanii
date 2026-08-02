@@ -43,6 +43,13 @@ export interface ForecastSelection {
   productId: ForecastProductId;
   date: string | null;
   measure: string;
+  /** prag ales manual de utilizator; null = pragul auto (dinamic) al produsului */
+  thresholdOverride?: number | null;
+}
+
+/** pragul efectiv al selecției: override-ul manual dacă există, altfel auto-ul produsului */
+export function effectiveThreshold(product: ForecastProduct, selection: ForecastSelection): number {
+  return selection.thresholdOverride != null ? selection.thresholdOverride : product.threshold;
 }
 
 export const FORECAST_PRODUCT_ORDER: ForecastProductId[] = ["heat", "cold", "air_poor"];
@@ -51,6 +58,7 @@ export const DEFAULT_FORECAST_SELECTION: ForecastSelection = {
   productId: "heat",
   date: null,
   measure: "pop_total",
+  thresholdOverride: null,
 };
 
 /** produsele relevante pentru prognoza curentă, în ordine (ascunde cele cu active:false) */
@@ -145,7 +153,8 @@ function forecastCte(dataUrl: string, meta: ForecastMeta, selection: ForecastSel
   if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(product.field)) throw new Error("câmp invalid");
   if (!(["min", "max"] as string[]).includes(product.reducer)) throw new Error("agregare invalidă");
   if (!(["<=", ">="] as string[]).includes(product.operator)) throw new Error("operator invalid");
-  if (!Number.isFinite(product.threshold)) throw new Error("prag invalid");
+  const threshold = effectiveThreshold(product, selection);
+  if (!Number.isFinite(threshold)) throw new Error("prag invalid");
   if (selection.date && !/^\d{4}-\d{2}-\d{2}$/.test(selection.date)) throw new Error("dată invalidă");
 
   const dataFile = sqlString(safeFile(dataUrl, source.data_file));
@@ -177,7 +186,7 @@ function forecastCte(dataUrl: string, meta: ForecastMeta, selection: ForecastSel
             LEFT JOIN forecast fd ON fd.grid_id = m.grid_id_d
           ), exposed AS (
             SELECT cell_id, val FROM interp
-            WHERE isfinite(val) AND val ${product.operator} ${product.threshold}
+            WHERE isfinite(val) AND val ${product.operator} ${threshold}
           )`;
 }
 
@@ -234,7 +243,9 @@ export function validForecastSelection(value: unknown): value is ForecastSelecti
   return (
     FORECAST_PRODUCT_ORDER.includes(item.productId as ForecastProductId) &&
     (item.date == null || (typeof item.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(item.date))) &&
-    typeof item.measure === "string" && /^[A-Za-z_][A-Za-z0-9_]*$/.test(item.measure)
+    typeof item.measure === "string" && /^[A-Za-z_][A-Za-z0-9_]*$/.test(item.measure) &&
+    (item.thresholdOverride == null ||
+      (typeof item.thresholdOverride === "number" && Number.isFinite(item.thresholdOverride)))
   );
 }
 
