@@ -9,17 +9,26 @@
 	# --- date publicate (registry, parquet, geojson, climate.zarr) ---
 	handle_path /unde-locuiesc-romanii/data/* {
 		root * /srv/data
-		file_server               # range requests native → 206 pentru DuckDB/Zarrita
-		# fișierele „live" (avertizări/prognoze) se schimbă des → fără cache;
-		# restul (parquet/zarr/geojson) pot fi cache-uite de CDN
+		# fișierele „live" (avertizări/prognoze) se schimbă des → niciodată cache
+		# (matcher-ul exclusiv evită ca headerul general de mai jos să le suprascrie)
 		@live path /live/*
-		header @live Cache-Control "no-cache"
-		header Cache-Control "public, max-age=300"
+		header @live Cache-Control "no-cache, no-store, must-revalidate"
+		# restul (parquet/zarr/geojson/registry) au nume stabile, actualizate rar la
+		# re-sync → cache moderat; Cloudflare extinde TTL-ul la edge, purjezi la re-sync
+		@static not path /live/*
+		header @static Cache-Control "public, max-age=3600"
+		file_server               # range requests native → 206 pentru DuckDB/Zarrita
 	}
 
 	# --- frontend (SPA Vite, build cu base=/unde-locuiesc-romanii/) ---
 	handle_path /unde-locuiesc-romanii/* {
 		root * /srv/web
+		# asset-uri Vite cu hash în nume (index-<hash>.js) → imutabile, cache 1 an
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		# HTML + service worker trebuie mereu revalidate, altfel prind bundle vechi
+		@nocache path / /index.html /sw.js
+		header @nocache Cache-Control "no-cache"
 		try_files {path} /index.html
 		file_server
 	}
