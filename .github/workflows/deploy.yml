@@ -52,6 +52,7 @@ jobs:
           DEPLOY_PATH="$(echo "$DEPLOY_PATH" | xargs)"
           rsync -az --delete \
             --exclude '.git' \
+            --exclude '.env' \
             --exclude 'data' \
             --exclude 'node_modules' \
             --exclude 'app/node_modules' \
