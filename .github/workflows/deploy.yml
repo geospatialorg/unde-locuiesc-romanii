@@ -55,6 +55,8 @@ jobs:
             --exclude 'data' \
             --exclude 'node_modules' \
             --exclude 'app/node_modules' \
+            --exclude '__pycache__' \
+            --exclude '*.pyc' \
             -e "ssh -i ~/.ssh/id_deploy" \
             ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
 
