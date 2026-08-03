@@ -1,4 +1,4 @@
-const CACHE_NAME = "unde-locuiesc-v1";
+const CACHE_NAME = "unde-locuiesc-v2";
 const ASSETS = [
   "/",
   "/index.html",
@@ -44,26 +44,25 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Parquet/zarr/data: cache-only (nu se schimbă)
+  // Date publicate (parquet/geojson/registry): NETWORK-FIRST. Numele fișierelor sunt
+  // stabile, dar conținutul se schimbă la re-export — cache-only servea o schemă veche la
+  // infinit (ex. env.parquet fără coloane noi → „column not found"). fetch() respectă
+  // HTTP cache (max-age), deci rămâne rapid; păstrăm o copie a răspunsurilor 200 pentru offline.
   if (url.pathname.includes("/data/") && !url.pathname.includes("/live/")) {
     event.respondWith(
-      caches.match(request).then((cached) => {
-        if (cached) return cached;
-        return fetch(request)
-          .then((response) => {
-            if (!response || response.status !== 200 || response.type === "basic") {
-              return response;
-            }
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
             const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, clone);
-            });
-            return response;
-          })
-          .catch(() => {
-            return new Response("Offline — parquet/data unavailable", { status: 503 });
-          });
-      })
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
+          return response;
+        })
+        .catch(() =>
+          caches.match(request).then(
+            (cached) => cached || new Response("Offline — date indisponibile", { status: 503 })
+          )
+        )
     );
     return;
   }
