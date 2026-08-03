@@ -19,6 +19,14 @@ from ..grid import cell_centroids_3035, load_cells
 
 def step_crossings() -> None:
     pts = pyogrio.read_dataframe(SRC["crossings"])
+    # excludem punctele portuare interne pe Dunăre (border="Dunărea interioară", ex. Cernavodă,
+    # Brăila) — nu sunt treceri de frontieră NAȚIONALĂ; altfel rutarea „către frontieră" se oprea
+    # la ele (cele mai ieftine pe șosea pentru Dobrogea), nu la o graniță reală
+    if "border" in pts.columns:
+        n0 = len(pts)
+        pts = pts[pts["border"] != "Dunărea interioară"].reset_index(drop=True)
+        if len(pts) < n0:
+            print(f"  excluse {n0 - len(pts)} puncte interne pe Dunăre (nu-s frontieră)")
     print(f"puncte de trecere a frontierei: {len(pts)}")
 
     pts3035 = pts.to_crs(GRID_CRS)
