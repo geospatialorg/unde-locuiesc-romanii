@@ -1,0 +1,4577 @@
+{
+ "version": "v0",
+ "generated": "2026-08-03T07:40:03+00:00",
+ "dataNote": "Câți români locuiesc într-un loc și cum arată viața acolo",
+ "climateYear": 2026,
+ "tables": {
+  "core": "core.parquet",
+  "env": "env.parquet",
+  "climate": "climate.parquet"
+ },
+ "groups": {
+  "demografie": "Demografie (RPL 2021)",
+  "administrativ": "Administrativ",
+  "relief": "Relief",
+  "distante": "Distanțe și apartenențe",
+  "servicii": "Acces la servicii",
+  "clima": "Climă (an curent, 2026)",
+  "clima_multi": "Climă multianuală (1961–2025)"
+ },
+ "measures": [
+  {
+   "id": "pop_total",
+   "label": "persoane (total)"
+  },
+  {
+   "id": "pop_f",
+   "label": "femei"
+  },
+  {
+   "id": "pop_m",
+   "label": "bărbați"
+  },
+  {
+   "id": "pop_0_14",
+   "label": "copii (0–14 ani)"
+  },
+  {
+   "id": "pop_15_64",
+   "label": "persoane 15–64 ani"
+  },
+  {
+   "id": "pop_65p",
+   "label": "vârstnici (65+)"
+  },
+  {
+   "id": "pop_ocupata",
+   "label": "persoane ocupate"
+  }
+ ],
+ "national": {
+  "pop_total": 19050038,
+  "pop_f": 9802054,
+  "pop_m": 9239656,
+  "pop_0_14": 3062987,
+  "pop_15_64": 12248399,
+  "pop_65p": 3716525,
+  "pop_ocupata": 7681139
+ },
+ "countyLabels": {
+  "MM": "Maramureș",
+  "SB": "Sibiu",
+  "GJ": "Gorj",
+  "AG": "Argeș",
+  "BT": "Botoșani",
+  "TL": "Tulcea",
+  "VS": "Vaslui",
+  "BC": "Bacău",
+  "AB": "Alba",
+  "MH": "Mehedinți",
+  "GL": "Galați",
+  "BR": "Brăila",
+  "CS": "Caraș-Severin",
+  "CV": "Covasna",
+  "CJ": "Cluj",
+  "HD": "Hunedoara",
+  "BZ": "Buzău",
+  "NT": "Neamț",
+  "VL": "Vâlcea",
+  "BN": "Bistrița-Năsăud",
+  "PH": "Prahova",
+  "CL": "Călărași",
+  "MS": "Mureș",
+  "B": "București",
+  "HR": "Harghita",
+  "VN": "Vrancea",
+  "BV": "Brașov",
+  "TM": "Timiș",
+  "GR": "Giurgiu",
+  "TR": "Teleorman",
+  "SV": "Suceava",
+  "IS": "Iași",
+  "AR": "Arad",
+  "DJ": "Dolj",
+  "IF": "Ilfov",
+  "CT": "Constanța",
+  "OT": "Olt",
+  "IL": "Ialomița",
+  "DB": "Dâmbovița",
+  "SM": "Satu Mare",
+  "BH": "Bihor",
+  "SJ": "Sălaj"
+ },
+ "variables": [
+  {
+   "id": "pop_total",
+   "table": "core",
+   "group": "demografie",
+   "label": "Populația totală (2021)",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 32938,
+    "p02": 0,
+    "p50": 0,
+    "p98": 630,
+    "nulls": 2259
+   }
+  },
+  {
+   "id": "pop_f",
+   "table": "core",
+   "group": "demografie",
+   "label": "Populația feminină",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 17843,
+    "p02": 0,
+    "p50": 0,
+    "p98": 322,
+    "nulls": 4193
+   }
+  },
+  {
+   "id": "pop_m",
+   "table": "core",
+   "group": "demografie",
+   "label": "Populația masculină",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 15095,
+    "p02": 0,
+    "p50": 0,
+    "p98": 313,
+    "nulls": 4085
+   }
+  },
+  {
+   "id": "pop_0_14",
+   "table": "core",
+   "group": "demografie",
+   "label": "Persoane sub 15 ani",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 5011,
+    "p02": 0,
+    "p50": 0,
+    "p98": 112,
+    "nulls": 7506
+   }
+  },
+  {
+   "id": "pop_15_64",
+   "table": "core",
+   "group": "demografie",
+   "label": "Persoane 15–64 ani",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 21965,
+    "p02": 0,
+    "p50": 0,
+    "p98": 412,
+    "nulls": 3451
+   }
+  },
+  {
+   "id": "pop_65p",
+   "table": "core",
+   "group": "demografie",
+   "label": "Persoane 65+ ani",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 7738,
+    "p02": 0,
+    "p50": 0,
+    "p98": 120,
+    "nulls": 6769
+   }
+  },
+  {
+   "id": "pop_ocupata",
+   "table": "core",
+   "group": "demografie",
+   "label": "Populația ocupată",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 16798,
+    "p02": 0,
+    "p50": 0,
+    "p98": 243,
+    "nulls": 5441
+   }
+  },
+  {
+   "id": "pop_cet_ro",
+   "table": "core",
+   "group": "demografie",
+   "label": "Cetățeni români",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 32563,
+    "p02": 0,
+    "p50": 0,
+    "p98": 619,
+    "nulls": 2376
+   }
+  },
+  {
+   "id": "pop_mutati_in_tara",
+   "table": "core",
+   "group": "demografie",
+   "label": "Și-au schimbat reședința în țară",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 1547,
+    "p02": 0,
+    "p50": 0,
+    "p98": 11,
+    "nulls": 17157
+   }
+  },
+  {
+   "id": "pop_mutati_strainatate",
+   "table": "core",
+   "group": "demografie",
+   "label": "Și-au schimbat reședința în străinătate",
+   "unit": "persoane",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 222,
+    "p02": 0,
+    "p50": 0,
+    "p98": 5,
+    "nulls": 10959
+   }
+  },
+  {
+   "id": "pop_2011",
+   "table": "core",
+   "group": "demografie",
+   "label": "Populația 2011 (Eurostat)",
+   "unit": "persoane",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "profile"
+   ],
+   "note": "Grila Eurostat/GEOSTAT 2011 — metodologie diferită de RPL 2021.",
+   "stats": {
+    "min": 0,
+    "max": 40942,
+    "p02": 0,
+    "p50": 0,
+    "p98": 650,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "pop_2006",
+   "table": "core",
+   "group": "demografie",
+   "label": "Populația 2006 (Eurostat)",
+   "unit": "persoane",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "profile"
+   ],
+   "note": "Grila GEOSTAT 2006 — estimare, metodologie diferită.",
+   "stats": {
+    "min": 0,
+    "max": 23301,
+    "p02": 0,
+    "p50": 0,
+    "p98": 799,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "mediu",
+   "table": "env",
+   "group": "administrativ",
+   "label": "Mediul (urban/rural)",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "După statutul administrativ al UAT (comună = rural). Definiția pe grad de urbanizare (DEGURBA) va fi adăugată ulterior.",
+   "categories": [
+    {
+     "value": "rural",
+     "count": 209360
+    },
+    {
+     "value": "urban",
+     "count": 30930
+    }
+   ]
+  },
+  {
+   "id": "intravilan",
+   "table": "env",
+   "group": "administrativ",
+   "label": "Intravilan (oraș/sat)",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Apartenența celulei la intravilanul (perimetrul construit) al unei localități, după tipul dominant de construit pe celulă: „oraș” (localitate urbană) sau „sat”. Celulele fără construit (extravilan) nu apar în niciuna. Sursă: ANCPI/CNGCFT 2020.",
+   "categories": [
+    {
+     "value": "sat",
+     "count": 72709
+    },
+    {
+     "value": "oraș",
+     "count": 10815
+    }
+   ]
+  },
+  {
+   "id": "uat_status",
+   "table": "env",
+   "group": "administrativ",
+   "label": "Statutul UAT",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "comună",
+     "count": 209360
+    },
+    {
+     "value": "oraș",
+     "count": 20895
+    },
+    {
+     "value": "municipiu",
+     "count": 9796
+    },
+    {
+     "value": "sector București",
+     "count": 239
+    }
+   ]
+  },
+  {
+   "id": "uat_name",
+   "table": "env",
+   "group": "administrativ",
+   "label": "UAT",
+   "dtype": "cat",
+   "role": [
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "Murighiol",
+     "count": 837
+    },
+    {
+     "value": "Sfântu Gheorghe",
+     "count": 809
+    },
+    {
+     "value": "Chilia Veche",
+     "count": 564
+    },
+    {
+     "value": "Frecăței",
+     "count": 540
+    },
+    {
+     "value": "Broșteni",
+     "count": 511
+    },
+    {
+     "value": "Voineasa",
+     "count": 506
+    },
+    {
+     "value": "Borșa",
+     "count": 488
+    },
+    {
+     "value": "Săcele",
+     "count": 479
+    },
+    {
+     "value": "Gura Teghii",
+     "count": 462
+    },
+    {
+     "value": "Vișeu de Sus",
+     "count": 459
+    },
+    {
+     "value": "Nucșoara",
+     "count": 449
+    },
+    {
+     "value": "Albești",
+     "count": 431
+    },
+    {
+     "value": "Arefu",
+     "count": 422
+    },
+    {
+     "value": "Runcu",
+     "count": 400
+    },
+    {
+     "value": "Ibănești",
+     "count": 397
+    },
+    {
+     "value": "Tarcău",
+     "count": 396
+    },
+    {
+     "value": "Izvoarele",
+     "count": 396
+    },
+    {
+     "value": "Malaia",
+     "count": 395
+    },
+    {
+     "value": "Toplița",
+     "count": 392
+    },
+    {
+     "value": "Râu de Mori",
+     "count": 389
+    },
+    {
+     "value": "Borcea",
+     "count": 387
+    },
+    {
+     "value": "Zăvoi",
+     "count": 386
+    },
+    {
+     "value": "Padeș",
+     "count": 385
+    },
+    {
+     "value": "Mihail Kogălniceanu",
+     "count": 384
+    },
+    {
+     "value": "Corbu",
+     "count": 384
+    },
+    {
+     "value": "Crișan",
+     "count": 382
+    },
+    {
+     "value": "Costești",
+     "count": 375
+    },
+    {
+     "value": "Deleni",
+     "count": 366
+    },
+    {
+     "value": "Dărmănești",
+     "count": 352
+    },
+    {
+     "value": "Crucea",
+     "count": 349
+    },
+    {
+     "value": "Sulina",
+     "count": 341
+    },
+    {
+     "value": "Teregova",
+     "count": 337
+    },
+    {
+     "value": "Vânători",
+     "count": 336
+    },
+    {
+     "value": "Traian",
+     "count": 332
+    },
+    {
+     "value": "Călărași",
+     "count": 327
+    },
+    {
+     "value": "Grădiștea",
+     "count": 327
+    },
+    {
+     "value": "Cugir",
+     "count": 325
+    },
+    {
+     "value": "Jina",
+     "count": 324
+    },
+    {
+     "value": "Pietroasa",
+     "count": 324
+    },
+    {
+     "value": "Petrila",
+     "count": 321
+    },
+    {
+     "value": "Budureasa",
+     "count": 318
+    },
+    {
+     "value": "Viișoara",
+     "count": 314
+    },
+    {
+     "value": "Lunca Bradului",
+     "count": 314
+    },
+    {
+     "value": "Pardina",
+     "count": 309
+    },
+    {
+     "value": "Nicolae Bălcescu",
+     "count": 308
+    },
+    {
+     "value": "Cârlibaba",
+     "count": 306
+    },
+    {
+     "value": "Tomești",
+     "count": 305
+    },
+    {
+     "value": "Asău",
+     "count": 305
+    },
+    {
+     "value": "Băneasa",
+     "count": 303
+    },
+    {
+     "value": "Suseni",
+     "count": 303
+    },
+    {
+     "value": "Poienile de sub Munte",
+     "count": 303
+    },
+    {
+     "value": "Popești",
+     "count": 303
+    },
+    {
+     "value": "Jurilovca",
+     "count": 302
+    },
+    {
+     "value": "Prigor",
+     "count": 301
+    },
+    {
+     "value": "Fântânele",
+     "count": 300
+    },
+    {
+     "value": "Unirea",
+     "count": 300
+    },
+    {
+     "value": "Vlădeni",
+     "count": 299
+    },
+    {
+     "value": "Tismana",
+     "count": 298
+    },
+    {
+     "value": "Ciocănești",
+     "count": 294
+    },
+    {
+     "value": "Plăieșii de Jos",
+     "count": 292
+    },
+    {
+     "value": "Ianca",
+     "count": 292
+    },
+    {
+     "value": "Livezile",
+     "count": 292
+    },
+    {
+     "value": "Moldovița",
+     "count": 290
+    },
+    {
+     "value": "Zagon",
+     "count": 290
+    },
+    {
+     "value": "Comana",
+     "count": 290
+    },
+    {
+     "value": "Independența",
+     "count": 290
+    },
+    {
+     "value": "Gropeni",
+     "count": 288
+    },
+    {
+     "value": "Valea Doftanei",
+     "count": 288
+    },
+    {
+     "value": "Sarichioi",
+     "count": 288
+    },
+    {
+     "value": "Moroeni",
+     "count": 286
+    },
+    {
+     "value": "C.A.Rosetti",
+     "count": 286
+    },
+    {
+     "value": "Telciu",
+     "count": 283
+    },
+    {
+     "value": "Păulești",
+     "count": 281
+    },
+    {
+     "value": "Rucăr",
+     "count": 279
+    },
+    {
+     "value": "Berzasca",
+     "count": 279
+    },
+    {
+     "value": "Budești",
+     "count": 278
+    },
+    {
+     "value": "Zărnești",
+     "count": 276
+    },
+    {
+     "value": "Crasna",
+     "count": 273
+    },
+    {
+     "value": "Recea",
+     "count": 272
+    },
+    {
+     "value": "Bistra",
+     "count": 271
+    },
+    {
+     "value": "Casimcea",
+     "count": 268
+    },
+    {
+     "value": "Zlatna",
+     "count": 266
+    },
+    {
+     "value": "Răstolița",
+     "count": 266
+    },
+    {
+     "value": "Șanț",
+     "count": 265
+    },
+    {
+     "value": "Măguri-Răcătău",
+     "count": 265
+    },
+    {
+     "value": "Galați",
+     "count": 263
+    },
+    {
+     "value": "Ștefan cel Mare",
+     "count": 263
+    },
+    {
+     "value": "Baia",
+     "count": 262
+    },
+    {
+     "value": "Cornereva",
+     "count": 259
+    },
+    {
+     "value": "Târnova",
+     "count": 259
+    },
+    {
+     "value": "Stoenești",
+     "count": 258
+    },
+    {
+     "value": "Dragomirești",
+     "count": 257
+    },
+    {
+     "value": "Bârzava",
+     "count": 257
+    },
+    {
+     "value": "Maliuc",
+     "count": 256
+    },
+    {
+     "value": "Mihai Viteazu",
+     "count": 256
+    },
+    {
+     "value": "Nistorești",
+     "count": 254
+    },
+    {
+     "value": "Călinești",
+     "count": 254
+    },
+    {
+     "value": "Slobozia",
+     "count": 252
+    },
+    {
+     "value": "Lunca",
+     "count": 252
+    },
+    {
+     "value": "Câineni",
+     "count": 251
+    },
+    {
+     "value": "Ostrov",
+     "count": 250
+    },
+    {
+     "value": "Mănăstirea Cașin",
+     "count": 246
+    },
+    {
+     "value": "Vidra",
+     "count": 246
+    },
+    {
+     "value": "Uricani",
+     "count": 245
+    },
+    {
+     "value": "Tulgheș",
+     "count": 244
+    },
+    {
+     "value": "Târgu Lăpuș",
+     "count": 243
+    },
+    {
+     "value": "Ciucsângeorgiu",
+     "count": 243
+    },
+    {
+     "value": "Tiha Bârgăului",
+     "count": 242
+    },
+    {
+     "value": "Pecica",
+     "count": 242
+    },
+    {
+     "value": "Făcăeni",
+     "count": 241
+    },
+    {
+     "value": "Roșia",
+     "count": 239
+    },
+    {
+     "value": "Arad",
+     "count": 238
+    },
+    {
+     "value": "Măneciu",
+     "count": 238
+    },
+    {
+     "value": "Racovița",
+     "count": 237
+    },
+    {
+     "value": "Șugag",
+     "count": 237
+    },
+    {
+     "value": "Smârdan",
+     "count": 236
+    },
+    {
+     "value": "Breaza",
+     "count": 234
+    },
+    {
+     "value": "Tulnici",
+     "count": 233
+    },
+    {
+     "value": "Baia Mare",
+     "count": 233
+    },
+    {
+     "value": "Șaru Dornei",
+     "count": 231
+    },
+    {
+     "value": "Siliștea",
+     "count": 230
+    },
+    {
+     "value": "Orăștioara de Sus",
+     "count": 229
+    },
+    {
+     "value": "Ungureni",
+     "count": 228
+    },
+    {
+     "value": "Recaș",
+     "count": 228
+    },
+    {
+     "value": "Stănești",
+     "count": 227
+    },
+    {
+     "value": "Voinești",
+     "count": 227
+    },
+    {
+     "value": "Brezoi",
+     "count": 227
+    },
+    {
+     "value": "Săliște",
+     "count": 226
+    },
+    {
+     "value": "Joseni",
+     "count": 226
+    },
+    {
+     "value": "Dorobanțu",
+     "count": 225
+    },
+    {
+     "value": "Dobrești",
+     "count": 224
+    },
+    {
+     "value": "Pui",
+     "count": 223
+    },
+    {
+     "value": "Cerna",
+     "count": 223
+    },
+    {
+     "value": "Siriu",
+     "count": 222
+    },
+    {
+     "value": "Bilbor",
+     "count": 222
+    },
+    {
+     "value": "Gheorgheni",
+     "count": 220
+    },
+    {
+     "value": "Puiești",
+     "count": 220
+    },
+    {
+     "value": "Bordușani",
+     "count": 220
+    },
+    {
+     "value": "Bățani",
+     "count": 220
+    },
+    {
+     "value": "Sălașu de Sus",
+     "count": 219
+    },
+    {
+     "value": "Stăncuța",
+     "count": 218
+    },
+    {
+     "value": "Perișoru",
+     "count": 217
+    },
+    {
+     "value": "Însurăței",
+     "count": 216
+    },
+    {
+     "value": "Satu Mare",
+     "count": 215
+    },
+    {
+     "value": "Peștera",
+     "count": 213
+    },
+    {
+     "value": "Bumbești-Jiu",
+     "count": 213
+    },
+    {
+     "value": "Mărgău",
+     "count": 212
+    },
+    {
+     "value": "Aninoasa",
+     "count": 212
+    },
+    {
+     "value": "Agăș",
+     "count": 212
+    },
+    {
+     "value": "Râșca",
+     "count": 211
+    },
+    {
+     "value": "Pantelimon",
+     "count": 211
+    },
+    {
+     "value": "Drăgănești",
+     "count": 211
+    },
+    {
+     "value": "Luncavița",
+     "count": 210
+    },
+    {
+     "value": "Poiana Stampei",
+     "count": 209
+    },
+    {
+     "value": "Chirnogi",
+     "count": 207
+    },
+    {
+     "value": "Beliș",
+     "count": 206
+    },
+    {
+     "value": "Săvârșin",
+     "count": 205
+    },
+    {
+     "value": "Tauț",
+     "count": 205
+    },
+    {
+     "value": "Petroșani",
+     "count": 205
+    },
+    {
+     "value": "Oituz",
+     "count": 204
+    },
+    {
+     "value": "Vedea",
+     "count": 204
+    },
+    {
+     "value": "Vața de Jos",
+     "count": 203
+    },
+    {
+     "value": "Mereni",
+     "count": 203
+    },
+    {
+     "value": "Borca",
+     "count": 203
+    },
+    {
+     "value": "Peștișani",
+     "count": 203
+    },
+    {
+     "value": "Dumbrava",
+     "count": 203
+    },
+    {
+     "value": "Dumbrăveni",
+     "count": 203
+    },
+    {
+     "value": "Dănești",
+     "count": 202
+    },
+    {
+     "value": "Mehadia",
+     "count": 202
+    },
+    {
+     "value": "Lupeni",
+     "count": 201
+    },
+    {
+     "value": "Brodina",
+     "count": 200
+    },
+    {
+     "value": "Bunești",
+     "count": 200
+    },
+    {
+     "value": "Stulpicani",
+     "count": 200
+    },
+    {
+     "value": "Bistrița Bârgăului",
+     "count": 199
+    },
+    {
+     "value": "Prundu",
+     "count": 199
+    },
+    {
+     "value": "Drăgușeni",
+     "count": 199
+    },
+    {
+     "value": "Reșița",
+     "count": 198
+    },
+    {
+     "value": "Tulcea",
+     "count": 198
+    },
+    {
+     "value": "Bozovici",
+     "count": 198
+    },
+    {
+     "value": "Jamu Mare",
+     "count": 197
+    },
+    {
+     "value": "Beriu",
+     "count": 197
+    },
+    {
+     "value": "Mihăileni",
+     "count": 197
+    },
+    {
+     "value": "Mărașu",
+     "count": 196
+    },
+    {
+     "value": "Ștefănești",
+     "count": 196
+    },
+    {
+     "value": "Roșiori",
+     "count": 195
+    },
+    {
+     "value": "Vama",
+     "count": 194
+    },
+    {
+     "value": "Păltiniș",
+     "count": 193
+    },
+    {
+     "value": "Dubova",
+     "count": 193
+    },
+    {
+     "value": "Conop",
+     "count": 190
+    },
+    {
+     "value": "Pipirig",
+     "count": 190
+    },
+    {
+     "value": "Cobadin",
+     "count": 190
+    },
+    {
+     "value": "Eșelnița",
+     "count": 189
+    },
+    {
+     "value": "Zetea",
+     "count": 189
+    },
+    {
+     "value": "Bănia",
+     "count": 189
+    },
+    {
+     "value": "Avram Iancu",
+     "count": 189
+    },
+    {
+     "value": "Lipova",
+     "count": 188
+    },
+    {
+     "value": "Salonta",
+     "count": 188
+    },
+    {
+     "value": "Sinești",
+     "count": 188
+    },
+    {
+     "value": "Ungheni",
+     "count": 188
+    },
+    {
+     "value": "Dăbuleni",
+     "count": 187
+    }
+   ]
+  },
+  {
+   "id": "county_mn",
+   "table": "env",
+   "group": "administrativ",
+   "label": "Județul",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "TM",
+     "count": 8838
+    },
+    {
+     "value": "TL",
+     "count": 8674
+    },
+    {
+     "value": "SV",
+     "count": 8629
+    },
+    {
+     "value": "CS",
+     "count": 8626
+    },
+    {
+     "value": "AR",
+     "count": 7830
+    },
+    {
+     "value": "BH",
+     "count": 7628
+    },
+    {
+     "value": "DJ",
+     "count": 7525
+    },
+    {
+     "value": "CT",
+     "count": 7295
+    },
+    {
+     "value": "HD",
+     "count": 7088
+    },
+    {
+     "value": "AG",
+     "count": 6821
+    },
+    {
+     "value": "MS",
+     "count": 6708
+    },
+    {
+     "value": "CJ",
+     "count": 6673
+    },
+    {
+     "value": "HR",
+     "count": 6636
+    },
+    {
+     "value": "BC",
+     "count": 6620
+    },
+    {
+     "value": "MM",
+     "count": 6407
+    },
+    {
+     "value": "AB",
+     "count": 6248
+    },
+    {
+     "value": "BZ",
+     "count": 6114
+    },
+    {
+     "value": "NT",
+     "count": 5902
+    },
+    {
+     "value": "TR",
+     "count": 5846
+    },
+    {
+     "value": "VL",
+     "count": 5775
+    },
+    {
+     "value": "GJ",
+     "count": 5573
+    },
+    {
+     "value": "IS",
+     "count": 5571
+    },
+    {
+     "value": "OT",
+     "count": 5527
+    },
+    {
+     "value": "SB",
+     "count": 5432
+    },
+    {
+     "value": "VS",
+     "count": 5396
+    },
+    {
+     "value": "BV",
+     "count": 5365
+    },
+    {
+     "value": "BN",
+     "count": 5362
+    },
+    {
+     "value": "CL",
+     "count": 5142
+    },
+    {
+     "value": "BT",
+     "count": 5126
+    },
+    {
+     "value": "MH",
+     "count": 5066
+    },
+    {
+     "value": "VN",
+     "count": 4852
+    },
+    {
+     "value": "BR",
+     "count": 4769
+    },
+    {
+     "value": "PH",
+     "count": 4708
+    },
+    {
+     "value": "SM",
+     "count": 4528
+    },
+    {
+     "value": "GL",
+     "count": 4523
+    },
+    {
+     "value": "IL",
+     "count": 4442
+    },
+    {
+     "value": "DB",
+     "count": 4049
+    },
+    {
+     "value": "SJ",
+     "count": 3861
+    },
+    {
+     "value": "CV",
+     "count": 3713
+    },
+    {
+     "value": "GR",
+     "count": 3599
+    },
+    {
+     "value": "IF",
+     "count": 1564
+    },
+    {
+     "value": "B",
+     "count": 239
+    }
+   ]
+  },
+  {
+   "id": "region_name",
+   "table": "env",
+   "group": "administrativ",
+   "label": "Regiunea",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "Nord-Est",
+     "count": 37244
+    },
+    {
+     "value": "Sud-Est",
+     "count": 36227
+    },
+    {
+     "value": "Sud",
+     "count": 34607
+    },
+    {
+     "value": "Nord-Vest",
+     "count": 34459
+    },
+    {
+     "value": "Centru",
+     "count": 34102
+    },
+    {
+     "value": "Vest",
+     "count": 32382
+    },
+    {
+     "value": "Sud-Vest",
+     "count": 29466
+    },
+    {
+     "value": "București-Ilfov",
+     "count": 1803
+    }
+   ]
+  },
+  {
+   "id": "alt_mean",
+   "table": "env",
+   "group": "relief",
+   "label": "Altitudinea medie",
+   "unit": "m",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    2544
+   ],
+   "note": "FABDEM agregat la 1 km.",
+   "stats": {
+    "min": -2.463,
+    "max": 2377.52,
+    "p02": 2.334,
+    "p50": 260.928,
+    "p98": 1442.439,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "alt_min",
+   "table": "env",
+   "group": "relief",
+   "label": "Altitudinea minimă",
+   "unit": "m",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": -3.074,
+    "max": 2309.282,
+    "p02": 1,
+    "p50": 227.283,
+    "p98": 1291.619,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "alt_max",
+   "table": "env",
+   "group": "relief",
+   "label": "Altitudinea maximă",
+   "unit": "m",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": -1.115,
+    "max": 2497.586,
+    "p02": 3.983,
+    "p50": 300.395,
+    "p98": 1587.162,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "alt_std",
+   "table": "env",
+   "group": "relief",
+   "label": "Rugozitatea (σ altitudine)",
+   "unit": "m",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 261.433,
+    "p02": 0.224,
+    "p50": 17.086,
+    "p98": 98.46,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "slope_mean",
+   "table": "env",
+   "group": "relief",
+   "label": "Panta medie",
+   "unit": "°",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Calculată din DEM 100 m — valorile sunt netezite față de teren.",
+   "stats": {
+    "min": 0,
+    "max": 40.159,
+    "p02": 0.066,
+    "p50": 4.559,
+    "p98": 22.748,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "landform_type",
+   "table": "env",
+   "group": "relief",
+   "label": "Tipul formei de relief",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "deal",
+     "count": 63698
+    },
+    {
+     "value": "câmpie",
+     "count": 54724
+    },
+    {
+     "value": "munte",
+     "count": 44380
+    },
+    {
+     "value": "podiș",
+     "count": 31135
+    },
+    {
+     "value": "depresiune",
+     "count": 24366
+    },
+    {
+     "value": "vale",
+     "count": 16097
+    },
+    {
+     "value": "baltă/lac",
+     "count": 4109
+    },
+    {
+     "value": "grind",
+     "count": 1777
+    }
+   ]
+  },
+  {
+   "id": "landform_lvl0",
+   "table": "env",
+   "group": "relief",
+   "label": "Marea unitate de relief",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "Câmpia Română",
+     "count": 49407
+    },
+    {
+     "value": "Carpații Orientali",
+     "count": 27922
+    },
+    {
+     "value": "Depresiunea Transilvaniei",
+     "count": 24719
+    },
+    {
+     "value": "Podișul Moldovei",
+     "count": 23339
+    },
+    {
+     "value": "Câmpia Banato-Crișană",
+     "count": 16607
+    },
+    {
+     "value": "Subcarpații",
+     "count": 15563
+    },
+    {
+     "value": "Carpații Meridionali",
+     "count": 14067
+    },
+    {
+     "value": "Piemontul Getic",
+     "count": 14011
+    },
+    {
+     "value": "Carpații Apuseni",
+     "count": 10641
+    },
+    {
+     "value": "Podișul Dobrogei",
+     "count": 10321
+    },
+    {
+     "value": "Dealurile Crișanei și Silvaniei",
+     "count": 7967
+    },
+    {
+     "value": "Carpații Banatului",
+     "count": 7101
+    },
+    {
+     "value": "Carpații de Curbură",
+     "count": 6271
+    },
+    {
+     "value": "Câmpia Deltaică și Lagunară a Dobrogei",
+     "count": 4682
+    },
+    {
+     "value": "Dealurile Banatului",
+     "count": 4572
+    },
+    {
+     "value": "Depresiune",
+     "count": 1645
+    },
+    {
+     "value": "Podișul Mehedinți",
+     "count": 813
+    },
+    {
+     "value": "Culoarul Bistriței",
+     "count": 222
+    },
+    {
+     "value": "Subcarpații Transilvaniei",
+     "count": 176
+    },
+    {
+     "value": "Culoarul Tazlăului",
+     "count": 72
+    },
+    {
+     "value": "Culmea Cheanțului",
+     "count": 45
+    },
+    {
+     "value": "Depresiunea Cornereva",
+     "count": 45
+    },
+    {
+     "value": "Deal",
+     "count": 28
+    },
+    {
+     "value": "Bistrița Bârgăului",
+     "count": 21
+    },
+    {
+     "value": "Depresiunea Poiana",
+     "count": 17
+    },
+    {
+     "value": "Depresiunea Ruscă",
+     "count": 12
+    }
+   ]
+  },
+  {
+   "id": "landform_lvl1",
+   "table": "env",
+   "group": "relief",
+   "label": "Subunitatea de relief",
+   "dtype": "cat",
+   "role": [
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "Carpații Moldo-Transilvani",
+     "count": 18397
+    },
+    {
+     "value": "Carpații Meridionali",
+     "count": 14067
+    },
+    {
+     "value": "Piemontul Getic",
+     "count": 14011
+    },
+    {
+     "value": "Câmpia Teleormanului",
+     "count": 10854
+    },
+    {
+     "value": "Carpații Apuseni",
+     "count": 10641
+    },
+    {
+     "value": "Podișul Bârladului",
+     "count": 10591
+    },
+    {
+     "value": "Câmpia Bărăganului",
+     "count": 10337
+    },
+    {
+     "value": "Podișul Târnavelor",
+     "count": 10152
+    },
+    {
+     "value": "Carpații Maramureșului și Bucovinei",
+     "count": 9525
+    },
+    {
+     "value": "Câmpia Banatului",
+     "count": 9262
+    },
+    {
+     "value": "Dealurile Crișanei și Silvaniei",
+     "count": 7967
+    },
+    {
+     "value": "Câmpia Buzău-Siret",
+     "count": 7682
+    },
+    {
+     "value": "Câmpia Moldovei",
+     "count": 7445
+    },
+    {
+     "value": "Câmpia Olteniei",
+     "count": 7419
+    },
+    {
+     "value": "Carpații Banatului",
+     "count": 7101
+    },
+    {
+     "value": "Câmpia Ialomiței",
+     "count": 6751
+    },
+    {
+     "value": "Subcarpatii de Curbură",
+     "count": 6563
+    },
+    {
+     "value": "Lunca Dunării",
+     "count": 6364
+    },
+    {
+     "value": "Carpații de Curbură",
+     "count": 6271
+    },
+    {
+     "value": "Podișul Sucevei",
+     "count": 5303
+    },
+    {
+     "value": "Subcarpații Transilvaniei",
+     "count": 5179
+    },
+    {
+     "value": "Subcarpații Moldovei",
+     "count": 4954
+    },
+    {
+     "value": "Podișul Someșan",
+     "count": 4907
+    },
+    {
+     "value": "Podișul Dobrogei de Sud",
+     "count": 4801
+    },
+    {
+     "value": "Câmpia Deltaică și Lagunară a Dobrogei",
+     "count": 4682
+    },
+    {
+     "value": "Câmpia Transilvaniei",
+     "count": 4657
+    },
+    {
+     "value": "Dealurile Banatului",
+     "count": 4572
+    },
+    {
+     "value": "Subcarpații Getici",
+     "count": 4046
+    },
+    {
+     "value": "Câmpia Someșului",
+     "count": 3827
+    },
+    {
+     "value": "Câmpia Crișurilor",
+     "count": 3518
+    },
+    {
+     "value": "Podișul Dobrogei de Nord",
+     "count": 2864
+    },
+    {
+     "value": "Podișul Dobrogei Centrale",
+     "count": 2656
+    },
+    {
+     "value": "Depresiune",
+     "count": 1645
+    },
+    {
+     "value": "Podișul Mehedinți",
+     "count": 813
+    },
+    {
+     "value": "Culoarul Bistriței",
+     "count": 222
+    },
+    {
+     "value": "Culoarul Tazlăului",
+     "count": 72
+    },
+    {
+     "value": "Culmea Cheanțului",
+     "count": 45
+    },
+    {
+     "value": "Depresiunea Cornereva",
+     "count": 45
+    },
+    {
+     "value": "Deal",
+     "count": 28
+    },
+    {
+     "value": "Bistrița Bârgăului",
+     "count": 21
+    },
+    {
+     "value": "Depresiunea Poiana",
+     "count": 17
+    },
+    {
+     "value": "Depresiunea Ruscă",
+     "count": 12
+    }
+   ]
+  },
+  {
+   "id": "landform_name",
+   "table": "env",
+   "group": "relief",
+   "label": "Forma de relief locală",
+   "dtype": "cat",
+   "role": [
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "Piemontul Bălăciței",
+     "count": 2802
+    },
+    {
+     "value": "Câmpia Joasă a Crișurilor",
+     "count": 2509
+    },
+    {
+     "value": "Piemontul Cotmenei",
+     "count": 2361
+    },
+    {
+     "value": "Câmpia Urluiului",
+     "count": 2112
+    },
+    {
+     "value": "Câmpia Siretului",
+     "count": 1866
+    },
+    {
+     "value": "Câmpia Băileștiului",
+     "count": 1794
+    },
+    {
+     "value": "Câmpia Burnas",
+     "count": 1780
+    },
+    {
+     "value": "Podișul Cobadinului",
+     "count": 1765
+    },
+    {
+     "value": "Câmpia Găvanu",
+     "count": 1762
+    },
+    {
+     "value": "Câmpia Joasă a Someșului",
+     "count": 1747
+    },
+    {
+     "value": "Balta Brăilei",
+     "count": 1698
+    },
+    {
+     "value": "Câmpia Burdea",
+     "count": 1687
+    },
+    {
+     "value": "Munții Călimani",
+     "count": 1669
+    },
+    {
+     "value": "Munții Poiana Ruscă",
+     "count": 1663
+    },
+    {
+     "value": "Depresiune",
+     "count": 1645
+    },
+    {
+     "value": "Câmpia Timișoarei",
+     "count": 1585
+    },
+    {
+     "value": "Masivul Făgăraș",
+     "count": 1560
+    },
+    {
+     "value": "Câmpia Câlniștei",
+     "count": 1547
+    },
+    {
+     "value": "Podișul Casimcei",
+     "count": 1531
+    },
+    {
+     "value": "Câmpia Râmnicului",
+     "count": 1527
+    },
+    {
+     "value": "Câmpul Leu-Rotunda",
+     "count": 1491
+    },
+    {
+     "value": "Podișul Lipovei",
+     "count": 1442
+    },
+    {
+     "value": "Culoarul Prutului",
+     "count": 1380
+    },
+    {
+     "value": "Câmpia Vingăi",
+     "count": 1292
+    },
+    {
+     "value": "Dealurile Amaradiei",
+     "count": 1274
+    },
+    {
+     "value": "Balta Borcei",
+     "count": 1261
+    },
+    {
+     "value": "Câmpia Iminogului",
+     "count": 1239
+    },
+    {
+     "value": "Câmpia Aradului",
+     "count": 1201
+    },
+    {
+     "value": "Câmpia Caracalului",
+     "count": 1187
+    },
+    {
+     "value": "Depresiunea Făgărașului",
+     "count": 1148
+    },
+    {
+     "value": "Piemontul Cândești",
+     "count": 1125
+    },
+    {
+     "value": "Câmpia Arancăi",
+     "count": 1114
+    },
+    {
+     "value": "Dealurile Bistriței",
+     "count": 1092
+    },
+    {
+     "value": "Câmpia Lehliului",
+     "count": 1085
+    },
+    {
+     "value": "Podișul Oltinei",
+     "count": 1084
+    },
+    {
+     "value": "Dealurile Cernei",
+     "count": 1077
+    },
+    {
+     "value": "Munții Lotrului",
+     "count": 1075
+    },
+    {
+     "value": "Câmpia Titului",
+     "count": 1071
+    },
+    {
+     "value": "Colinele Ibănesei",
+     "count": 1061
+    },
+    {
+     "value": "Colinele Volovățului",
+     "count": 1038
+    },
+    {
+     "value": "Câmpul Urziceniului",
+     "count": 1032
+    },
+    {
+     "value": "Podișul Dumbrăveni",
+     "count": 1008
+    },
+    {
+     "value": "Colinele Similei",
+     "count": 961
+    },
+    {
+     "value": "Culmea Vâlcan",
+     "count": 960
+    },
+    {
+     "value": "Podișul Cernavodei",
+     "count": 956
+    },
+    {
+     "value": "Câmpul Nana",
+     "count": 954
+    },
+    {
+     "value": "Munții Cindrel",
+     "count": 953
+    },
+    {
+     "value": "Masivul Rodna",
+     "count": 951
+    },
+    {
+     "value": "Subcarpații Târnavelor",
+     "count": 945
+    },
+    {
+     "value": "Podișul Mediașului",
+     "count": 935
+    },
+    {
+     "value": "Câmpul Ștefan Vodă",
+     "count": 905
+    },
+    {
+     "value": "Podișul Sacovățului",
+     "count": 891
+    },
+    {
+     "value": "Subcarpații Homoroadelor",
+     "count": 886
+    },
+    {
+     "value": "Munții Bârgăului",
+     "count": 873
+    },
+    {
+     "value": "Munții Tarcăului",
+     "count": 852
+    },
+    {
+     "value": "Colinele Ludușului",
+     "count": 846
+    },
+    {
+     "value": "Podișul Tesluiului",
+     "count": 836
+    },
+    {
+     "value": "Masivul Igniș",
+     "count": 824
+    },
+    {
+     "value": "Culmea lui Pătru",
+     "count": 818
+    },
+    {
+     "value": "Culmea Huțanului",
+     "count": 817
+    },
+    {
+     "value": "Podișul Mehedinți",
+     "count": 813
+    },
+    {
+     "value": "Culmea Svinecei",
+     "count": 810
+    },
+    {
+     "value": "Dealurile Jilțului",
+     "count": 810
+    },
+    {
+     "value": "Dealurile Mureșului",
+     "count": 794
+    },
+    {
+     "value": "Lunca Greaca",
+     "count": 785
+    },
+    {
+     "value": "Culmea Vârlănești",
+     "count": 782
+    },
+    {
+     "value": "Podișul Repedea-Zăpodeni",
+     "count": 780
+    },
+    {
+     "value": "Masivul Țarcu",
+     "count": 775
+    },
+    {
+     "value": "Colinele Gloduri-Coada Stâncii",
+     "count": 766
+    },
+    {
+     "value": "Colinele Comlodului",
+     "count": 761
+    },
+    {
+     "value": "Muntele Mare",
+     "count": 755
+    },
+    {
+     "value": "Câmpul Pogoanele",
+     "count": 755
+    },
+    {
+     "value": "Glacisul Râmnicului",
+     "count": 754
+    },
+    {
+     "value": "Colinele Bălăbăneștiului",
+     "count": 750
+    },
+    {
+     "value": "Dealurile Dejului",
+     "count": 747
+    },
+    {
+     "value": "Muscelele Năsăudului",
+     "count": 738
+    },
+    {
+     "value": "Dealurile Clujului",
+     "count": 738
+    },
+    {
+     "value": "Câmpia Piteștiului",
+     "count": 727
+    },
+    {
+     "value": "Dealurile Coșuștei",
+     "count": 724
+    },
+    {
+     "value": "Câmpia Săratei",
+     "count": 724
+    },
+    {
+     "value": "Masivul Parâng",
+     "count": 723
+    },
+    {
+     "value": "Dealurile Sicului",
+     "count": 720
+    },
+    {
+     "value": "Muntele Mădăraș",
+     "count": 719
+    },
+    {
+     "value": "Munții Săcărâmbului",
+     "count": 717
+    },
+    {
+     "value": "Câmpul Roșiori",
+     "count": 711
+    },
+    {
+     "value": "Câmpia Moviliței",
+     "count": 711
+    },
+    {
+     "value": "Munții Husului",
+     "count": 708
+    },
+    {
+     "value": "Podișul Istriei",
+     "count": 706
+    },
+    {
+     "value": "Muntele Fâncel",
+     "count": 704
+    },
+    {
+     "value": "Masivul Gilău",
+     "count": 702
+    },
+    {
+     "value": "Câmpia Jimboliei",
+     "count": 693
+    },
+    {
+     "value": "Munții Goșmanu",
+     "count": 692
+    },
+    {
+     "value": "Clăbucetele Întorsurii Buzăului",
+     "count": 685
+    },
+    {
+     "value": "Podișul Târnăveni",
+     "count": 679
+    },
+    {
+     "value": "Câmpia Ploieștiului",
+     "count": 674
+    },
+    {
+     "value": "Colinele Mădărașului",
+     "count": 672
+    },
+    {
+     "value": "Podișul Mangaliei",
+     "count": 665
+    },
+    {
+     "value": "Lunca Bistrețului",
+     "count": 651
+    },
+    {
+     "value": "Câmpia Cuca",
+     "count": 651
+    },
+    {
+     "value": "Dealurile Holm-Dealu Mare",
+     "count": 649
+    },
+    {
+     "value": "Podișul Beicăi",
+     "count": 647
+    },
+    {
+     "value": "Dealurile Gârboului",
+     "count": 642
+    },
+    {
+     "value": "Lunca Ialomiței",
+     "count": 641
+    },
+    {
+     "value": "Gruiurile Argeșului",
+     "count": 635
+    },
+    {
+     "value": "Câmpia Tecuciului de Est",
+     "count": 632
+    },
+    {
+     "value": "Dealurile Jimborului",
+     "count": 629
+    },
+    {
+     "value": "Podișul Dacic",
+     "count": 619
+    },
+    {
+     "value": "Culoarul Siretului",
+     "count": 618
+    },
+    {
+     "value": "Culoarul Roman-Adjud",
+     "count": 616
+    },
+    {
+     "value": "Munții Neamțului",
+     "count": 615
+    },
+    {
+     "value": "Depresiunea Râul Negru",
+     "count": 611
+    },
+    {
+     "value": "Colinele Dumeștiului",
+     "count": 610
+    },
+    {
+     "value": "Depresiunea Almaș-Agrij",
+     "count": 607
+    },
+    {
+     "value": "Podișul Intresecașe",
+     "count": 606
+    },
+    {
+     "value": "Depresiunea Elanului",
+     "count": 602
+    },
+    {
+     "value": "Muntele Cucu",
+     "count": 602
+    },
+    {
+     "value": "Lunca Buzăului",
+     "count": 599
+    },
+    {
+     "value": "Lunca Oltului",
+     "count": 597
+    },
+    {
+     "value": "Munții Detunatelor",
+     "count": 595
+    },
+    {
+     "value": "Depresiunea Bârsei",
+     "count": 595
+    },
+    {
+     "value": "Câmpul Viziru",
+     "count": 592
+    },
+    {
+     "value": "Colinele Chinejei",
+     "count": 588
+    },
+    {
+     "value": "Munții Măgureaua",
+     "count": 585
+    },
+    {
+     "value": "Culoarul Jiului",
+     "count": 583
+    },
+    {
+     "value": "Colinele Miletinului",
+     "count": 577
+    },
+    {
+     "value": "Câmpia Punghinei",
+     "count": 570
+    },
+    {
+     "value": "Podișul Racovei",
+     "count": 541
+    },
+    {
+     "value": "Depresiunea Cracău-Bistrița",
+     "count": 537
+    },
+    {
+     "value": "Masivul Iezer",
+     "count": 536
+    },
+    {
+     "value": "Colinele Viișoarei",
+     "count": 535
+    },
+    {
+     "value": "Munții Piatra Goznei",
+     "count": 533
+    },
+    {
+     "value": "Culmea Ursului",
+     "count": 532
+    },
+    {
+     "value": "Muntele Saca",
+     "count": 532
+    },
+    {
+     "value": "Dealurile Ciceului",
+     "count": 528
+    },
+    {
+     "value": "Muntele Găina",
+     "count": 527
+    },
+    {
+     "value": "Câmpia Tormacului",
+     "count": 519
+    },
+    {
+     "value": "Câmpia Valea lui Mihai",
+     "count": 518
+    },
+    {
+     "value": "Dealurile Aiudului",
+     "count": 517
+    },
+    {
+     "value": "Câmpia Ierului",
+     "count": 507
+    },
+    {
+     "value": "Munții Pădurea Craiului",
+     "count": 502
+    },
+    {
+     "value": "Câmpia Banlocului",
+     "count": 501
+    },
+    {
+     "value": "Piemontul Maramureșului",
+     "count": 500
+    },
+    {
+     "value": "Munții Suhei",
+     "count": 499
+    },
+    {
+     "value": "Munții Țibleș",
+     "count": 495
+    },
+    {
+     "value": "Podișul Padeșului",
+     "count": 492
+    },
+    {
+     "value": "Culoarul Moldovei",
+     "count": 484
+    },
+    {
+     "value": "Culmea Lăcăuți",
+     "count": 482
+    },
+    {
+     "value": "Munții Baraolt",
+     "count": 478
+    },
+    {
+     "value": "Depresiunea Prejmer",
+     "count": 477
+    },
+    {
+     "value": "Munții Bodoc",
+     "count": 477
+    },
+    {
+     "value": "Culoarul Oltului",
+     "count": 472
+    },
+    {
+     "value": "Munții Cetății",
+     "count": 468
+    },
+    {
+     "value": "Muntele Șumuleu",
+     "count": 467
+    },
+    {
+     "value": "Câmpia Miersigului",
+     "count": 467
+    },
+    {
+     "value": "Depresiunea Gheorgheni",
+     "count": 462
+    },
+    {
+     "value": "Dealurile Cetățuia-Mireni",
+     "count": 457
+    },
+    {
+     "value": "Masivul Highiș",
+     "count": 454
+    },
+    {
+     "value": "Câmpia Nădlacului",
+     "count": 454
+    },
+    {
+     "value": "Grindul Chituc",
+     "count": 446
+    },
+    {
+     "value": "Câmpia Gătaiei",
+     "count": 446
+    },
+    {
+     "value": "Obcina Scorușetului",
+     "count": 445
+    },
+    {
+     "value": "Câmpia Lozovei",
+     "count": 444
+    },
+    {
+     "value": "Masivul Neman",
+     "count": 444
+    },
+    {
+     "value": "Munții Baiu",
+     "count": 438
+    },
+    {
+     "value": "Câmpia Gherghiței",
+     "count": 436
+    },
+    {
+     "value": "Dealurile Vulturului",
+     "count": 432
+    },
+    {
+     "value": "Câmpia Jianei",
+     "count": 431
+    },
+    {
+     "value": "Culmea Doroșan",
+     "count": 429
+    },
+    {
+     "value": "Podișul Tătărușului",
+     "count": 428
+    },
+    {
+     "value": "Culmea Crasnei",
+     "count": 427
+    },
+    {
+     "value": "Podișul Vurpărului",
+     "count": 425
+    },
+    {
+     "value": "Masivul Rarău",
+     "count": 424
+    },
+    {
+     "value": "Dealurile Lugojului",
+     "count": 423
+    },
+    {
+     "value": "Culmea Bedeleului",
+     "count": 422
+    },
+    {
+     "value": "Dealurile Cugirului",
+     "count": 422
+    },
+    {
+     "value": "Podișul Vânători",
+     "count": 421
+    },
+    {
+     "value": "Câmpul Hagieniului",
+     "count": 421
+    },
+    {
+     "value": "Depresiunea Baia Mare",
+     "count": 418
+    },
+    {
+     "value": "Munții Grohotișu",
+     "count": 415
+    },
+    {
+     "value": "Dealurile Cozancea",
+     "count": 414
+    },
+    {
+     "value": "Balta Isaccei",
+     "count": 414
+    },
+    {
+     "value": "Lunca Pasărea",
+     "count": 412
+    },
+    {
+     "value": "Masivul Retezat",
+     "count": 411
+    },
+    {
+     "value": "Complexul Zătoanele",
+     "count": 409
+    },
+    {
+     "value": "Culoarul Mureșului",
+     "count": 407
+    },
+    {
+     "value": "Culmea Tătarului",
+     "count": 406
+    },
+    {
+     "value": "Obcina Feredeului",
+     "count": 405
+    },
+    {
+     "value": "Depresiunea Nalbant",
+     "count": 405
+    },
+    {
+     "value": "Câmpia Târgoviștei",
+     "count": 404
+    },
+    {
+     "value": "Dealurile Asuajului",
+     "count": 400
+    },
+    {
+     "value": "Depresiunea Rădăuțului",
+     "count": 398
+    },
+    {
+     "value": "Munții Iadei",
+     "count": 396
+    },
+    {
+     "value": "Depresiunea Tazlăului",
+     "count": 394
+    },
+    {
+     "value": "Dealurile Maramureșului",
+     "count": 393
+    },
+    {
+     "value": "Munții Sabasei",
+     "count": 392
+    },
+    {
+     "value": "Dealurile Tirolului",
+     "count": 389
+    },
+    {
+     "value": "Lacul Razelm",
+     "count": 388
+    },
+    {
+     "value": "Munții Plopiș",
+     "count": 385
+    },
+    {
+     "value": "Câmpul Ianca",
+     "count": 384
+    },
+    {
+     "value": "Câmpul Nedeii",
+     "count": 381
+    }
+   ]
+  },
+  {
+   "id": "dist_coast_km",
+   "table": "env",
+   "group": "distante",
+   "label": "Distanța până la mare",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    685
+   ],
+   "note": "Distanță euclidiană până la linia țărmului, precizie ±1 km.",
+   "stats": {
+    "min": 0,
+    "max": 684.588,
+    "p02": 19.647,
+    "p50": 356.355,
+    "p98": 612.837,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "dist_water_km",
+   "table": "env",
+   "group": "distante",
+   "label": "Distanța până la un corp de apă",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    28
+   ],
+   "note": "Distanță în linie dreaptă până la cel mai apropiat corp de apă — lac, lac de acumulare, iaz, baltă, bazin sau lagună. 0 km = pe apă. Sursă: OpenStreetMap.",
+   "stats": {
+    "min": 0,
+    "max": 27.89,
+    "p02": 0.22,
+    "p50": 4.83,
+    "p98": 16.85,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "categorie_apa",
+   "table": "env",
+   "group": "distante",
+   "label": "Tipul celui mai apropiat corp de apă",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "catPinLast": [
+    "Alt tip"
+   ],
+   "note": "Categoria celui mai apropiat corp de apă (lac, lac de acumulare, iaz, bazin, lagună sau alt tip). Sursă: OpenStreetMap.",
+   "categories": [
+    {
+     "value": "Alt tip",
+     "count": 101868
+    },
+    {
+     "value": "Lac",
+     "count": 58391
+    },
+    {
+     "value": "Iaz",
+     "count": 45180
+    },
+    {
+     "value": "Lac de acumulare",
+     "count": 29560
+    },
+    {
+     "value": "Bazin",
+     "count": 4860
+    },
+    {
+     "value": "Iaz piscicol",
+     "count": 424
+    },
+    {
+     "value": "Lagună",
+     "count": 7
+    }
+   ]
+  },
+  {
+   "id": "dist_curs_km",
+   "table": "env",
+   "group": "distante",
+   "label": "Distanța până la un curs de apă",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    30
+   ],
+   "note": "Distanță în linie dreaptă până la cel mai apropiat curs de apă — râu sau pârâu. 0 km = pe cursul de apă. Sursă: OpenStreetMap.",
+   "stats": {
+    "min": 0,
+    "max": 29.78,
+    "p02": 0,
+    "p50": 1.3,
+    "p98": 10.54,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "categorie_curs",
+   "table": "env",
+   "group": "distante",
+   "label": "Tipul celui mai apropiat curs de apă",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Categoria celui mai apropiat curs de apă (râu sau pârâu). Sursă: OpenStreetMap.",
+   "categories": [
+    {
+     "value": "Pârâu",
+     "count": 138018
+    },
+    {
+     "value": "Râu",
+     "count": 102272
+    }
+   ]
+  },
+  {
+   "id": "dist_inundatii_km",
+   "table": "env",
+   "group": "distante",
+   "label": "Distanța până la o zonă cu risc de inundații",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    20
+   ],
+   "note": "Distanță în linie dreaptă până la cea mai apropiată zonă cu hazard de inundații (orice scenariu). 0 km = locul se află într-o zonă inundabilă.",
+   "stats": {
+    "min": 0,
+    "max": 31.67,
+    "p02": 0,
+    "p50": 3.41,
+    "p98": 20.2,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "scenariu_inundatii",
+   "table": "env",
+   "group": "distante",
+   "label": "Scenariul de inundații cel mai apropiat",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Cel mai frecvent scenariu de hazard care atinge locul: 10% probabilitate anuală (revenire ~10 ani), 1% (~100 ani) sau 0,1% (~1.000 ani). Fără bifă = toate scenariile combinate.",
+   "categories": [
+    {
+     "value": "0,1% (~1.000 ani)",
+     "count": 93189
+    },
+    {
+     "value": "10% (~10 ani)",
+     "count": 74141
+    },
+    {
+     "value": "1% (~100 ani)",
+     "count": 72960
+    }
+   ]
+  },
+  {
+   "id": "dist_border_km",
+   "table": "env",
+   "group": "distante",
+   "label": "Distanța până la frontieră",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    218
+   ],
+   "note": "Distanță euclidiană până la frontiera terestră/fluvială, precizie ±1 km.",
+   "stats": {
+    "min": 0,
+    "max": 217.911,
+    "p02": 1,
+    "p50": 62.426,
+    "p98": 191.212,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "border_neighbor",
+   "table": "env",
+   "group": "distante",
+   "label": "Cea mai apropiată frontieră",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "BG",
+     "count": 60722
+    },
+    {
+     "value": "UA",
+     "count": 58607
+    },
+    {
+     "value": "MD",
+     "count": 45527
+    },
+    {
+     "value": "RS",
+     "count": 42359
+    },
+    {
+     "value": "HU",
+     "count": 33075
+    }
+   ]
+  },
+  {
+   "id": "dist_crossing_km",
+   "table": "env",
+   "group": "distante",
+   "label": "Distanța până la un punct de trecere a frontierei",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    235
+   ],
+   "note": "Distanță în linie dreaptă până la cel mai apropiat punct de trecere auto a frontierei (unde se poate ieși efectiv din țară). Ruta reală pe șosea se calculează la cerere, din fișa celulei. Sursă: Poliția de Frontieră.",
+   "stats": {
+    "min": 0.088,
+    "max": 234.985,
+    "p02": 6.611,
+    "p50": 66.581,
+    "p98": 203.451,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "nearest_crossing",
+   "table": "env",
+   "group": "distante",
+   "label": "Cel mai apropiat punct de trecere",
+   "dtype": "cat",
+   "role": [
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "Porțile de Fier I",
+     "count": 26368
+    },
+    {
+     "value": "Sighetu Marmației",
+     "count": 19044
+    },
+    {
+     "value": "Vicovu de Sus",
+     "count": 17880
+    },
+    {
+     "value": "Brăila",
+     "count": 15333
+    },
+    {
+     "value": "Oancea",
+     "count": 12640
+    },
+    {
+     "value": "Sculeni",
+     "count": 11195
+    },
+    {
+     "value": "Giurgiu",
+     "count": 11039
+    },
+    {
+     "value": "Oltenița",
+     "count": 11001
+    },
+    {
+     "value": "Salonta",
+     "count": 10306
+    },
+    {
+     "value": "Corabia",
+     "count": 9954
+    },
+    {
+     "value": "Isaccea",
+     "count": 7473
+    },
+    {
+     "value": "Săcuieni",
+     "count": 7122
+    },
+    {
+     "value": "Cernavodă",
+     "count": 6739
+    },
+    {
+     "value": "Curtici",
+     "count": 6587
+    },
+    {
+     "value": "Bechet",
+     "count": 6025
+    },
+    {
+     "value": "Moravița",
+     "count": 5123
+    },
+    {
+     "value": "Siret",
+     "count": 4263
+    },
+    {
+     "value": "Călărași",
+     "count": 4107
+    },
+    {
+     "value": "Turnu Măgurele",
+     "count": 4021
+    },
+    {
+     "value": "Albița",
+     "count": 3804
+    },
+    {
+     "value": "Calafat",
+     "count": 3707
+    },
+    {
+     "value": "Bumbăta",
+     "count": 3522
+    },
+    {
+     "value": "Stînca",
+     "count": 3394
+    },
+    {
+     "value": "Naidăș",
+     "count": 2751
+    },
+    {
+     "value": "Halmeu",
+     "count": 2629
+    },
+    {
+     "value": "Turnu",
+     "count": 2031
+    },
+    {
+     "value": "Urziceni",
+     "count": 1826
+    },
+    {
+     "value": "Zimnicea",
+     "count": 1730
+    },
+    {
+     "value": "Episcopia Bihor",
+     "count": 1672
+    },
+    {
+     "value": "Porțile de Fier II",
+     "count": 1526
+    },
+    {
+     "value": "Foeni",
+     "count": 1379
+    },
+    {
+     "value": "Racovăț",
+     "count": 1227
+    },
+    {
+     "value": "Jimbolia",
+     "count": 1189
+    },
+    {
+     "value": "Galați",
+     "count": 1141
+    },
+    {
+     "value": "Negru Vodă",
+     "count": 1109
+    },
+    {
+     "value": "Moldova Nouă",
+     "count": 1031
+    },
+    {
+     "value": "Carei",
+     "count": 949
+    },
+    {
+     "value": "Rădăuți Prut",
+     "count": 929
+    },
+    {
+     "value": "Vama Veche",
+     "count": 793
+    },
+    {
+     "value": "Lipnița",
+     "count": 785
+    },
+    {
+     "value": "Nădlac",
+     "count": 690
+    },
+    {
+     "value": "Dobromir",
+     "count": 679
+    },
+    {
+     "value": "Vărșand",
+     "count": 648
+    },
+    {
+     "value": "Borș II",
+     "count": 633
+    },
+    {
+     "value": "Valea lui Mihai",
+     "count": 514
+    },
+    {
+     "value": "Lunga",
+     "count": 407
+    },
+    {
+     "value": "Cenad",
+     "count": 323
+    },
+    {
+     "value": "Petea",
+     "count": 320
+    },
+    {
+     "value": "Valcani",
+     "count": 268
+    },
+    {
+     "value": "Ostrov",
+     "count": 227
+    },
+    {
+     "value": "Borș",
+     "count": 165
+    },
+    {
+     "value": "Nădlac II",
+     "count": 72
+    }
+   ]
+  },
+  {
+   "id": "dist_protected_km",
+   "table": "env",
+   "group": "distante",
+   "label": "Distanța până la o arie protejată",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Distanță de la cel mai apropiat punct al celulei până la cea mai apropiată arie protejată — parc național, parc natural, rezervație naturală/științifică, monument al naturii sau sit Natura 2000. 0 km = celula se intersectează cu o arie protejată. Sursă: ANANP.",
+   "stats": {
+    "min": 0,
+    "max": 25.24,
+    "p02": 0,
+    "p50": 1.7,
+    "p98": 14.2,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "acces_gaz",
+   "table": "env",
+   "group": "servicii",
+   "label": "Acces la gaze naturale",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Localitatea (dominantă pe celulă) este branșată sau se poate branșa la rețeaua de gaze naturale. Sursă: ANCPI/CNGCFT.",
+   "categories": [
+    {
+     "value": "neconectat",
+     "count": 59385
+    },
+    {
+     "value": "conectat",
+     "count": 24139
+    }
+   ]
+  },
+  {
+   "id": "dist_hospital_km",
+   "table": "env",
+   "group": "servicii",
+   "label": "Distanța până la cel mai apropiat spital",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    73
+   ],
+   "note": "Distanță în linie dreaptă până la cel mai apropiat spital activ din registrul ANMCS (~718 unități). Distanța și timpul pe șosea se calculează la cerere, din fișa celulei, prin serviciul de rutare.",
+   "stats": {
+    "min": 0.012,
+    "max": 72.838,
+    "p02": 2.101,
+    "p50": 13.845,
+    "p98": 34.851,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "nearest_hospital",
+   "table": "env",
+   "group": "servicii",
+   "label": "Cel mai apropiat spital",
+   "dtype": "cat",
+   "role": [
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "SOCIETATEA MEDICAL CENTER SPITAL SRL",
+     "count": 4201
+    },
+    {
+     "value": "SOCIETATEA CENTRUL DE DIAGNOSTIC SI TRATAMENT STAL SRL",
+     "count": 2668
+    },
+    {
+     "value": "SPITALUL MUNICIPAL VATRA DORNEI",
+     "count": 2092
+    },
+    {
+     "value": "SPITALUL ORASENESC FAUREI",
+     "count": 2090
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC HÂRȘOVA",
+     "count": 1938
+    },
+    {
+     "value": "SPITALUL MUNICIPAL ORSOVA",
+     "count": 1918
+    },
+    {
+     "value": "SANATORIUL DE NEUROPSIHIATRIE PODRIGA",
+     "count": 1778
+    },
+    {
+     "value": "SPITALUL ORASENESC BAIA DE ARAMA",
+     "count": 1703
+    },
+    {
+     "value": "SPITALUL DE RECUPERARE BORȘA",
+     "count": 1699
+    },
+    {
+     "value": "SPITALUL MUNICIPAL TOPLITA",
+     "count": 1669
+    },
+    {
+     "value": "UNITATE SANITARA PUBLICA SPITALUL ORĂȘENESC ORAVIȚA",
+     "count": 1645
+    },
+    {
+     "value": "SPITALUL MUNICIPAL DR.EUGEN NICOARĂ REGHIN",
+     "count": 1572
+    },
+    {
+     "value": "SPITALUL MUNICIPAL \"PROF. DR. IRINEL POPESCU\" BĂILEȘTI",
+     "count": 1543
+    },
+    {
+     "value": "SPITALUL FILIȘANILOR",
+     "count": 1536
+    },
+    {
+     "value": "SPITALUL ORASENESC VISEU DE SUS",
+     "count": 1500
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC TG. BUJOR",
+     "count": 1484
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC HUEDIN",
+     "count": 1462
+    },
+    {
+     "value": "SPITALUL ORASENESC SANNICOLAU MARE",
+     "count": 1456
+    },
+    {
+     "value": "SPITALUL DE RECUPERARE CARDIOVASCULARA DR.BENEDEK GEZA",
+     "count": 1450
+    },
+    {
+     "value": "SPITALUL ORASENESC NEHOIU",
+     "count": 1437
+    },
+    {
+     "value": "SC SPITALUL ORASENESC SRL",
+     "count": 1429
+    },
+    {
+     "value": "SPITAL ORASENESC OTELU-ROSU",
+     "count": 1421
+    },
+    {
+     "value": "SPITALUL ORASENESC LIPOVA",
+     "count": 1382
+    },
+    {
+     "value": "SPITALUL MUNICIPAL DE URGENȚĂ CARANSEBEȘ",
+     "count": 1373
+    },
+    {
+     "value": "SPITALUL ORASENESC JIBOU",
+     "count": 1366
+    },
+    {
+     "value": "SPITALUL JUDEŢEAN DE URGENŢĂ BRĂILA",
+     "count": 1352
+    },
+    {
+     "value": "SPITAL MUNICIPAL \"DIMITRIE CASTROIAN\" HUSI",
+     "count": 1341
+    },
+    {
+     "value": "SPITAL MUNICIPAL GHEORGHENI",
+     "count": 1337
+    },
+    {
+     "value": "SAM-SERVICII AVANSATE MEDICALE- SRL",
+     "count": 1329
+    },
+    {
+     "value": "SPITALUL MUNICIPAL URZICENI",
+     "count": 1327
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC CISNĂDIE",
+     "count": 1314
+    },
+    {
+     "value": "SPITALUL \"N.N. SAVEANU\" VIDRA, VRANCEA",
+     "count": 1298
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE TULGHES",
+     "count": 1290
+    },
+    {
+     "value": "SPITALUL MUNICIPAL CARACAL",
+     "count": 1267
+    },
+    {
+     "value": "SPITALUL MUNICIPAL TARGU SECUIESC",
+     "count": 1258
+    },
+    {
+     "value": "SPITALUL MUNICIPAL \"ANTON CINCU\" TECUCI",
+     "count": 1257
+    },
+    {
+     "value": "S.C. BIOS PALAGHIA S.RL",
+     "count": 1233
+    },
+    {
+     "value": "SPITALUL ORASENESC SEGARCEA",
+     "count": 1233
+    },
+    {
+     "value": "SPITALUL ORASENESC CERNAVODA",
+     "count": 1206
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC HAȚEG",
+     "count": 1205
+    },
+    {
+     "value": "SPITALUL SOVATA-NIRAJ",
+     "count": 1194
+    },
+    {
+     "value": "S.C. ECOMED S.R.L. VINTILA-VODA",
+     "count": 1191
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC \"REGELE CAROL I\" COSTEȘTI",
+     "count": 1184
+    },
+    {
+     "value": "S.C. TOP MEDICAL CRONIC S.R.L. - CENTRU DE ÎNGRIJIRI PALIATIVE ”SFÂNTUL LUCA”",
+     "count": 1179
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC \"AȘEZĂMINTELE BRÂNCOVENEȘTI\" DĂBULENI",
+     "count": 1178
+    },
+    {
+     "value": "SPITALUL MUNICIPAL CAREI",
+     "count": 1154
+    },
+    {
+     "value": "SPITALUL ORASENESC BREZOI",
+     "count": 1130
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC NEGREŞTI OAŞ",
+     "count": 1128
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC ŢĂNDĂREI",
+     "count": 1121
+    },
+    {
+     "value": "SPITALUL MUNICIPAL \"COSTACHE NICOLESCU \"DRAGASANI",
+     "count": 1118
+    },
+    {
+     "value": "SPITALUL MUNICIPAL \"EPISCOP NICOLAE POPOVICI\" BEIUȘ",
+     "count": 1107
+    },
+    {
+     "value": "SPITALIS PUNCT DELUCRU NEGRESTI",
+     "count": 1106
+    },
+    {
+     "value": "SPITALUL DE URGENTA TG CARBUNESTI",
+     "count": 1103
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE CRONICI SCHITU GRECI",
+     "count": 1101
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC TG. LĂPUȘ",
+     "count": 1100
+    },
+    {
+     "value": "INSTITUTUL REGIONAL DE ONCOLOGIE",
+     "count": 1097
+    },
+    {
+     "value": "SPITALUL MUNICIPAL \"ANGHEL SALIGNY\" FETESTI",
+     "count": 1090
+    },
+    {
+     "value": "S.C POLIMED S.R.L.",
+     "count": 1087
+    },
+    {
+     "value": "PREVENTORIUL TBC COPII DELENI",
+     "count": 1086
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE MURGENI",
+     "count": 1085
+    },
+    {
+     "value": "SPITALUL DE BOLI CRONICE SMEENI",
+     "count": 1046
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE ZAM",
+     "count": 1044
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC TURCENI",
+     "count": 1044
+    },
+    {
+     "value": "SPITAL ORASENESC MOLDOVA NOUA",
+     "count": 1037
+    },
+    {
+     "value": "SPITALUL \"SFANTUL GHOERGHE\"",
+     "count": 1026
+    },
+    {
+     "value": "S.C. Nefrocenter S.R.L.",
+     "count": 1019
+    },
+    {
+     "value": "SPITAL ORĂȘENESC BARAOLT",
+     "count": 1009
+    },
+    {
+     "value": "SPITAL ORASENESC RUPEA",
+     "count": 1005
+    },
+    {
+     "value": "SPITAL ORĂŞENESC LEHLIU-GARĂ",
+     "count": 1003
+    },
+    {
+     "value": "SPITALUL ORASENESC \"PROF.DR.IOAN PUSCAS\" SIMLEU SILVANIEI",
+     "count": 1000
+    },
+    {
+     "value": "DIAVERUM BISTRITA - CENTRU DE DIALIZA",
+     "count": 1000
+    },
+    {
+     "value": "SPITALUL MUNICIPAL DR. AUREL TULBURE FĂGĂRAȘ",
+     "count": 994
+    },
+    {
+     "value": "SPITALUL MUNICIPAL CALAFAT",
+     "count": 993
+    },
+    {
+     "value": "SPITAL MUNICIPAL 'DR. POP MIRCEA' MARGHITA",
+     "count": 993
+    },
+    {
+     "value": "SPITALUL DE RECUPERARE CU AMBULATORIU DE SPECIALITAE INTEGRAT BRĂDET",
+     "count": 987
+    },
+    {
+     "value": "SPITALUL JUDETEAN DE URGENTA CALARASI \"DR. POMPEI SAMARIAN\"",
+     "count": 985
+    },
+    {
+     "value": "SOCIETATEA Nefrocare VS SRL",
+     "count": 979
+    },
+    {
+     "value": "SPITALUL ORASENESC NOVACI",
+     "count": 962
+    },
+    {
+     "value": "SPITAL PSIHIATRIE NUCET",
+     "count": 961
+    },
+    {
+     "value": "CENTRUL DE SANATATE MULTIFUNCTIONAL BRATCA",
+     "count": 958
+    },
+    {
+     "value": "SPITALUL MUNICIPAL FALTICENI",
+     "count": 945
+    },
+    {
+     "value": "QUALITY COMPAS SRL",
+     "count": 943
+    },
+    {
+     "value": "SPITALUL MUNICIPAL CARITAS ROSIORI DE VEDE",
+     "count": 943
+    },
+    {
+     "value": "SPITALUL MUNICIPAL RÂMNICU SĂRAT",
+     "count": 942
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE CRONICI DUMBRĂVENI",
+     "count": 935
+    },
+    {
+     "value": "SPITALUL ORASENESC HOREZU",
+     "count": 933
+    },
+    {
+     "value": "SPITALUL JUDEŢEAN DE URGENŢĂ SLOBOZIA",
+     "count": 931
+    },
+    {
+     "value": "CENTRUL MEDICAL DE EVALUARE, TERAPIE, EDUCAŢIE MEDICALĂ SPECIFICĂ ȘI RECUPERARE PENTRU COPII ŞI TINERI \"CRISTIAN ŞERBAN\"",
+     "count": 925
+    },
+    {
+     "value": "SPITALUL TICHILESTI",
+     "count": 924
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC ALEŞD",
+     "count": 921
+    },
+    {
+     "value": "SPITALUL DE PNEUMOFTIZIOLOGIE IZVORU",
+     "count": 919
+    },
+    {
+     "value": "SPITALUL DE BOLI CRONICE CÎMPENI",
+     "count": 914
+    },
+    {
+     "value": "SOCIETATEA CENTRUL MEDICAL CĂTALINA SRL",
+     "count": 909
+    },
+    {
+     "value": "S.C. POLICLINICA DARIMEDIC S.R.L.",
+     "count": 906
+    },
+    {
+     "value": "SPITAL MUNICIPAL BLAJ",
+     "count": 904
+    },
+    {
+     "value": "SPITALUL MUNICIPAL CÂMPULUNG MOLDOVENESC",
+     "count": 901
+    },
+    {
+     "value": "CENTRUL DE RECUPERARE NEUROMOTORIE PRO VITAM - PUNCT DE LUCRU",
+     "count": 889
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC GURA HUMORULUI",
+     "count": 886
+    },
+    {
+     "value": "SPITALUL ORASENESC,,DR.VALER RUSSU''LUDUS",
+     "count": 883
+    },
+    {
+     "value": "SPITALUL ORASENESC CUGIR",
+     "count": 880
+    },
+    {
+     "value": "DIAVERUM PETROSANI - CENTRU DE DIALIZA",
+     "count": 879
+    },
+    {
+     "value": "SPITALUL ORASENESC SFANTUL IERARH NICOLAE BICAZ",
+     "count": 877
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC ,, SFÂNTA FILOFTEIA'' MIZIL",
+     "count": 874
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC AGNITA",
+     "count": 873
+    },
+    {
+     "value": "SPITALUL DR. CAIUS TIBERIU SPÂRCHEZ",
+     "count": 868
+    },
+    {
+     "value": "SPITALUL ORASENESC FAGET",
+     "count": 855
+    },
+    {
+     "value": "SPITALUL MUNICIPAL MOTRU",
+     "count": 850
+    },
+    {
+     "value": "Spitalul ,,Prof.Dr.Eduard Apetrei'' Buhusi",
+     "count": 850
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC BALŞ",
+     "count": 848
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE POROSCHIA",
+     "count": 846
+    },
+    {
+     "value": "SPITALUL GENERAL CĂI FERATE DROBETA TURNU SEVERIN",
+     "count": 846
+    },
+    {
+     "value": "DIAVERUM CALARASI - CENTRU DE DIALIZA",
+     "count": 845
+    },
+    {
+     "value": "SPITALUL ORASENESC CORABIA",
+     "count": 832
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE GĂTAIA",
+     "count": 825
+    },
+    {
+     "value": "SPITALUL MUNICIPAL SEBEȘ",
+     "count": 825
+    },
+    {
+     "value": "SPITALUL ORASENESC GAESTI",
+     "count": 825
+    },
+    {
+     "value": "S.C. ALPHA MEDICAL INVEST S.R.L.",
+     "count": 823
+    },
+    {
+     "value": "SPITALUL ORĂȘENESC,,Dr. Alexandru Borza\" ABRUD",
+     "count": 822
+    },
+    {
+     "value": "SPITALUL DE PNEUMOFTIZIOLOGIE TUDOR VLADIMIRESCU",
+     "count": 806
+    },
+    {
+     "value": "SPITAL ORASENESC MACIN",
+     "count": 805
+    },
+    {
+     "value": "SOCIETATEA Fresenius NephroCare Romania SRL - punct de lucru Tulcea",
+     "count": 803
+    },
+    {
+     "value": "SOCIETATEA LABORATOR MEDICAL BIOCONSULTING SRL",
+     "count": 798
+    },
+    {
+     "value": "PENITENCIARUL-SPITAL BUCURESTI-JILAVA",
+     "count": 795
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE CAVNIC",
+     "count": 788
+    },
+    {
+     "value": "SPITALUL DE PNEUMOFTIZIOLOGIE ROSIORII DE VEDE",
+     "count": 781
+    },
+    {
+     "value": "SC Eurodializa SRL - punct de lucru Mangalia",
+     "count": 779
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE SĂPUNARI",
+     "count": 779
+    },
+    {
+     "value": "SPITALUL DR. KARL DIEL JIMBOLIA",
+     "count": 778
+    },
+    {
+     "value": "SPITALUL DE BOLI PSIHICE CRONICE BORSA",
+     "count": 776
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE ȘI PENTRU MĂSURI DE SIGURANȚĂ JEBEL",
+     "count": 767
+    },
+    {
+     "value": "SPITALUL MUNICIPAL MEDGIDIA",
+     "count": 764
+    },
+    {
+     "value": "Spitalul Municipal Sacele",
+     "count": 763
+    },
+    {
+     "value": "SPITAL JUDEŢEAN DE URGENŢĂ MIERCUREA CIUC",
+     "count": 763
+    },
+    {
+     "value": "SPITALUL MUNICIPAL ADJUD",
+     "count": 761
+    },
+    {
+     "value": "DIAVERUM MIERCUREA CIUC - CENTRU DE DIALIZA",
+     "count": 758
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE CAPALNAS",
+     "count": 758
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE \"SF. MARIA\" VEDEA",
+     "count": 754
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE ȘI PENTRU MĂSURI DE SIGURANȚĂ PĂDURENI GRAJDURI",
+     "count": 741
+    },
+    {
+     "value": "S.C. NEFROLMED S.R.L. - punct de lucru Turnu Măgurele",
+     "count": 727
+    },
+    {
+     "value": "SPITALUL CLINIC DE RECUPERARE MEDICALĂ BĂILE FELIX",
+     "count": 721
+    },
+    {
+     "value": "SPITALUL DE BOLI CRONICE SEBIS",
+     "count": 714
+    },
+    {
+     "value": "SPITALUL ORASENESC DETA",
+     "count": 713
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC ZIMNICEA",
+     "count": 712
+    },
+    {
+     "value": "S.C. INFOMEDICA S.R.L.",
+     "count": 709
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC DR.GEORGE TRIFON",
+     "count": 708
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE EFTIMIE DIMANDESCU BĂLĂCEANCA",
+     "count": 703
+    },
+    {
+     "value": "SOCIETATEA DAFNE MED SRL - SPITAL DE ZI",
+     "count": 693
+    },
+    {
+     "value": "SPITALUL MUNICIPAL ODORHEIU SECUIESC",
+     "count": 692
+    },
+    {
+     "value": "SOCIETATEA AVITUM SRL - punct de lucru Dorohoi",
+     "count": 677
+    },
+    {
+     "value": "CLINICA SANOVIL",
+     "count": 670
+    },
+    {
+     "value": "SPITALUL DE PNEUMOFTIZIOLOGIE LEAMNA",
+     "count": 666
+    },
+    {
+     "value": "SPITAL ORASENESC SANGEORGIU DE PADURE",
+     "count": 665
+    },
+    {
+     "value": "SOCIETATEA Fresenius NephroCare Romania SRL - punct de lucru Slobozia",
+     "count": 664
+    },
+    {
+     "value": "S.C. CENTRUL MEDICAL UNIREA S.R.L.",
+     "count": 662
+    },
+    {
+     "value": "SPITAL MUNICIPAL DE URGENTA \"ELENA BELDIMAN\" BARLAD",
+     "count": 662
+    },
+    {
+     "value": "SPITALUL DE RECUPERARE NEUROMOTORIE \"DR.CORNELIU BARSAN\" DEZNA",
+     "count": 655
+    },
+    {
+     "value": "SPITALUL ORASENESC PUCIOASA",
+     "count": 654
+    },
+    {
+     "value": "SPITALUL MUNICIPAL CODLEA",
+     "count": 642
+    },
+    {
+     "value": "SPITAL JUDETEAN DE URGENTA SATU MARE",
+     "count": 641
+    },
+    {
+     "value": "SPITALUL MUNICIPAL \"DR. GHEORGHE MARINESCU\"",
+     "count": 637
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE ŞI PENTRU MĂSURI DE SIGURANŢĂ SĂPOCA",
+     "count": 635
+    },
+    {
+     "value": "SANATORIUL DE BALNEOFIZIOTERAPIE ŞI RECUPERARE MEDICALĂ ,,DR.DIMITRIE CANTEMIR\" BĂLŢĂTEŞTI",
+     "count": 631
+    },
+    {
+     "value": "S.C POLARIS MEDICAL CLINICA DE TRATAMENT ȘI RECUPERARE S.A",
+     "count": 622
+    },
+    {
+     "value": "SOCIETATEA EUROTRAT SRL- SPITAL DE REABILITARE MEDICALA",
+     "count": 622
+    },
+    {
+     "value": "SPITALUL CLINIC DE BOLI INFECŢIOASE \"SF. CUVIOASA PARASCHEVA\"",
+     "count": 621
+    },
+    {
+     "value": "SPITALUL DE BOLI CRONICE \"SFANTUL IOAN\" TARGU FRUMOS",
+     "count": 618
+    },
+    {
+     "value": "SOCIETATEA SARA CLINIC RECOVERY SRL",
+     "count": 610
+    },
+    {
+     "value": "SPITALUL MUNICIPAL \"DR. ALEXANDRU SIMIONESCU\" HUNEDOARA",
+     "count": 592
+    },
+    {
+     "value": "SPITALUL JUDEȚEAN DE URGENȚĂ REȘIȚA",
+     "count": 590
+    },
+    {
+     "value": "SPITALUL JUDEŢEAN DE URGENŢĂ BISTRIŢA",
+     "count": 588
+    },
+    {
+     "value": "SPITALUL DE PNEUMOFTIZIOLOGIE AIUD",
+     "count": 587
+    },
+    {
+     "value": "SANATORIUL DE PNEUMOFTIZIOLOGIE BRAD",
+     "count": 586
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE POIANA MARE",
+     "count": 582
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE MOCREA",
+     "count": 579
+    },
+    {
+     "value": "SOCIETATEA Fresenius NephroCare Romania SRL - punct de lucru Onești",
+     "count": 578
+    },
+    {
+     "value": "SPITALUL MUNICIPAL ,,DR. CORNEL IGNA,, CÂMPIA TURZII",
+     "count": 575
+    },
+    {
+     "value": "PENITENCIARUL SPITAL DEJ",
+     "count": 573
+    },
+    {
+     "value": "CENTRU MEDICAL SPERANTA PENTRU VIATA SRL",
+     "count": 573
+    },
+    {
+     "value": "SPITALUL MUNICIPAL LUPENI",
+     "count": 571
+    },
+    {
+     "value": "DIAVERUM GALATI - CENTRU DE DIALIZA",
+     "count": 553
+    },
+    {
+     "value": "SPITAL ORĂȘENESC BOLINTIN VALE",
+     "count": 545
+    },
+    {
+     "value": "SPITALUL ORASENESC URLATI",
+     "count": 542
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE DRĂGOEȘTI",
+     "count": 542
+    },
+    {
+     "value": "GENESYS MEDICAL CLINIC SRL",
+     "count": 540
+    },
+    {
+     "value": "DIAVERUM MEDIAS - CENTRU DE DIALIZA",
+     "count": 534
+    },
+    {
+     "value": "SPITALUL DE PSIHIATRIE SF. NICOLAE ROMAN",
+     "count": 528
+    },
+    {
+     "value": "SPITALUL ORASENESC ,,SF.STEFAN'' ROVINARI",
+     "count": 528
+    },
+    {
+     "value": "SPITALUL MUNICIPAL TURDA",
+     "count": 526
+    },
+    {
+     "value": "CLINICA DE ZI ONCOVIT SRL",
+     "count": 526
+    },
+    {
+     "value": "SANATORIUL DE PNEUMOFTIZIOLOGIE GEOAGIU",
+     "count": 523
+    },
+    {
+     "value": "SPITALUL ORĂŞENESC HÎRLAU",
+     "count": 521
+    },
+    {
+     "value": "DIAVERUM SIBIU DISTRIBUTIEI - CENTRU DE DIALIZA",
+     "count": 520
+    },
+    {
+     "value": "SOCIETATEA CARDIOREC SRL",
+     "count": 519
+    },
+    {
+     "value": "DIAVERUM ODORHEIU SECUIESC - CENTRU DE DIALIZA",
+     "count": 519
+    },
+    {
+     "value": "SOCIETATEA Fresenius NephroCare Romania SRL - punct de lucru Drobeta Turnu-Severin",
+     "count": 512
+    },
+    {
+     "value": "S.C. WIA KINETO-DENT S.R.L.",
+     "count": 509
+    },
+    {
+     "value": "SOCIETATEA VITAL MEDICAL CENTER MEMORY SRL",
+     "count": 499
+    },
+    {
+     "value": "SOCIETATEA Nefromed Dialysis Centers SRL - punct de lucru Bârlad",
+     "count": 498
+    },
+    {
+     "value": "SPITALUL JUDEȚEAN DE URGENȚĂ GIURGIU",
+     "count": 490
+    },
+    {
+     "value": "THEO'S MEDICAL CLINIC",
+     "count": 489
+    }
+   ]
+  },
+  {
+   "id": "dist_airport_km",
+   "table": "env",
+   "group": "servicii",
+   "label": "Distanța până la cel mai apropiat aeroport",
+   "unit": "km",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "filterRange": [
+    0,
+    126
+   ],
+   "note": "Distanță în linie dreaptă până la cel mai apropiat aeroport (18 aeroporturi, OurAirports). Ruta reală pe șosea se calculează la cerere, din fișa celulei.",
+   "stats": {
+    "min": 0.063,
+    "max": 125.758,
+    "p02": 9.359,
+    "p50": 52.81,
+    "p98": 103.859,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "nearest_airport",
+   "table": "env",
+   "group": "servicii",
+   "label": "Cel mai apropiat aeroport",
+   "dtype": "cat",
+   "role": [
+    "profile"
+   ],
+   "categories": [
+    {
+     "value": "Craiova (CRA)",
+     "count": 24518
+    },
+    {
+     "value": "Bacău (BCM)",
+     "count": 21689
+    },
+    {
+     "value": "Caransebeş (CSB)",
+     "count": 19350
+    },
+    {
+     "value": "Brașov (Ghimbav) (GHV)",
+     "count": 18408
+    },
+    {
+     "value": "Suceava (SCV)",
+     "count": 17118
+    },
+    {
+     "value": "Sibiu (SBZ)",
+     "count": 15418
+    },
+    {
+     "value": "Mihail Kogălniceanu (TCE)",
+     "count": 14792
+    },
+    {
+     "value": "Otopeni (OTP)",
+     "count": 13937
+    },
+    {
+     "value": "Recea (TGM)",
+     "count": 13282
+    },
+    {
+     "value": "Bucharest (BBU)",
+     "count": 12620
+    },
+    {
+     "value": "Cluj-Napoca (CLJ)",
+     "count": 12445
+    },
+    {
+     "value": "Constanța (CND)",
+     "count": 11739
+    },
+    {
+     "value": "Tăuții-Măgherăuș (BAY)",
+     "count": 9962
+    },
+    {
+     "value": "Oradea (OMR)",
+     "count": 8945
+    },
+    {
+     "value": "Iaşi (IAS)",
+     "count": 7405
+    },
+    {
+     "value": "Arad (ARW)",
+     "count": 6753
+    },
+    {
+     "value": "Timişoara (TSR)",
+     "count": 6648
+    },
+    {
+     "value": "Satu Mare (SUJ)",
+     "count": 5261
+    }
+   ]
+  },
+  {
+   "id": "tmean",
+   "table": "climate",
+   "group": "clima",
+   "label": "Temperatura medie (2026)",
+   "unit": "°C",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Media (tmin+tmax)/2 pe zilele disponibile din 2026 (nu normală climatologică). Se actualizează zilnic din opendata MeteoRomania.",
+   "stats": {
+    "min": -1.486,
+    "max": 14.082,
+    "p02": 4.14,
+    "p50": 11.187,
+    "p98": 13.167,
+    "nulls": 1426
+   }
+  },
+  {
+   "id": "tmin_mean",
+   "table": "climate",
+   "group": "clima",
+   "label": "Media minimelor zilnice",
+   "unit": "°C",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": -3.588,
+    "max": 9.859,
+    "p02": 0.153,
+    "p50": 5.826,
+    "p98": 8.278,
+    "nulls": 1426
+   }
+  },
+  {
+   "id": "tmax_mean",
+   "table": "climate",
+   "group": "clima",
+   "label": "Media maximelor zilnice",
+   "unit": "°C",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0.552,
+    "max": 19.744,
+    "p02": 7.942,
+    "p50": 16.434,
+    "p98": 19.147,
+    "nulls": 1426
+   }
+  },
+  {
+   "id": "precip_total",
+   "table": "climate",
+   "group": "clima",
+   "label": "Precipitații cumulate (2026)",
+   "unit": "mm",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Cumulat de la 1 ianuarie 2026 până la ultima zi disponibilă.",
+   "stats": {
+    "min": 0,
+    "max": 1056.7,
+    "p02": 186.578,
+    "p50": 330.5,
+    "p98": 605.1,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "precip_max_daily",
+   "table": "climate",
+   "group": "clima",
+   "label": "Precipitația zilnică maximă",
+   "unit": "mm",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": 9.4,
+    "max": 113.7,
+    "p02": 15.8,
+    "p50": 31.3,
+    "p98": 65.8,
+    "nulls": 1438
+   }
+  },
+  {
+   "id": "hot_days",
+   "table": "climate",
+   "group": "clima",
+   "label": "Zile caniculare (max ≥ 30 °C)",
+   "unit": "zile",
+   "dtype": "int",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 46,
+    "p02": 0,
+    "p50": 18,
+    "p98": 42,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "tropical_nights",
+   "table": "climate",
+   "group": "clima",
+   "label": "Nopți tropicale (min ≥ 20 °C)",
+   "unit": "zile",
+   "dtype": "int",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 32,
+    "p02": 0,
+    "p50": 2,
+    "p98": 15,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "frost_days",
+   "table": "climate",
+   "group": "clima",
+   "label": "Zile cu îngheț (min < 0 °C)",
+   "unit": "zile",
+   "dtype": "int",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 139,
+    "p02": 28,
+    "p50": 55,
+    "p98": 117,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "summer_days",
+   "table": "climate",
+   "group": "clima",
+   "label": "Zile de vară (max ≥ 25 °C)",
+   "unit": "zile",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 83,
+    "p02": 1,
+    "p50": 55,
+    "p98": 77,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "wet_days",
+   "table": "climate",
+   "group": "clima",
+   "label": "Zile cu precipitații ≥ 1 mm",
+   "unit": "zile",
+   "dtype": "int",
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 0,
+    "max": 120,
+    "p02": 34,
+    "p50": 48,
+    "p98": 80,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "tmean_norm_9120",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Temperatura medie anuală (normala 1991–2020)",
+   "unit": "°C",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Media multianuală 1991–2020 a temperaturii medii zilnice (tmin+tmax)/2. Sursă: grilele zilnice MeteoRomania 1961–prezent, omogenizate în cubul Zarr.",
+   "stats": {
+    "min": -1.405,
+    "max": 13.552,
+    "p02": 3.71,
+    "p50": 10.745,
+    "p98": 12.702,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "tmean_norm_6190",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Temperatura medie anuală (normala 1961–1990)",
+   "unit": "°C",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": -1.986,
+    "max": 12.63,
+    "p02": 2.764,
+    "p50": 9.732,
+    "p98": 11.766,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "warming_deg",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Încălzirea: 1991–2020 față de 1961–1990",
+   "unit": "°C",
+   "dtype": "float",
+   "decimals": 2,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Diferența dintre normalele climatologice 1991–2020 și 1961–1990 — cât s-a încălzit efectiv clima locului în ultimele decenii.",
+   "stats": {
+    "min": 0.461,
+    "max": 1.402,
+    "p02": 0.776,
+    "p50": 0.973,
+    "p98": 1.19,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "tmean_trend_dec",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Tendința temperaturii (1961–2025)",
+   "unit": "°C/deceniu",
+   "dtype": "float",
+   "decimals": 2,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Panta regresiei liniare a temperaturii medii anuale, 1961–2025.",
+   "stats": {
+    "min": 0.226,
+    "max": 0.491,
+    "p02": 0.31,
+    "p50": 0.376,
+    "p98": 0.447,
+    "nulls": 1700
+   }
+  },
+  {
+   "id": "tmean_anom_2025",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Anomalia anului 2025 (față de 1991–2020)",
+   "unit": "°C",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": -0.673,
+    "max": 3.023,
+    "p02": 0.764,
+    "p50": 1.18,
+    "p98": 1.714,
+    "nulls": 1700
+   }
+  },
+  {
+   "id": "prec_norm_9120",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Precipitații anuale (normala 1991–2020)",
+   "unit": "mm",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": 254.88,
+    "max": 1739.27,
+    "p02": 424.52,
+    "p50": 634.127,
+    "p98": 1059.954,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "prec_norm_6190",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Precipitații anuale (normala 1961–1990)",
+   "unit": "mm",
+   "dtype": "float",
+   "decimals": 0,
+   "role": [
+    "profile"
+   ],
+   "stats": {
+    "min": 296.98,
+    "max": 1890.79,
+    "p02": 401.439,
+    "p50": 604.52,
+    "p98": 1051.876,
+    "nulls": 0
+   }
+  },
+  {
+   "id": "prec_change_pct",
+   "table": "climate",
+   "group": "clima_multi",
+   "label": "Schimbarea precipitațiilor: 1991–2020 vs 1961–1990",
+   "unit": "%",
+   "dtype": "float",
+   "decimals": 1,
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "stats": {
+    "min": -14.335,
+    "max": 18.657,
+    "p02": -4.037,
+    "p50": 3.961,
+    "p98": 12.262,
+    "nulls": 0
+   }
+  }
+ ]
+}
