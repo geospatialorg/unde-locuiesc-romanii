@@ -37,6 +37,7 @@ def step_export() -> None:
     protected_areas = pd.read_parquet(STAGING / "protected_areas.parquet")
     water = pd.read_parquet(STAGING / "water.parquet")
     watercourses = pd.read_parquet(STAGING / "watercourses.parquet")
+    floods = pd.read_parquet(STAGING / "floods.parquet")
     hospitals = pd.read_parquet(STAGING / "hospitals.parquet")
     crossings = pd.read_parquet(STAGING / "crossings.parquet")
     airports = pd.read_parquet(STAGING / "airports.parquet")
@@ -53,11 +54,11 @@ def step_export() -> None:
 
     env = (admin.merge(landform, on="cell_id").merge(intravilan, on="cell_id")
            .merge(protected_areas, on="cell_id").merge(water, on="cell_id")
-           .merge(watercourses, on="cell_id")
+           .merge(watercourses, on="cell_id").merge(floods, on="cell_id")
            .merge(hospitals, on="cell_id").merge(crossings, on="cell_id").merge(airports, on="cell_id")
            .merge(terrain, on="cell_id").merge(border, on="cell_id"))
     env = _cat(env, ["uat_name", "uat_status", "county_mn", "county_name", "region_name", "mediu",
-                     "intravilan", "acces_gaz", "categorie_apa", "categorie_curs",
+                     "intravilan", "acces_gaz", "categorie_apa", "categorie_curs", "scenariu_inundatii",
                      "nearest_hospital", "nearest_crossing", "nearest_airport",
                      "landform_name", "landform_type", "landform_lvl0", "landform_lvl1",
                      "border_neighbor"])

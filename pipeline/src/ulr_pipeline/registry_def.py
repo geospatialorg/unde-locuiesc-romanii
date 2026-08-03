@@ -121,6 +121,16 @@ V = [
     dict(id="categorie_curs", table="env", group="distante",
          label="Tipul celui mai apropiat curs de apă", dtype="cat", role=["filter", "profile"],
          note="Categoria celui mai apropiat curs de apă (râu sau pârâu). Sursă: OpenStreetMap."),
+    dict(id="dist_inundatii_km", table="env", group="distante",
+         label="Distanța până la o zonă cu risc de inundații", unit="km",
+         dtype="float", decimals=1, role=["filter", "profile"], filterRange=[0, 20],
+         note="Distanță în linie dreaptă până la cea mai apropiată zonă cu hazard de inundații "
+              "(orice scenariu). 0 km = locul se află într-o zonă inundabilă."),
+    dict(id="scenariu_inundatii", table="env", group="distante",
+         label="Scenariul de inundații cel mai apropiat", dtype="cat", role=["filter", "profile"],
+         note="Cel mai frecvent scenariu de hazard care atinge locul: 10% probabilitate anuală "
+              "(revenire ~10 ani), 1% (~100 ani) sau 0,1% (~1.000 ani). Fără bifă = toate "
+              "scenariile combinate."),
     dict(id="dist_border_km", table="env", group="distante", label="Distanța până la frontieră",
          unit="km", dtype="float", decimals=0, role=["filter", "profile"], filterRange=[0, 218],
          note="Distanță euclidiană până la frontiera terestră/fluvială, precizie ±1 km."),

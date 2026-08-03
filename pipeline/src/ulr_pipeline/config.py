@@ -28,6 +28,9 @@ SRC = {
     "protected_areas": DATA_IN / "arii-protejate.gpkg",
     "water": DATA_IN / "osm_hidrografie_romania.gpkg",
     "watercourses": DATA_IN / "cursuri_apa.gpkg",
+    "flood_p10": DATA_IN / "hazard_inundatii_p10_dizolvat.gpkg",       # 10% anual (~10 ani)
+    "flood_p1": DATA_IN / "hazard_inundatii_p1_dizolvat.gpkg",         # 1% anual (~100 ani)
+    "flood_p01": DATA_IN / "hazard_inundatii_p0_1_dizolvat.gpkg",      # 0,1% anual (~1.000 ani)
     "hospitals": DATA_IN / "spitale_anmcs.gpkg",
     "crossings": DATA_IN / "puncte_trecere_frontiera.geojson",
     "airports": DATA_IN / "aeroporturi_romania.geojson",

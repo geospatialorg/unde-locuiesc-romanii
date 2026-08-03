@@ -16,6 +16,7 @@ def main() -> None:
     from .steps.protected_areas import step_protected_areas
     from .steps.water import step_water
     from .steps.watercourses import step_watercourses
+    from .steps.floods import step_floods
     from .steps.hospitals import step_hospitals
     from .steps.crossings import step_crossings
     from .steps.airports import step_airports
@@ -36,6 +37,7 @@ def main() -> None:
         "protected_areas": step_protected_areas,  # apartenența la o arie protejată (ANANP)
         "water": step_water,            # distanța la cel mai apropiat corp de apă + tipul (OSM)
         "watercourses": step_watercourses,  # distanța la cel mai apropiat curs de apă + tipul (OSM)
+        "floods": step_floods,          # distanța la zona cu hazard de inundații + scenariul
         "hospitals": step_hospitals,    # distanța la cel mai apropiat spital (ANMCS)
         "crossings": step_crossings,    # distanța la cel mai apropiat punct de trecere a frontierei
         "airports": step_airports,      # distanța la cel mai apropiat aeroport

@@ -130,6 +130,29 @@ export const PRESETS: Preset[] = [
     },
   },
   {
+    id: "risc-inundatii",
+    title: "Câți români locuiesc într-o zonă cu risc de inundații sau în apropierea acesteia?",
+    definition:
+      "Definiție: locul se află la cel mult distanța aleasă mai jos de o zonă cu hazard de inundații. La 0 km sunt incluse toate locurile care ating o zonă inundabilă. Scenariul (10% — la ~10 ani, 1% — la ~100 ani, 0,1% — la ~1.000 ani) se poate bifa din filtre; fără bifă = toate scenariile combinate.",
+    query: {
+      measure: "pop_total",
+      constraints: [
+        { varId: "dist_inundatii_km", op: "between", min: null, max: 0, maxInclusive: true },
+        { varId: "scenariu_inundatii", op: "in", values: [] },
+      ],
+    },
+    threshold: {
+      varId: "dist_inundatii_km",
+      bound: "max",
+      label: "Distanța maximă până la o zonă inundabilă",
+      unit: "km",
+      default: 0,
+      step: 0.5,
+      minValue: 0,
+      inclusive: true,
+    },
+  },
+  {
     id: "arie-protejata",
     title: "Câți români locuiesc într-o arie protejată sau proximitatea unei arii protejate?",
     definition:
