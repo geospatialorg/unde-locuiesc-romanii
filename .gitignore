@@ -1,11 +1,11 @@
-# date brute și produse — nu intră în git…
+# sursele brute din data/ — nu intră în git…
 /data/*
-# …cu excepția a două produse mici versionate: schema + datele de bază (frontend-ul
-# le citește la runtime). Restul (env/climate parquet, zarr, live, surse brute) rămâne afară.
+# …dar produsele runtime din data/out intră (deploy prin push, fără sync manual):
+# registry + parquet-uri (core/env/climate/county_climate) + geojson-uri + gazetteer.
 !/data/out/
-/data/out/*
-!/data/out/registry.json
-!/data/out/core.parquet
+# excepții: cubul Zarr (9G, doar pt rebuild) și fișierele live (rescrise pe VM la 6h)
+/data/out/climate.zarr/
+/data/out/live/
 
 # node / vite
 node_modules/

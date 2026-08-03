@@ -133,7 +133,7 @@ export const PRESETS: Preset[] = [
     id: "risc-inundatii",
     title: "Câți români locuiesc într-o zonă cu risc de inundații sau în apropierea acesteia?",
     definition:
-      "Definiție: locul se află la cel mult distanța aleasă mai jos de o zonă cu hazard de inundații. La 0 km sunt incluse toate locurile care ating o zonă inundabilă. Scenariul (10% — la ~10 ani, 1% — la ~100 ani, 0,1% — la ~1.000 ani) se poate bifa din filtre; fără bifă = toate scenariile combinate.",
+      "Definiție: locul se află la cel mult distanța aleasă mai jos de o zonă cu hazard de inundații. Scenariile sunt cumulative (imbricate): 0,1% (~1.000 ani) e cel mai extins și include zonele de 1% (~100 ani) și 10% (~10 ani); „combinat” = reuniunea tuturor. La 0 km sunt incluse toate locurile care ating zona.",
     query: {
       measure: "pop_total",
       constraints: [
@@ -141,6 +141,52 @@ export const PRESETS: Preset[] = [
         { varId: "scenariu_inundatii", op: "in", values: [] },
       ],
     },
+    variants: [
+      {
+        label: "Combinat",
+        definition: "Toate scenariile la un loc (reuniunea zonelor de 10%, 1% și 0,1%).",
+        query: {
+          measure: "pop_total",
+          constraints: [
+            { varId: "dist_inundatii_km", op: "between", min: null, max: 0, maxInclusive: true },
+            { varId: "scenariu_inundatii", op: "in", values: [] },
+          ],
+        },
+      },
+      {
+        label: "0,1% (~1.000 ani)",
+        definition: "Zona inundabilă la un eveniment cu 0,1% probabilitate anuală (~1.000 ani) — cea mai extinsă; include 1% și 10%.",
+        query: {
+          measure: "pop_total",
+          constraints: [
+            { varId: "dist_inundatii_km", op: "between", min: null, max: 0, maxInclusive: true },
+            { varId: "scenariu_inundatii", op: "in", values: ["0,1% (~1.000 ani)", "1% (~100 ani)", "10% (~10 ani)"] },
+          ],
+        },
+      },
+      {
+        label: "1% (~100 ani)",
+        definition: "Zona inundabilă la un eveniment cu 1% probabilitate anuală (~100 ani) — include și 10%.",
+        query: {
+          measure: "pop_total",
+          constraints: [
+            { varId: "dist_inundatii_km", op: "between", min: null, max: 0, maxInclusive: true },
+            { varId: "scenariu_inundatii", op: "in", values: ["1% (~100 ani)", "10% (~10 ani)"] },
+          ],
+        },
+      },
+      {
+        label: "10% (~10 ani)",
+        definition: "Zona inundabilă la un eveniment cu 10% probabilitate anuală (~10 ani) — cea mai frecventă, cea mai restrânsă.",
+        query: {
+          measure: "pop_total",
+          constraints: [
+            { varId: "dist_inundatii_km", op: "between", min: null, max: 0, maxInclusive: true },
+            { varId: "scenariu_inundatii", op: "in", values: ["10% (~10 ani)"] },
+          ],
+        },
+      },
+    ],
     threshold: {
       varId: "dist_inundatii_km",
       bound: "max",

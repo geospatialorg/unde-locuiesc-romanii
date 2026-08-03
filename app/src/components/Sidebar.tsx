@@ -289,15 +289,24 @@ export function Sidebar(p: Props) {
           </select>
         </label>
 
-        {query.constraints.map((c, i) => (
-          <ConstraintRow
-            key={`${c.varId}-${i}`}
-            registry={registry}
-            constraint={c}
-            onChange={(nc) => setConstraint(i, nc)}
-            onRemove={() => removeConstraint(i)}
-          />
-        ))}
+        {query.constraints.map((c, i) => {
+          // ascunse din Filtre (rămân active în interogare, dar fără rând redundant):
+          //  • variabile fără rol „filter" (ex. scenariul de inundații, ales din variante)
+          //  • variabila controlată deja de caseta de prag din secțiunea KPI
+          const hidden =
+            !varById(registry, c.varId).role.includes("filter") ||
+            c.varId === activePresetObj?.threshold?.varId;
+          if (hidden) return null;
+          return (
+            <ConstraintRow
+              key={`${c.varId}-${i}`}
+              registry={registry}
+              constraint={c}
+              onChange={(nc) => setConstraint(i, nc)}
+              onRemove={() => removeConstraint(i)}
+            />
+          );
+        })}
 
         <label className="row add-filter">
           <span>Adaugă filtru</span>

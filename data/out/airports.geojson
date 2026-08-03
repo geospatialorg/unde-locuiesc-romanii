@@ -1,0 +1,25 @@
+{
+"type": "FeatureCollection",
+"name": "airports",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Arad International Airport", "label": "Arad (ARW)", "municipality": "Arad", "iata": "ARW", "airport_type_ro": "aeroport mediu" }, "geometry": { "type": "Point", "coordinates": [ 21.264322, 46.176136 ] } },
+{ "type": "Feature", "properties": { "name": "Bacău George Enescu International  Airport", "label": "Bacău (BCM)", "municipality": "Bacău", "iata": "BCM", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 26.910299, 46.5219 ] } },
+{ "type": "Feature", "properties": { "name": "Brașov-Ghimbav International Airport", "label": "Brașov (Ghimbav) (GHV)", "municipality": "Brașov (Ghimbav)", "iata": "GHV", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 25.522871, 45.70558 ] } },
+{ "type": "Feature", "properties": { "name": "Bucharest Băneasa Aurel Vlaicu International Airport", "label": "Bucharest (BBU)", "municipality": "Bucharest", "iata": "BBU", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 26.102944, 44.503133 ] } },
+{ "type": "Feature", "properties": { "name": "Caransebeş Airport", "label": "Caransebeş (CSB)", "municipality": "Caransebeş", "iata": "CSB", "airport_type_ro": "aeroport mediu" }, "geometry": { "type": "Point", "coordinates": [ 22.252507, 45.420142 ] } },
+{ "type": "Feature", "properties": { "name": "Avram Iancu Cluj International Airport", "label": "Cluj-Napoca (CLJ)", "municipality": "Cluj-Napoca", "iata": "CLJ", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 23.685733, 46.786042 ] } },
+{ "type": "Feature", "properties": { "name": "Mihail Kogălniceanu International Airport", "label": "Constanța (CND)", "municipality": "Constanța", "iata": "CND", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 28.4883, 44.362202 ] } },
+{ "type": "Feature", "properties": { "name": "Craiova International Airport", "label": "Craiova (CRA)", "municipality": "Craiova", "iata": "CRA", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 23.888599, 44.3181 ] } },
+{ "type": "Feature", "properties": { "name": "Iaşi International Airport", "label": "Iaşi (IAS)", "municipality": "Iaşi", "iata": "IAS", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 27.621431, 47.179633 ] } },
+{ "type": "Feature", "properties": { "name": "Tulcea Danube Delta Airport", "label": "Mihail Kogălniceanu (TCE)", "municipality": "Mihail Kogălniceanu", "iata": "TCE", "airport_type_ro": "aeroport mediu" }, "geometry": { "type": "Point", "coordinates": [ 28.7143, 45.0625 ] } },
+{ "type": "Feature", "properties": { "name": "Oradea International Airport", "label": "Oradea (OMR)", "municipality": "Oradea", "iata": "OMR", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 21.9025, 47.025299 ] } },
+{ "type": "Feature", "properties": { "name": "Bucharest Henri Coandă International Airport", "label": "Otopeni (OTP)", "municipality": "Otopeni", "iata": "OTP", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 26.103285, 44.571792 ] } },
+{ "type": "Feature", "properties": { "name": "Târgu Mureş Transilvania International Airport", "label": "Recea (TGM)", "municipality": "Recea", "iata": "TGM", "airport_type_ro": "aeroport mediu" }, "geometry": { "type": "Point", "coordinates": [ 24.4125, 46.467701 ] } },
+{ "type": "Feature", "properties": { "name": "Satu Mare International Airport", "label": "Satu Mare (SUJ)", "municipality": "Satu Mare", "iata": "SUJ", "airport_type_ro": "aeroport mediu" }, "geometry": { "type": "Point", "coordinates": [ 22.8857, 47.7033 ] } },
+{ "type": "Feature", "properties": { "name": "Sibiu International Airport", "label": "Sibiu (SBZ)", "municipality": "Sibiu", "iata": "SBZ", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 24.086666, 45.785841 ] } },
+{ "type": "Feature", "properties": { "name": "Suceava Ștefan cel Mare International Airport", "label": "Suceava (SCV)", "municipality": "Suceava", "iata": "SCV", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 26.354099, 47.6875 ] } },
+{ "type": "Feature", "properties": { "name": "Timișoara Traian Vuia International Airport", "label": "Timişoara (TSR)", "municipality": "Timişoara", "iata": "TSR", "airport_type_ro": "aeroport mare" }, "geometry": { "type": "Point", "coordinates": [ 21.3379, 45.809898 ] } },
+{ "type": "Feature", "properties": { "name": "Maramureș International Airport", "label": "Tăuții-Măgherăuș (BAY)", "municipality": "Tăuții-Măgherăuș", "iata": "BAY", "airport_type_ro": "aeroport mediu" }, "geometry": { "type": "Point", "coordinates": [ 23.464445, 47.658444 ] } }
+]
+}

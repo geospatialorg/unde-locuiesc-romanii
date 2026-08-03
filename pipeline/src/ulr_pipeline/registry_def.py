@@ -126,11 +126,12 @@ V = [
          dtype="float", decimals=1, role=["filter", "profile"], filterRange=[0, 20],
          note="Distanță în linie dreaptă până la cea mai apropiată zonă cu hazard de inundații "
               "(orice scenariu). 0 km = locul se află într-o zonă inundabilă."),
+    # doar „profile": scenariul se alege din variantele CUMULATIVE ale presetului (Combinat/
+    # 0,1%/1%/10%), nu din chips exclusive — altfel benzile exclusive ar contrazice cumulativul
     dict(id="scenariu_inundatii", table="env", group="distante",
-         label="Scenariul de inundații cel mai apropiat", dtype="cat", role=["filter", "profile"],
+         label="Scenariul de inundații cel mai apropiat", dtype="cat", role=["profile"],
          note="Cel mai frecvent scenariu de hazard care atinge locul: 10% probabilitate anuală "
-              "(revenire ~10 ani), 1% (~100 ani) sau 0,1% (~1.000 ani). Fără bifă = toate "
-              "scenariile combinate."),
+              "(revenire ~10 ani), 1% (~100 ani) sau 0,1% (~1.000 ani)."),
     dict(id="dist_border_km", table="env", group="distante", label="Distanța până la frontieră",
          unit="km", dtype="float", decimals=0, role=["filter", "profile"], filterRange=[0, 218],
          note="Distanță euclidiană până la frontiera terestră/fluvială, precizie ±1 km."),
