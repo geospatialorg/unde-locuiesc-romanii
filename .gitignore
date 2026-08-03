@@ -1,5 +1,11 @@
-# date brute și produse — nu intră în git
-data/
+# date brute și produse — nu intră în git…
+/data/*
+# …cu excepția a două produse mici versionate: schema + datele de bază (frontend-ul
+# le citește la runtime). Restul (env/climate parquet, zarr, live, surse brute) rămâne afară.
+!/data/out/
+/data/out/*
+!/data/out/registry.json
+!/data/out/core.parquet
 
 # node / vite
 node_modules/

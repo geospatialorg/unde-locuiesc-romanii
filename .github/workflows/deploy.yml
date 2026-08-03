@@ -60,6 +60,14 @@ jobs:
             --exclude '*.pyc' \
             -e "ssh -i ~/.ssh/id_deploy" \
             ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+          # produsele versionate în git (schema + datele de bază) — sync ȚINTIT, FĂRĂ --delete,
+          # ca restul din data/ de pe VM (env/climate parquet, live/, climate.zarr) să rămână neatins.
+          # Gardă: dacă nu-s (încă) în checkout, sărim (rămâne sync-ul manual de date).
+          if [ -f data/out/registry.json ] && [ -f data/out/core.parquet ]; then
+            rsync -az -e "ssh -i ~/.ssh/id_deploy" \
+              data/out/registry.json data/out/core.parquet \
+              "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/data/out/"
+          fi
 
       - name: Reconstruiește și repornește serviciile
         env:
