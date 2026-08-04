@@ -1,6 +1,6 @@
 {
  "version": "v0",
- "generated": "2026-08-04T06:10:05+00:00",
+ "generated": "2026-08-04T06:45:32+00:00",
  "dataNote": "Câți români locuiesc într-un loc și cum arată viața acolo",
  "climateYear": 2026,
  "tables": {
@@ -57,23 +57,29 @@
   "pop_ocupata": 7681139
  },
  "countyLabels": {
+  "NT": "Neamț",
   "AB": "Alba",
   "VS": "Vaslui",
   "BC": "Bacău",
-  "NT": "Neamț",
   "GJ": "Gorj",
   "AG": "Argeș",
   "TL": "Tulcea",
   "BT": "Botoșani",
+  "SB": "Sibiu",
+  "MM": "Maramureș",
+  "MH": "Mehedinți",
+  "GL": "Galați",
+  "BR": "Brăila",
+  "CS": "Caraș-Severin",
+  "CV": "Covasna",
   "BZ": "Buzău",
   "HD": "Hunedoara",
   "CJ": "Cluj",
-  "CS": "Caraș-Severin",
-  "CV": "Covasna",
-  "SB": "Sibiu",
-  "MM": "Maramureș",
-  "BV": "Brașov",
-  "TM": "Timiș",
+  "VL": "Vâlcea",
+  "PH": "Prahova",
+  "BN": "Bistrița-Năsăud",
+  "CL": "Călărași",
+  "MS": "Mureș",
   "B": "București",
   "VN": "Vrancea",
   "HR": "Harghita",
@@ -82,23 +88,17 @@
   "AR": "Arad",
   "SV": "Suceava",
   "IS": "Iași",
-  "IF": "Ilfov",
-  "DJ": "Dolj",
   "DB": "Dâmbovița",
   "SM": "Satu Mare",
   "BH": "Bihor",
   "SJ": "Sălaj",
+  "IF": "Ilfov",
+  "DJ": "Dolj",
   "CT": "Constanța",
   "OT": "Olt",
   "IL": "Ialomița",
-  "MH": "Mehedinți",
-  "GL": "Galați",
-  "BR": "Brăila",
-  "VL": "Vâlcea",
-  "PH": "Prahova",
-  "BN": "Bistrița-Năsăud",
-  "CL": "Călărași",
-  "MS": "Mureș"
+  "BV": "Brașov",
+  "TM": "Timiș"
  },
  "variables": [
   {
@@ -2900,6 +2900,32 @@
     {
      "value": "1% (~100 ani)",
      "count": 72960
+    }
+   ]
+  },
+  {
+   "id": "risc_urs",
+   "table": "env",
+   "group": "distante",
+   "label": "Risc de conflict cu ursul brun",
+   "dtype": "cat",
+   "role": [
+    "filter",
+    "profile"
+   ],
+   "note": "Nivelul zonei de management al conflictului cu populația de urs brun în care se află locul: risc potențial, mediu sau ridicat. Sursă: zonarea managementului populației de urs brun. Fără valoare = în afara zonelor de management.",
+   "categories": [
+    {
+     "value": "Risc potențial",
+     "count": 1751
+    },
+    {
+     "value": "Risc mediu",
+     "count": 1531
+    },
+    {
+     "value": "Risc ridicat",
+     "count": 562
     }
    ]
   },
