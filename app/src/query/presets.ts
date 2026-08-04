@@ -38,6 +38,17 @@ export interface Preset {
 /** Preseturile v0 — doar pe variabilele deja disponibile în date. */
 export const PRESETS: Preset[] = [
   {
+    // întrebare temporară, ironică — de scos când se rezolvă incidentul ANCPI
+    id: "atac-ancpi",
+    title: "Câți români sunt afectați de atacul informatic de la Agenția Națională de Cadastru și Publicitate Imobiliară?",
+    definition:
+      "Definiție: toți. De peste 3 săptămâni serviciile informatice ale ANCPI sunt blocate în urma unui atac informatic, iar cadastrul și publicitatea imobiliară stau pe loc — adică, într-un fel sau altul, întreaga țară.",
+    query: {
+      measure: "pop_total",
+      constraints: [],
+    },
+  },
+  {
     id: "la-mare",
     title: "Câți români locuiesc la mare?",
     definition: "Definiție: la mai puțin de 5 km de linia țărmului Mării Negre (ajustabil din filtre).",
