@@ -1,6 +1,6 @@
 {
  "version": "v0",
- "generated": "2026-08-04T06:45:32+00:00",
+ "generated": "2026-08-04T07:00:23+00:00",
  "dataNote": "Câți români locuiesc într-un loc și cum arată viața acolo",
  "climateYear": 2026,
  "tables": {
@@ -57,46 +57,46 @@
   "pop_ocupata": 7681139
  },
  "countyLabels": {
-  "NT": "Neamț",
-  "AB": "Alba",
   "VS": "Vaslui",
   "BC": "Bacău",
+  "AB": "Alba",
+  "CJ": "Cluj",
+  "HD": "Hunedoara",
+  "BZ": "Buzău",
+  "MM": "Maramureș",
+  "SB": "Sibiu",
   "GJ": "Gorj",
   "AG": "Argeș",
-  "TL": "Tulcea",
   "BT": "Botoșani",
-  "SB": "Sibiu",
-  "MM": "Maramureș",
-  "MH": "Mehedinți",
-  "GL": "Galați",
-  "BR": "Brăila",
-  "CS": "Caraș-Severin",
-  "CV": "Covasna",
-  "BZ": "Buzău",
-  "HD": "Hunedoara",
-  "CJ": "Cluj",
-  "VL": "Vâlcea",
-  "PH": "Prahova",
-  "BN": "Bistrița-Năsăud",
-  "CL": "Călărași",
-  "MS": "Mureș",
-  "B": "București",
-  "VN": "Vrancea",
-  "HR": "Harghita",
-  "GR": "Giurgiu",
-  "TR": "Teleorman",
-  "AR": "Arad",
-  "SV": "Suceava",
-  "IS": "Iași",
+  "TL": "Tulcea",
+  "NT": "Neamț",
+  "DJ": "Dolj",
   "DB": "Dâmbovița",
   "SM": "Satu Mare",
   "BH": "Bihor",
   "SJ": "Sălaj",
-  "IF": "Ilfov",
-  "DJ": "Dolj",
+  "VL": "Vâlcea",
+  "BN": "Bistrița-Năsăud",
+  "PH": "Prahova",
+  "MH": "Mehedinți",
+  "GL": "Galați",
+  "BR": "Brăila",
+  "CL": "Călărași",
+  "MS": "Mureș",
   "CT": "Constanța",
   "OT": "Olt",
   "IL": "Ialomița",
+  "GR": "Giurgiu",
+  "TR": "Teleorman",
+  "SV": "Suceava",
+  "IS": "Iași",
+  "AR": "Arad",
+  "CS": "Caraș-Severin",
+  "CV": "Covasna",
+  "IF": "Ilfov",
+  "B": "București",
+  "HR": "Harghita",
+  "VN": "Vrancea",
   "BV": "Brașov",
   "TM": "Timiș"
  },
@@ -4232,11 +4232,11 @@
    ],
    "note": "Media (tmin+tmax)/2 pe zilele disponibile din 2026 (nu normală climatologică). Se actualizează zilnic din opendata MeteoRomania.",
    "stats": {
-    "min": -1.486,
-    "max": 14.082,
-    "p02": 4.14,
-    "p50": 11.187,
-    "p98": 13.167,
+    "min": -1.428,
+    "max": 14.154,
+    "p02": 4.204,
+    "p50": 11.252,
+    "p98": 13.238,
     "nulls": 1426
    }
   },
@@ -4252,11 +4252,11 @@
     "profile"
    ],
    "stats": {
-    "min": -3.588,
-    "max": 9.859,
-    "p02": 0.153,
-    "p50": 5.826,
-    "p98": 8.278,
+    "min": -3.535,
+    "max": 9.915,
+    "p02": 0.203,
+    "p50": 5.878,
+    "p98": 8.337,
     "nulls": 1426
    }
   },
@@ -4272,11 +4272,11 @@
     "profile"
    ],
    "stats": {
-    "min": 0.552,
-    "max": 19.744,
-    "p02": 7.942,
-    "p50": 16.434,
-    "p98": 19.147,
+    "min": 0.614,
+    "max": 19.827,
+    "p02": 8.013,
+    "p50": 16.511,
+    "p98": 19.233,
     "nulls": 1426
    }
   },
@@ -4295,10 +4295,10 @@
    "note": "Cumulat de la 1 ianuarie 2026 până la ultima zi disponibilă.",
    "stats": {
     "min": 0,
-    "max": 1056.7,
+    "max": 1056.8,
     "p02": 186.578,
     "p50": 330.5,
-    "p98": 605.1,
+    "p98": 605.022,
     "nulls": 0
    }
   },
@@ -4336,10 +4336,10 @@
    ],
    "stats": {
     "min": 0,
-    "max": 46,
+    "max": 47,
     "p02": 0,
-    "p50": 18,
-    "p98": 42,
+    "p50": 19,
+    "p98": 43,
     "nulls": 0
    }
   },
@@ -4356,10 +4356,10 @@
    ],
    "stats": {
     "min": 0,
-    "max": 32,
+    "max": 33,
     "p02": 0,
     "p50": 2,
-    "p98": 15,
+    "p98": 16,
     "nulls": 0
    }
   },
@@ -4395,10 +4395,10 @@
    ],
    "stats": {
     "min": 0,
-    "max": 83,
+    "max": 84,
     "p02": 1,
-    "p50": 55,
-    "p98": 77,
+    "p50": 56,
+    "p98": 78,
     "nulls": 0
    }
   },
