@@ -42,6 +42,7 @@ interface Props {
   drawerOpen?: boolean;
   onCloseDrawer?(): void;
   onOpenDocs(): void;
+  onOpenSuggest(): void;
 }
 
 export function Sidebar(p: Props) {
@@ -221,6 +222,9 @@ export function Sidebar(p: Props) {
             </>
           )}
         </div>
+        <button className="suggest-cta" onClick={p.onOpenSuggest}>
+          💡 Nu găsești întrebarea ta? Propune una
+        </button>
       </section>
 
       {/* ancoră: aici încep rezultatele (cifre + filtre) — ținta indiciului de scroll */}

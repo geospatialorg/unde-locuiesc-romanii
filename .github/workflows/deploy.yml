@@ -27,6 +27,7 @@ jobs:
           VITE_BASE: /
           VITE_DATA_URL: ${{ vars.VITE_DATA_URL }}
           VITE_ROUTING_URL: ${{ vars.VITE_ROUTING_URL }}
+          VITE_WEB3FORMS_KEY: ${{ vars.VITE_WEB3FORMS_KEY }}
         run: |
           npm ci
           npm run build

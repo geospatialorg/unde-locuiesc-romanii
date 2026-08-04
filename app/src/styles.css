@@ -798,6 +798,101 @@ body,
   color: #4a5666;
 }
 
+/* CTA „propune o întrebare" la finalul listei de întrebări */
+.suggest-cta {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px dashed #d6452b;
+  border-radius: 8px;
+  background: #fff6f3;
+  color: #b83b22;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+.suggest-cta:hover {
+  background: #fdeee9;
+  border-style: solid;
+}
+
+/* formularul de propunere (în overlay-ul .docs) */
+.suggest .docs-body {
+  max-width: 560px;
+}
+.suggest-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.suggest-form > p {
+  margin: 4px 0;
+  color: #3a4657;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.suggest-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.suggest-form label span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #4a5666;
+}
+.suggest-form textarea,
+.suggest-form input[type="email"] {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+.suggest-form textarea:focus,
+.suggest-form input:focus {
+  outline: none;
+  border-color: #d6452b;
+}
+.suggest-submit {
+  align-self: flex-start;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #d6452b;
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.suggest-submit:hover {
+  background: #c23d25;
+}
+.suggest-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.suggest-ok {
+  color: #1f7a3d;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.suggest-err {
+  color: #b83b22;
+  font-size: 13px;
+}
+.suggest-alt {
+  color: #6a7482;
+  font-size: 12.5px;
+}
+.suggest-form a {
+  color: #315b7d;
+}
+
 .results-anchor {
   scroll-margin-top: 8px;
 }

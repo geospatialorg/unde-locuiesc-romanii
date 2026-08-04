@@ -13,6 +13,7 @@ import { WarningsLegend } from "./components/WarningsLegend";
 import { ForecastLegend } from "./components/ForecastLegend";
 import { Dashboard } from "./components/Dashboard";
 import { DocsPanel } from "./components/DocsPanel";
+import { SuggestPanel } from "./components/SuggestPanel";
 import { SearchBox } from "./components/SearchBox";
 import { hasAnyWarnings, loadWarnings, type WarningsMeta } from "./lib/warnings";
 import type { WarnSelection } from "./components/WarningsPanel";
@@ -68,6 +69,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
   const mapApi = useRef<MapApi | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [docsOpen, setDocsOpen] = useState(false);
+  const [suggestOpen, setSuggestOpen] = useState(false);
 
   useEffect(() => {
     Promise.all([loadRegistry(dataUrl), loadGridSpec(dataUrl)])
@@ -305,6 +307,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
         drawerOpen={drawerOpen}
         onCloseDrawer={() => setDrawerOpen(false)}
         onOpenDocs={() => setDocsOpen(true)}
+        onOpenSuggest={() => setSuggestOpen(true)}
       />
       <div className="map-wrap">
         <MapView
@@ -358,6 +361,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
           />
         )}
         {docsOpen && <DocsPanel onClose={() => setDocsOpen(false)} />}
+        {suggestOpen && <SuggestPanel onClose={() => setSuggestOpen(false)} />}
       </div>
     </div>
   );
