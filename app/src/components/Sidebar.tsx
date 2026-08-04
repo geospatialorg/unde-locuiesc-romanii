@@ -112,24 +112,6 @@ export function Sidebar(p: Props) {
       <header>
         <h1>Unde locuiesc românii?</h1>
         <p className="subtitle">{registry.dataNote}</p>
-        <div className="header-actions">
-          <button
-            className={"dash-toggle" + (p.dashboardOpen ? " active" : "")}
-            onClick={p.onToggleDashboard}
-          >
-            📊 {p.dashboardOpen ? "Înapoi la hartă" : "Analiză — distribuții și comparații"}
-          </button>
-          <button className="share-btn" onClick={share} title="Copiază un link către harta curentă">
-            {shared ? "✓ Link copiat" : "🔗 Partajează harta"}
-          </button>
-        </div>
-        <button
-          className="docs-btn"
-          onClick={p.onOpenDocs}
-          title="Metodă, surse de date, soluții open source și limitări"
-        >
-          ℹ️ Documentație — metodă, surse și limitări
-        </button>
       </header>
 
       <section>
@@ -213,6 +195,27 @@ export function Sidebar(p: Props) {
             </>
           )}
         </div>
+      </section>
+
+      <section className="sidebar-actions">
+        <div className="header-actions">
+          <button
+            className={"dash-toggle" + (p.dashboardOpen ? " active" : "")}
+            onClick={p.onToggleDashboard}
+          >
+            📊 {p.dashboardOpen ? "Înapoi la hartă" : "Analiză — distribuții și comparații"}
+          </button>
+          <button className="share-btn" onClick={share} title="Copiază un link către harta curentă">
+            {shared ? "✓ Link copiat" : "🔗 Partajează harta"}
+          </button>
+        </div>
+        <button
+          className="docs-btn"
+          onClick={p.onOpenDocs}
+          title="Metodă, surse de date, soluții open source și limitări"
+        >
+          ℹ️ Documentație — metodă, surse și limitări
+        </button>
       </section>
 
       {p.mode === "warnings" && p.warnings && (
@@ -328,12 +331,6 @@ export function Sidebar(p: Props) {
         </>
       )}
 
-      <footer>
-        <p>
-          Date: {registry.version} · generat {registry.generated.slice(0, 10)} · prototip — cifrele
-          se validează contra raportului pipeline-ului
-        </p>
-      </footer>
     </aside>
   );
 }
