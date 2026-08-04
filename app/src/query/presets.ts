@@ -40,7 +40,7 @@ export const PRESETS: Preset[] = [
   {
     // întrebare temporară, ironică — de scos când se rezolvă incidentul ANCPI
     id: "atac-ancpi",
-    title: "Câți români sunt afectați de atacul informatic de la Agenția Națională de Cadastru și Publicitate Imobiliară?",
+    title: "😈 Câți români sunt afectați de atacul informatic de la Agenția Națională de Cadastru și Publicitate Imobiliară?",
     definition:
       "Definiție: toți. De peste 3 săptămâni serviciile informatice ale ANCPI sunt blocate în urma unui atac informatic, iar cadastrul și publicitatea imobiliară stau pe loc — adică, într-un fel sau altul, întreaga țară.",
     query: {

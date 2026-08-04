@@ -1,6 +1,4 @@
-# Unde locuiesc românii? — documentație
-
-Aplicație interactivă care răspunde la întrebări despre **câți români locuiesc într-un loc și cum arată viața acolo**, pe o grilă statistică de 1×1 km. Totul rulează în browser, fără backend, interogând direct fișiere cloud-native (GeoParquet cu DuckDB-WASM).
+"Unde locuiesc românii?" este o aplicație cartografică interactivă web care răspunde la întrebări despre **câți români locuiesc într-un loc și cum arată viața acolo**. Aplicația a este dezvoltată și actualizată de către voluntarii [geo-spatial.org](https://geo-spatial.org/).
 
 Cod sursă: **[github.com/geospatialorg/unde-locuiesc-romanii](https://github.com/geospatialorg/unde-locuiesc-romanii)**
 
@@ -33,8 +31,8 @@ Rutele pe șosea (până la mare, frontieră, spital, aeroport) se calculează p
 
 ## Metodă
 
-- Grilă statistică de **1×1 km** (EPSG:3035 LAEA, identificator GEOSTAT), ~240.000 de celule locuite pe teritoriul României.
-- Fiecare sursă de date (relief, climă, hidrografie, hazard etc.) este redusă la **valori per celulă** printr-un pipeline ETL în Python (rasterizare la 100 m + agregare pe blocul de 10×10 subcelule: dominanță, minim, distanță etc.).
+- Grilă statistică de **1×1 km**, ~240.000 de celule locuite pe teritoriul României.
+- Fiecare sursă de date (relief, climă, hidrografie, hazard etc.) este redusă la **valori per celulă** printr-un pipeline ETL în Python (rasterizare la 100 m + agregare pe blocul de 10×10 subcelule: dominanță, minim, distanță, etc.).
 - **DuckDB-WASM** este sursa canonică a cifrelor: interoghează GeoParquet direct în browser.
 - Profilul unei celule și seriile temporale climatice folosesc suplimentar un cub multianual.
 
@@ -43,25 +41,27 @@ Rutele pe șosea (până la mare, frontieră, spital, aeroport) se calculează p
 ## Surse de date
 
 - **Populație (grilă 1 km):** Institutul Național de Statistică — Recensământul Populației și Locuințelor 2021; format grilă **EUROSTAT / GEOSTAT**. [INS](https://www.recensamantromania.ro/) · [Eurostat GEOSTAT](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat)
-- **Limite administrative:** ANCPI.
-- **Relief / forme de relief:** model geomorfometric + **FABDEM** (model de teren).
-- **Climă (zilnic + serii 1961–prezent):** [Administrația Națională de Meteorologie](https://www.meteoromania.ro/).
+- **Limite administrative:** [ANCPI, prelucrat de geo-spatial.org](https://services.geo-spatial.org/geonetwork/srv/eng/catalog.search#/search?isTemplate=n&resourceTemporalDateRange=%7B%22range%22:%7B%22resourceTemporalDateRange%22:%7B%22gte%22:null,%22lte%22:null,%22relation%22:%22intersects%22%7D%7D%7D&sortBy=relevance&sortOrder=&from=1&to=30&query_string=%7B%22tag.default%22:%7B%22limite%20administrative%22:true%7D%7D) (CC BY 4.0).
+- **Model Numeric Altimetric de Teren** [FABDEM](https://zenodo.org/records/8101259).
+- **Climă (zilnic + serii 1961–prezent):** [Administrația Națională de Meteorologie](https://data.gov.ro/dataset/date-meteorologice-zilnice-gridate) (CC BY 4.0).
 - **Prognoză temperatură:** [ECMWF Open Data](https://www.ecmwf.int/en/forecasts/datasets/open-data) (CC BY 4.0).
 - **Prognoză calitatea aerului:** [Copernicus Atmosphere Monitoring Service (CAMS)](https://atmosphere.copernicus.eu/) (CC BY 4.0).
-- **Avertizări meteo:** ANM (feed-uri publice de avertizări/nowcasting).
+- **Avertizări meteo:** [Administrația Națională de Meteorologie](https://www.meteoromania.ro/) (feed-uri publice de avertizări/nowcasting).
 - **Hidrografie (lacuri, cursuri de apă):** [OpenStreetMap](https://www.openstreetmap.org/) (ODbL).
 - **Rețea rutieră (rutare):** [OpenStreetMap](https://www.openstreetmap.org/) via [Geofabrik](https://download.geofabrik.de/) (ODbL).
-- **Arii protejate:** ANANP.
-- **Spitale:** ANMCS. · **Aeroporturi:** [OurAirports](https://ourairports.com/).
-- **Puncte de trecere a frontierei:** Poliția de Frontieră Română.
-- **Hazard la inundații (scenarii 10% / 1% / 0,1%):** hărțile de hazard din planurile de management al riscului la inundații.
-- **Zone de conflict cu ursul brun:** zonarea managementului populației de urs brun.
+- **Arii protejate:** [Ministerul Mediului, Apelor și Pădurilor](https://mmediu.ro/portal-gis/date-spatiale/arii-naturale-protejate-de-interes-national-si-international/).
+- **Spitale:** [OpenStreetMap](https://www.openstreetmap.org/)· (ODbL).
+- **Aeroporturi:** [OpenStreetMap](https://www.openstreetmap.org/). (ODbL).
+- **Puncte de trecere a frontierei:** [Poliția de Frontieră Română](https://www.politiadefrontiera.ro/ro/traficonline/).
+- **Hazard la inundații (scenarii 10% / 1% / 0,1%):** [Apele Române](https://opendatacat.net/catalogue/srv/eng/catalog.search#/metadata/%7BE5F2A942-F9B8-4D2F-B8C6-62F79FDE8422%7D).
+- **Zone de conflict cu ursul brun:** [Ministerul Mediului, Apelor și Pădurilor](https://gis.mmap.ro/portal/apps/experiencebuilder/experience/?id=c87c59b1b9c44913942a9c5eba2f5088&page=Pagina-principal%C4%83&views=Straturi-tematice).
+- **Branșamente la rețeaua de gaze naturale** [Pandabot](https://pandabot.ro/).
 
 > Notă: unele seturi de date sunt intersectate/reproiectate în procesare; verificați întotdeauna sursa oficială înainte de utilizări cu cerințe ridicate de precizie.
 
 ---
 
-## Soluții open source folosite
+## Soluții software folosite (toate, evident, open source ❤️):
 
 **Frontend:** [Vite](https://vitejs.dev/) · [TypeScript](https://www.typescriptlang.org/) · [MapLibre GL JS](https://maplibre.org/) · [DuckDB-WASM](https://duckdb.org/docs/api/wasm/overview) · [uPlot](https://github.com/leeoniya/uPlot) · [marked](https://marked.js.org/) · fundal [OpenFreeMap](https://openfreemap.org/) / [OpenMapTiles](https://openmaptiles.org/).
 
@@ -69,10 +69,4 @@ Rutele pe șosea (până la mare, frontieră, spital, aeroport) se calculează p
 
 **Rutare:** [PostgreSQL](https://www.postgresql.org/) + [PostGIS](https://postgis.net/) + [pgRouting](https://pgrouting.org/) · [osm2pgrouting](https://github.com/pgRouting/osm2pgrouting) · [osmium](https://osmcode.org/osmium-tool/).
 
-**Infrastructură:** [Docker](https://www.docker.com/) · [Caddy](https://caddyserver.com/) · GitHub Actions.
-
----
-
-## Statut
-
-Prototip în dezvoltare. Cifrele se validează continuu contra rapoartelor pipeline-ului. Feedback și contribuții: prin [depozitul GitHub](https://github.com/geospatialorg/unde-locuiesc-romanii).
+**Infrastructură:** [Docker](https://www.docker.com/) · [Caddy](https://caddyserver.com/) · [GitHub Actions](https://github.com/features/actions).

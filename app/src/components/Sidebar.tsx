@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fmtInt, fmtNum, fmtSharePct } from "../lib/format";
 import type { Registry, VariableDef } from "../lib/registry";
 import { varById } from "../lib/registry";
@@ -48,6 +48,32 @@ export function Sidebar(p: Props) {
   const { registry, query } = p;
   const [moreOpen, setMoreOpen] = useState(false);
   const [shared, setShared] = useState(false);
+  const asideRef = useRef<HTMLElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const [showCue, setShowCue] = useState(false);
+
+  // indiciul de scroll apare cât timp rezultatele (cifrele, filtrele) sunt sub marginea de
+  // jos a panoului — ca la prima vizită, când vezi harta + întrebările dar nu și numerele
+  useEffect(() => {
+    const el = asideRef.current;
+    const anchor = resultsRef.current;
+    if (!el || !anchor) return;
+    const update = () => {
+      const canScroll = el.scrollHeight - el.clientHeight > 24;
+      const below = anchor.getBoundingClientRect().top > el.getBoundingClientRect().bottom - 48;
+      setShowCue(canScroll && below);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      ro.disconnect();
+    };
+  }, [p.mode, p.result, p.query, p.activePreset, p.busy, p.forecastSelection]);
 
   async function share() {
     const url = p.onShare();
@@ -108,7 +134,7 @@ export function Sidebar(p: Props) {
   }
 
   return (
-    <aside className={"sidebar" + (p.drawerOpen ? " drawer-open" : "")}>
+    <aside ref={asideRef} className={"sidebar" + (p.drawerOpen ? " drawer-open" : "")}>
       <header>
         <h1>Unde locuiesc românii?</h1>
         <p className="subtitle">{registry.dataNote}</p>
@@ -197,26 +223,8 @@ export function Sidebar(p: Props) {
         </div>
       </section>
 
-      <section className="sidebar-actions">
-        <div className="header-actions">
-          <button
-            className={"dash-toggle" + (p.dashboardOpen ? " active" : "")}
-            onClick={p.onToggleDashboard}
-          >
-            📊 {p.dashboardOpen ? "Înapoi la hartă" : "Analiză — distribuții și comparații"}
-          </button>
-          <button className="share-btn" onClick={share} title="Copiază un link către harta curentă">
-            {shared ? "✓ Link copiat" : "🔗 Partajează harta"}
-          </button>
-        </div>
-        <button
-          className="docs-btn"
-          onClick={p.onOpenDocs}
-          title="Metodă, surse de date, soluții open source și limitări"
-        >
-          ℹ️ Documentație — metodă, surse și limitări
-        </button>
-      </section>
+      {/* ancoră: aici încep rezultatele (cifre + filtre) — ținta indiciului de scroll */}
+      <div ref={resultsRef} className="results-anchor" />
 
       {p.mode === "warnings" && p.warnings && (
         <WarningsPanel
@@ -331,6 +339,37 @@ export function Sidebar(p: Props) {
         </>
       )}
 
+      <section className="sidebar-actions">
+        <div className="header-actions">
+          <button
+            className={"dash-toggle" + (p.dashboardOpen ? " active" : "")}
+            onClick={p.onToggleDashboard}
+          >
+            📊 {p.dashboardOpen ? "Înapoi la hartă" : "Analiză — distribuții și comparații"}
+          </button>
+          <button className="share-btn" onClick={share} title="Copiază un link către harta curentă">
+            {shared ? "✓ Link copiat" : "🔗 Partajează harta"}
+          </button>
+        </div>
+        <button
+          className="docs-btn"
+          onClick={p.onOpenDocs}
+          title="Metodă, surse de date, soluții open source și limitări"
+        >
+          ℹ️ Documentație — metodă, surse și limitări
+        </button>
+      </section>
+
+      {showCue && (
+        <button
+          className="scroll-cue"
+          onClick={() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+          title="Vezi rezultatele mai jos"
+        >
+          <span>rezultate mai jos</span>
+          <span className="scroll-cue-arrow">↓</span>
+        </button>
+      )}
     </aside>
   );
 }
