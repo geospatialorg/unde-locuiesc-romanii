@@ -41,8 +41,7 @@ interface Props {
   dataUrl: string;
   drawerOpen?: boolean;
   onCloseDrawer?(): void;
-  darkMode?: boolean;
-  onToggleDarkMode?(): void;
+  onOpenDocs(): void;
 }
 
 export function Sidebar(p: Props) {
@@ -125,11 +124,11 @@ export function Sidebar(p: Props) {
           </button>
         </div>
         <button
-          className="theme-toggle"
-          onClick={p.onToggleDarkMode}
-          title={p.darkMode ? "Lumină" : "Negru"}
+          className="docs-btn"
+          onClick={p.onOpenDocs}
+          title="Metodă, surse de date, soluții open source și limitări"
         >
-          {p.darkMode ? "☀️" : "🌙"}
+          ℹ️ Documentație — metodă, surse și limitări
         </button>
       </header>
 

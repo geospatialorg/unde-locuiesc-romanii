@@ -88,11 +88,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // HTML/JS/CSS: network-first
+  // HTML/JS/CSS/MD: network-first (documentatie.md se editează → nu trebuie servit vechi)
   if (
     url.pathname.endsWith(".html") ||
     url.pathname.endsWith(".js") ||
-    url.pathname.endsWith(".css")
+    url.pathname.endsWith(".css") ||
+    url.pathname.endsWith(".md")
   ) {
     event.respondWith(
       fetch(request)

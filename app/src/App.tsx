@@ -12,6 +12,7 @@ import { DensityLegend } from "./components/DensityLegend";
 import { WarningsLegend } from "./components/WarningsLegend";
 import { ForecastLegend } from "./components/ForecastLegend";
 import { Dashboard } from "./components/Dashboard";
+import { DocsPanel } from "./components/DocsPanel";
 import { SearchBox } from "./components/SearchBox";
 import { hasAnyWarnings, loadWarnings, type WarningsMeta } from "./lib/warnings";
 import type { WarnSelection } from "./components/WarningsPanel";
@@ -66,16 +67,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
   const userInteracted = useRef(!!SHARED); // un link partajat = alegere explicită de mod
   const mapApi = useRef<MapApi | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) return saved === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
+  const [docsOpen, setDocsOpen] = useState(false);
 
   useEffect(() => {
     Promise.all([loadRegistry(dataUrl), loadGridSpec(dataUrl)])
@@ -312,8 +304,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
         dataUrl={dataUrl}
         drawerOpen={drawerOpen}
         onCloseDrawer={() => setDrawerOpen(false)}
-        darkMode={darkMode}
-        onToggleDarkMode={() => setDarkMode((v) => !v)}
+        onOpenDocs={() => setDocsOpen(true)}
       />
       <div className="map-wrap">
         <MapView
@@ -366,6 +357,7 @@ export function App({ dataUrl }: { dataUrl: string }) {
             onClose={() => setDashboardOpen(false)}
           />
         )}
+        {docsOpen && <DocsPanel onClose={() => setDocsOpen(false)} />}
       </div>
     </div>
   );
