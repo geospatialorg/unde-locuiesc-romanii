@@ -219,6 +219,18 @@ export const PRESETS: Preset[] = [
     },
   },
   {
+    id: "risc-urs",
+    title: "Câți români locuiesc într-o zonă cu risc de conflict cu ursul brun?",
+    definition:
+      "Definiție: locul se află într-o zonă de management al conflictului cu populația de urs brun. Nivelul de risc (potențial, mediu, ridicat) se poate bifa din filtre; toate bifate = orice zonă de risc.",
+    query: {
+      measure: "pop_total",
+      constraints: [
+        { varId: "risc_urs", op: "in", values: ["Risc potențial", "Risc mediu", "Risc ridicat"] },
+      ],
+    },
+  },
+  {
     id: "oras-sat",
     title: "Câți români locuiesc la oraș?",
     definition:

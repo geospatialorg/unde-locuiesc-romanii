@@ -132,6 +132,11 @@ V = [
          label="Scenariul de inundații cel mai apropiat", dtype="cat", role=["profile"],
          note="Cel mai frecvent scenariu de hazard care atinge locul: 10% probabilitate anuală "
               "(revenire ~10 ani), 1% (~100 ani) sau 0,1% (~1.000 ani)."),
+    dict(id="risc_urs", table="env", group="distante",
+         label="Risc de conflict cu ursul brun", dtype="cat", role=["filter", "profile"],
+         note="Nivelul zonei de management al conflictului cu populația de urs brun în care se "
+              "află locul: risc potențial, mediu sau ridicat. Sursă: zonarea managementului "
+              "populației de urs brun. Fără valoare = în afara zonelor de management."),
     dict(id="dist_border_km", table="env", group="distante", label="Distanța până la frontieră",
          unit="km", dtype="float", decimals=0, role=["filter", "profile"], filterRange=[0, 218],
          note="Distanță euclidiană până la frontiera terestră/fluvială, precizie ±1 km."),

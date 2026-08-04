@@ -31,6 +31,7 @@ SRC = {
     "flood_p10": DATA_IN / "hazard_inundatii_p10_dizolvat.gpkg",       # 10% anual (~10 ani)
     "flood_p1": DATA_IN / "hazard_inundatii_p1_dizolvat.gpkg",         # 1% anual (~100 ani)
     "flood_p01": DATA_IN / "hazard_inundatii_p0_1_dizolvat.gpkg",      # 0,1% anual (~1.000 ani)
+    "bear": DATA_IN / "zonarea_managementului_populatiei_de_urs_brun.gpkg",  # zone conflict urs brun
     "hospitals": DATA_IN / "spitale_anmcs.gpkg",
     "crossings": DATA_IN / "puncte_trecere_frontiera.geojson",
     "airports": DATA_IN / "aeroporturi_romania.geojson",
