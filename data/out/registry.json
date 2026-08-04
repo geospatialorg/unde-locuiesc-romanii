@@ -1,6 +1,6 @@
 {
  "version": "v0",
- "generated": "2026-08-03T12:15:07+00:00",
+ "generated": "2026-08-04T06:10:05+00:00",
  "dataNote": "Câți români locuiesc într-un loc și cum arată viața acolo",
  "climateYear": 2026,
  "tables": {
@@ -65,18 +65,13 @@
   "AG": "Argeș",
   "TL": "Tulcea",
   "BT": "Botoșani",
-  "SB": "Sibiu",
-  "MM": "Maramureș",
-  "MH": "Mehedinți",
-  "GL": "Galați",
-  "BR": "Brăila",
-  "CS": "Caraș-Severin",
-  "CV": "Covasna",
   "BZ": "Buzău",
   "HD": "Hunedoara",
   "CJ": "Cluj",
-  "CL": "Călărași",
-  "MS": "Mureș",
+  "CS": "Caraș-Severin",
+  "CV": "Covasna",
+  "SB": "Sibiu",
+  "MM": "Maramureș",
   "BV": "Brașov",
   "TM": "Timiș",
   "B": "București",
@@ -88,17 +83,22 @@
   "SV": "Suceava",
   "IS": "Iași",
   "IF": "Ilfov",
+  "DJ": "Dolj",
   "DB": "Dâmbovița",
   "SM": "Satu Mare",
   "BH": "Bihor",
   "SJ": "Sălaj",
-  "DJ": "Dolj",
+  "CT": "Constanța",
+  "OT": "Olt",
+  "IL": "Ialomița",
+  "MH": "Mehedinți",
+  "GL": "Galați",
+  "BR": "Brăila",
   "VL": "Vâlcea",
   "PH": "Prahova",
   "BN": "Bistrița-Năsăud",
-  "CT": "Constanța",
-  "OT": "Olt",
-  "IL": "Ialomița"
+  "CL": "Călărași",
+  "MS": "Mureș"
  },
  "variables": [
   {
@@ -2982,9 +2982,9 @@
    "stats": {
     "min": 0.088,
     "max": 234.985,
-    "p02": 6.611,
-    "p50": 66.581,
-    "p98": 203.451,
+    "p02": 6.832,
+    "p50": 69.352,
+    "p98": 203.629,
     "nulls": 0
    }
   },
@@ -3011,12 +3011,12 @@
      "count": 17880
     },
     {
-     "value": "Brăila",
-     "count": 15333
+     "value": "Oancea",
+     "count": 15750
     },
     {
-     "value": "Oancea",
-     "count": 12640
+     "value": "Oltenița",
+     "count": 12574
     },
     {
      "value": "Sculeni",
@@ -3024,11 +3024,11 @@
     },
     {
      "value": "Giurgiu",
-     "count": 11039
+     "count": 11046
     },
     {
-     "value": "Oltenița",
-     "count": 11001
+     "value": "Isaccea",
+     "count": 10631
     },
     {
      "value": "Salonta",
@@ -3039,16 +3039,12 @@
      "count": 9954
     },
     {
-     "value": "Isaccea",
-     "count": 7473
+     "value": "Galați",
+     "count": 9095
     },
     {
      "value": "Săcuieni",
      "count": 7122
-    },
-    {
-     "value": "Cernavodă",
-     "count": 6739
     },
     {
      "value": "Curtici",
@@ -3059,16 +3055,16 @@
      "count": 6025
     },
     {
+     "value": "Călărași",
+     "count": 5886
+    },
+    {
      "value": "Moravița",
      "count": 5123
     },
     {
      "value": "Siret",
      "count": 4263
-    },
-    {
-     "value": "Călărași",
-     "count": 4107
     },
     {
      "value": "Turnu Măgurele",
@@ -3099,8 +3095,20 @@
      "count": 2629
     },
     {
+     "value": "Lipnița",
+     "count": 2571
+    },
+    {
+     "value": "Dobromir",
+     "count": 2166
+    },
+    {
      "value": "Turnu",
      "count": 2031
+    },
+    {
+     "value": "Negru Vodă",
+     "count": 1841
     },
     {
      "value": "Urziceni",
@@ -3123,20 +3131,16 @@
      "count": 1379
     },
     {
+     "value": "Vama Veche",
+     "count": 1279
+    },
+    {
      "value": "Racovăț",
      "count": 1227
     },
     {
      "value": "Jimbolia",
      "count": 1189
-    },
-    {
-     "value": "Galați",
-     "count": 1141
-    },
-    {
-     "value": "Negru Vodă",
-     "count": 1109
     },
     {
      "value": "Moldova Nouă",
@@ -3151,20 +3155,8 @@
      "count": 929
     },
     {
-     "value": "Vama Veche",
-     "count": 793
-    },
-    {
-     "value": "Lipnița",
-     "count": 785
-    },
-    {
      "value": "Nădlac",
      "count": 690
-    },
-    {
-     "value": "Dobromir",
-     "count": 679
     },
     {
      "value": "Vărșand",

@@ -62,8 +62,6 @@
 { "type": "Feature", "properties": { "name": "Curtici", "waiting_time_min": null, "direction": null }, "geometry": { "type": "Point", "coordinates": [ 21.3035, 46.3575 ] } },
 { "type": "Feature", "properties": { "name": "Salonta", "waiting_time_min": null, "direction": null }, "geometry": { "type": "Point", "coordinates": [ 21.653, 46.801 ] } },
 { "type": "Feature", "properties": { "name": "Episcopia Bihor", "waiting_time_min": null, "direction": null }, "geometry": { "type": "Point", "coordinates": [ 21.8195, 47.1095 ] } },
-{ "type": "Feature", "properties": { "name": "Valea lui Mihai", "waiting_time_min": null, "direction": null }, "geometry": { "type": "Point", "coordinates": [ 22.126, 47.5255 ] } },
-{ "type": "Feature", "properties": { "name": "Cernavodă", "waiting_time_min": null, "direction": null }, "geometry": { "type": "Point", "coordinates": [ 28.0325, 44.34 ] } },
-{ "type": "Feature", "properties": { "name": "Brăila", "waiting_time_min": null, "direction": null }, "geometry": { "type": "Point", "coordinates": [ 27.97, 45.27 ] } }
+{ "type": "Feature", "properties": { "name": "Valea lui Mihai", "waiting_time_min": null, "direction": null }, "geometry": { "type": "Point", "coordinates": [ 22.126, 47.5255 ] } }
 ]
 }
