@@ -94,7 +94,9 @@ export function MapView({
     });
     mapRef.current = map;
     (window as unknown as { __map?: maplibregl.Map }).__map = map; // handle de depanare
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    // zoom în stânga-sus (sub căutare): dreapta-sus e ocupată de panoul de profil, ale cărui
+    // buton × era acoperit de +/−
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
 
     // vedere inițială: încadrează conturul României (MapLibre alege zoom-ul fracționat
     // potrivit ferestrei, deci umple mereu vederea, indiferent de mărimea ecranului).

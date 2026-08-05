@@ -603,6 +603,17 @@ body,
   width: 280px;
   z-index: 5;
 }
+
+/* controalele de zoom (stânga-sus) coborâte sub caseta de căutare */
+.maplibregl-ctrl-top-left {
+  margin-top: 48px;
+}
+@media (max-width: 640px) {
+  /* pe mobil sus-stânga e și hamburger-ul → coborâm zoom-ul mai mult */
+  .maplibregl-ctrl-top-left {
+    margin-top: 64px;
+  }
+}
 .search-box input {
   width: 100%;
   padding: 8px 11px;
