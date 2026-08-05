@@ -96,6 +96,17 @@ export function MapView({
     (window as unknown as { __map?: maplibregl.Map }).__map = map; // handle de depanare
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
+    // vedere inițială: încadrează conturul României (MapLibre alege zoom-ul fracționat
+    // potrivit ferestrei, deci umple mereu vederea, indiferent de mărimea ecranului).
+    // Nu se aplică dacă venim dintr-un link partajat cu poziție salvată.
+    if (!initialViewRef.current) {
+      const ro: [[number, number], [number, number]] = [[20.2, 43.55], [29.75, 48.3]];
+      const fit = () => map.fitBounds(ro, { padding: 30, maxZoom: 8, duration: 0 });
+      fit();
+      // în medii unde dimensiunea containerului nu e gata la creare, re-încadrăm o dată
+      window.setTimeout(fit, 300);
+    }
+
     const mask = createMaskRenderer(spec);
     rendererRef.current = mask;
 
