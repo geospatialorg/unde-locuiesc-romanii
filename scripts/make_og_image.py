@@ -35,38 +35,36 @@ df = duckdb.connect().execute(
 counties = gpd.read_file(COUNTY).to_crs(4326)
 
 W, H = 1200, 630
+LEFT = 0.38  # lățimea panoului de titlu (roșu), restul e harta
 fig = plt.figure(figsize=(W / 100, H / 100), dpi=100)
 fig.patch.set_facecolor(BG)
 
-# --- harta (jos) ---
-band_h = 0.26
-ax = fig.add_axes([0, 0, 1, 1 - band_h])
+# --- harta (dreapta, umple pe verticală) ---
+ax = fig.add_axes([LEFT, 0, 1 - LEFT, 1])
 ax.set_facecolor(BG)
 ax.axis("off")
 ax.set_aspect(1 / cos(radians(45.9)))
-
 counties.boundary.plot(ax=ax, color="#c9d0da", linewidth=0.4, zorder=1)
 df = df.sort_values("pop_total")  # cele dense deasupra
 ax.scatter(
     df["lon"], df["lat"], c=df["pop_total"], cmap="Reds",
-    norm=LogNorm(vmin=1, vmax=10000), s=2.1, linewidths=0, alpha=0.9, zorder=2,
+    norm=LogNorm(vmin=1, vmax=10000), s=2.2, linewidths=0, alpha=0.9, zorder=2,
 )
-# centrat pe România, margine minimă (o mărește)
-ax.set_xlim(20.0, 30.0)
+ax.set_xlim(20.2, 29.8)
 ax.set_ylim(43.5, 48.35)
 
-# --- banda de titlu (sus, ~30%) ---
-band = FancyBboxPatch(
-    (0, 1 - band_h), 1, band_h, transform=fig.transFigure,
+# --- panoul de titlu (stânga, roșu) ---
+panel = FancyBboxPatch(
+    (0, 0), LEFT, 1, transform=fig.transFigure,
     boxstyle="square,pad=0", facecolor=RED, edgecolor="none", zorder=5,
 )
-fig.patches.append(band)
-fig.text(0.045, 0.845, "Unde locuiesc românii?", color="white",
-         fontsize=40, fontweight="bold", va="center", zorder=6)
-fig.text(0.046, 0.755, "Câți români locuiesc într-un loc și cum arată viața acolo",
-         color="#ffe6df", fontsize=17.5, va="center", zorder=6)
-fig.text(0.955, 0.80, "unde.geo-spatial.org", color="white", fontsize=15,
-         fontweight="bold", ha="right", va="center", zorder=6)
+fig.patches.append(panel)
+fig.text(0.045, 0.70, "Unde locuiesc\nromânii?", color="white",
+         fontsize=37, fontweight="bold", va="top", linespacing=1.08, zorder=6)
+fig.text(0.045, 0.44, "Câți români locuiesc\nîntr-un loc și cum\narată viața acolo",
+         color="#ffe0d6", fontsize=19, va="top", linespacing=1.35, zorder=6)
+fig.text(0.045, 0.075, "unde.geo-spatial.org", color="white",
+         fontsize=16, fontweight="bold", va="center", zorder=6)
 
 fig.savefig(OUT, dpi=100, facecolor=BG)
 print(f"scris {OUT} ({W}×{H})")
