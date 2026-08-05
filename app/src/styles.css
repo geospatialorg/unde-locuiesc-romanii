@@ -8,16 +8,10 @@
   --accent: #d6452b;
   --blue-accent: #315b7d;
   --warn-accent: #a8730a;
-  color-scheme: light dark;
-}
-
-:root[data-theme="dark"] {
-  --bg-primary: #0f1419;
-  --bg-secondary: #1a1f2e;
-  --text-primary: #e8eef5;
-  --text-secondary: #a8b0be;
-  --text-tertiary: #6f7a88;
-  --border: #2d3544;
+  /* aplicația e proiectată DOAR pe temă deschisă — declarăm explicit „light" ca browserele
+     cu profil night (sau Chrome auto-dark) să NU aplice schema dark controalelor UA
+     (select/input/scrollbar); altfel apărea text deschis pe fundal deschis */
+  color-scheme: light;
 }
 
 * {
@@ -741,6 +735,27 @@ body,
 }
 .docs-body {
   max-width: 820px;
+}
+/* butonul de închidere (×) al paginilor Documentație / Propune o întrebare — vizibil */
+.docs .dash-head {
+  align-items: center;
+}
+.docs .dash-head .remove {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 1;
+  color: #4a5666;
+  transition: background-color 0.15s, color 0.15s;
+}
+.docs .dash-head .remove:hover {
+  background: #f0e6e2;
+  color: #d6452b;
 }
 .docs-loading,
 .docs-error {
