@@ -38,6 +38,16 @@ export interface Preset {
 /** Preseturile v0 — doar pe variabilele deja disponibile în date. */
 export const PRESETS: Preset[] = [
   {
+    // implicit când nu-s avertizări meteo (PRESETS[0]) — se vede bine pe harta la nivel național
+    id: "munte",
+    title: "Câți români locuiesc la munte?",
+    definition: "Definiție: zone de munte, după forma de relief.",
+    query: {
+      measure: "pop_total",
+      constraints: [{ varId: "landform_type", op: "in", values: ["munte"] }],
+    },
+  },
+  {
     id: "la-mare",
     title: "Câți români locuiesc la mare?",
     definition: "Definiție: la mai puțin de 5 km de linia țărmului Mării Negre (ajustabil din filtre).",
@@ -53,15 +63,6 @@ export const PRESETS: Preset[] = [
     query: {
       measure: "pop_total",
       constraints: [{ varId: "dist_border_km", op: "between", min: null, max: 30 }],
-    },
-  },
-  {
-    id: "munte",
-    title: "Câți români locuiesc la munte?",
-    definition: "Definiție: zone de munte, după forma de relief.",
-    query: {
-      measure: "pop_total",
-      constraints: [{ varId: "landform_type", op: "in", values: ["munte"] }],
     },
   },
   {
