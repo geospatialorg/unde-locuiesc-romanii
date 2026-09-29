@@ -1,4 +1,4 @@
-const CACHE_NAME = "unde-locuiesc-v2";
+const CACHE_NAME = "unde-locuiesc-v3";
 const ASSETS = [
   "/",
   "/index.html",
@@ -32,7 +32,35 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
+
+  // Doar http(s). Extensiile de browser fac cereri chrome-extension:// (blob:, data: etc.)
+  // care nu pot fi puse în Cache API — aruncau „Request scheme … unsupported". Le lăsăm
+  // complet în seama browserului (fără respondWith).
+  if (!request.url.startsWith("http")) return;
+
   const url = new URL(request.url);
+
+  // Navigare (documentul HTML): NETWORK-FIRST. Cererea „/" nu se termină în .html și cădea
+  // pe ramura cache-first de mai jos → la un deploy nou servea un index.html vechi care
+  // trimitea spre un bundle cu hash vechi, inexistent pe server → fallback SPA (text/html)
+  // în locul JS-ului → „Failed to load module script" → pagină albă. Network-first ține
+  // index.html mereu proaspăt (cu hash-ul curent); offline cădem pe copia din cache.
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
+          return response;
+        })
+        .catch(() =>
+          caches.match(request).then((cached) => cached || caches.match("/index.html"))
+        )
+    );
+    return;
+  }
 
   // POST/PUT/DELETE: mereu network-first
   if (request.method !== "GET") {
