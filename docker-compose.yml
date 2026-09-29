@@ -76,6 +76,7 @@ services:
     volumes:
       - ./infra/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./data/out:/srv:ro
+    restart: unless-stopped
 
   # Aplicația web — Vite dev server
   web:
@@ -92,6 +93,7 @@ services:
       VITE_ROUTING_URL: http://localhost:8091
     depends_on:
       - data
+    restart: unless-stopped
 
   # --- Rutare (opțional): PostGIS + pgRouting cu graful rutier OSM România ---
   # Prima punere în funcțiune:  docker compose up -d routing-db
