@@ -70,3 +70,7 @@ Rutele pe șosea (până la mare, frontieră, spital, aeroport) se calculează p
 **Rutare:** [PostgreSQL](https://www.postgresql.org/) + [PostGIS](https://postgis.net/) + [pgRouting](https://pgrouting.org/) · [osm2pgrouting](https://github.com/pgRouting/osm2pgrouting) · [osmium](https://osmcode.org/osmium-tool/).
 
 **Infrastructură:** [Docker](https://www.docker.com/) · [Caddy](https://caddyserver.com/) · [GitHub Actions](https://github.com/features/actions).
+
+## Contact
+
+Ne puteți trimite feedback cu privire la această aplicație la [contact@geo-spatial.org](contact@geo-spatial.org), pe [lista de discuții](https://groups.io/g/geo-spatial), [canalul de Slack](https://geospatialorg-1.slack.com/join/shared_invite/zt-cle5seo4-u9Bbr_mSV8R_BiROSGWr2A) sau folosind paginile noastre de social media:[LinkedIn](https://www.linkedin.com/company/geo-spatial-org), [Facebook](https://www.facebook.com/geospatialorg), [Mastodon](https://mastodon.social/@geospatialorg) și [BlueSky](https://bsky.app/profile/geo-spatial-org.bsky.social). Promitem să răspundem la toate mesajele și am aprecia foarte mult ideile voastre pentru noi întrebări.
